@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,700");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background: #353535;
+  color: #c4c4c4;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.45;
+  display: flex;
+  flex-wrap: wrap;
+}
+#__nuxt{
+    width: 100%;
+}

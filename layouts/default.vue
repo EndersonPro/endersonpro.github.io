@@ -1,55 +1,61 @@
 <template>
   <div>
+    <div class="sidebar">
+      <div class="logo">
+        Enderson
+        <span>Vizcaino</span>
+      </div>
+      <nav>
+        <!-- <a href class="nav-item">Inicio</a> -->
+        <nuxt-link class="nav-item" to="/home">Home</nuxt-link>
+        <!-- <NuxtLink class="nav-item" :to="'/home'">Inicio</NuxtLink> -->
+        <!-- <a href class="nav-item">About</a> -->
+        <!--  <a href class="nav-item active">Portfolio</a>
+        <a href class="nav-item">Contact</a>-->
+      </nav>
+    </div>
     <nuxt/>
   </div>
 </template>
 
 <style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+.sidebar {
+  background: #4f4f4f;
+  flex: 1 1 20%;
+  min-width: 300px;
+  padding: 3em;
+  text-align: center;
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.logo {
+  text-transform: uppercase;
+  /* margin-bottom: 2em; */
 }
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
+@media (min-width: 1500px) {
+  .logo {
+    margin-bottom: 5em;
+  }
+}
+.logo span {
+  font-weight: 700;
+}
+.nav-item {
+  color: #737373;
   text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
+  font-size: 1.7rem;
   display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
+  margin: 0 1em 0 1em;
+}
+@media (min-width: 1500px) {
+  .nav-item {
+    display: block;
+    margin: 7vh 0;
+  }
+}
+.nav-item.active {
+  color: #c4c4c4;
+}
+.nav-item:hover{
+  color: #c4c4c4;
 }
 
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
 </style>
