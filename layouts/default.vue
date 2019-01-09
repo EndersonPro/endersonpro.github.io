@@ -1,61 +1,128 @@
 <template>
   <div>
-    <div class="sidebar">
-      <div class="logo">
-        Enderson
-        <span>Vizcaino</span>
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Inicio</a>
+        </li>
+        <li>
+          <a href="#">Servicios</a>
+        </li>
+        <li>
+          <a href="#">Trabajos</a>
+        </li>
+      </ul>
+      <div class="button">
+        <a class="btn-open" href="#"></a>
       </div>
-      <nav>
-        <!-- <a href class="nav-item">Inicio</a> -->
-        <nuxt-link class="nav-item" to="/home">Home</nuxt-link>
-        <!-- <NuxtLink class="nav-item" :to="'/home'">Inicio</NuxtLink> -->
-        <!-- <a href class="nav-item">About</a> -->
-        <!--  <a href class="nav-item active">Portfolio</a>
-        <a href class="nav-item">Contact</a>-->
-      </nav>
+    </nav>
+    <div class="overlay">
+      <div class="wrap">
+        <ul class="wrap-nav">
+          <li>
+            <a href="#">Sobre Mi</a>
+            <ul>
+              <li>
+                <a href="#">About Company</a>
+              </li>
+              <li>
+                <a href="#">Designers</a>
+              </li>
+              <li>
+                <a href="#">Developers</a>
+              </li>
+              <li>
+                <a href="#">Pets</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Services</a>
+            <ul>
+              <li>
+                <a href="https://www.google.hr/">Web Design</a>
+              </li>
+              <li>
+                <a href="#">Development</a>
+              </li>
+              <li>
+                <a href="#">Apps</a>
+              </li>
+              <li>
+                <a href="#">Graphic design</a>
+              </li>
+              <li>
+                <a href="#">Branding</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Work</a>
+            <ul>
+              <li>
+                <a href="#">Web</a>
+              </li>
+              <li>
+                <a href="#">Graphic</a>
+              </li>
+              <li>
+                <a href="#">Apps</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="social">
+          <a href="http://mario-loncarek.from.hr/">
+            <div class="social-icon">
+              <i class="fa fa-facebook"></i>
+            </div>
+          </a>
+          <a href="#">
+            <div class="social-icon">
+              <i class="fa fa-twitter"></i>
+            </div>
+          </a>
+          <a href="#">
+            <div class="social-icon">
+              <i class="fa fa-codepen"></i>
+            </div>
+          </a>
+          <a href="#">
+            <div class="social-icon">
+              <i class="fa fa-behance"></i>
+            </div>
+          </a>
+          <a href="#">
+            <div class="social-icon">
+              <i class="fa fa-dribbble"></i>
+            </div>
+          </a>
+          <p>
+            From: Zagreb, Croatia
+            <br>Site:
+            <a href="http://mario-loncarek.from.hr/">mario-loncarek.from.hr</a>
+          </p>
+        </div>
+      </div>
     </div>
+    <div class="content"><span>ENDERSON</span><strong>VIZCAINO</strong></div>
     <nuxt/>
   </div>
 </template>
 
-<style>
-.sidebar {
-  background: #4f4f4f;
-  flex: 1 1 20%;
-  min-width: 300px;
-  padding: 3em;
-  text-align: center;
-}
-.logo {
-  text-transform: uppercase;
-  /* margin-bottom: 2em; */
-}
-@media (min-width: 1500px) {
-  .logo {
-    margin-bottom: 5em;
+<script>
+export default {
+  mounted() {
+    $(".button a").click(function() {
+      $(".overlay").fadeToggle(200);
+      $(this)
+        .toggleClass("btn-open")
+        .toggleClass("btn-close");
+    });
   }
-}
-.logo span {
-  font-weight: 700;
-}
-.nav-item {
-  color: #737373;
-  text-decoration: none;
-  font-size: 1.7rem;
-  display: inline-block;
-  margin: 0 1em 0 1em;
-}
-@media (min-width: 1500px) {
-  .nav-item {
-    display: block;
-    margin: 7vh 0;
-  }
-}
-.nav-item.active {
-  color: #c4c4c4;
-}
-.nav-item:hover{
-  color: #c4c4c4;
-}
+};
+</script>
 
+
+<style>
 </style>
