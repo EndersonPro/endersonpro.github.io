@@ -1,59 +1,125 @@
 <template>
   <div class="youtube_container">
-    <div class="img_container">aca la img</div>
+    <div class="img_container">
+      <img :src="img" :alt="title">
+    </div>
     <div class="description_container">
       <div class="title">
-        <h2>Titutlo de los videos o del video</h2>
+        <span>{{title}}</span>
       </div>
       <div class="description">
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro veror</p>
-        <a href="#">More information</a>
+        <div class="parrafo">
+          <p>{{descriptionS}}</p>
+        </div>
+        <div class="more">
+          <a class="btn" href="#">More information</a>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["img", "title", "description", "id"],
+  computed: {
+    descriptionS() {
+
+      /* LEER SOBRE WATH VUE */
+      return (window.onresize = () => window.innerWidth <= 775) ? this.description:String(this.description).slice(0, 20) + " ... "
+    },
+    width: window.onresize = () => window.innerWidth
+  },
+  created() {
+    console.log(this.width);
+  }
+};
 </script>
-<style scoped>
+
+
+<style scoped >
+img {
+  max-width: 100%;
+}
 .youtube_container {
   margin: 1em;
   background-color: blue;
-  height: 10em;
   flex-basis: calc(50% - 2em);
   display: flex;
   flex-direction: row;
   align-content: space-between;
 }
 .img_container {
-  flex-basis: 150px;
-  background-color: orange;
+  flex-basis: 60%;
 }
 
 .description_container {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   width: 100%;
 }
 
 .title {
   background-color: brown;
-  font-size: 12px;
   padding: 0.3em;
   flex-basis: 20%;
   text-align: center;
 }
+.title span {
+  font-size: 13px;
+}
 
 .description {
   padding: 0.9em;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  justify-content: space-between;
 }
-@media screen and (max-width: 849px) {
-  .title {
-    font-size: 11px;
+.btn {
+  text-decoration: none;
+  font-size: 13px;
+  padding: 0.4em;
+  background-color: red;
+  color: white;
+}
+.btn:hover {
+  transition: 0.5s all ease-out;
+  background-color: green;
+}
+
+.parrafo {
+  margin-bottom: 1em;
+  font-size: 14px;
+}
+
+.truncate {
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 560px) {
+  .youtube_container {
+    flex-direction: column;
+  }
+  .parrafo {
+    margin-bottom: 1em;
+  }
+  .more {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 }
-@media screen and (max-width: 849px) {
+
+@media screen and (max-width: 918px) {
+  .title {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 800px) {
   .title {
     font-size: 10px;
   }
