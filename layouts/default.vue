@@ -3,13 +3,13 @@
     <nav>
       <ul>
         <li>
-          <a href="#">Inicio</a>
+          <nuxt-link to="/">Inicio</nuxt-link>
         </li>
         <li>
-          <a href="#">Servicios</a>
+          <nuxt-link to="/youtube">YouTube</nuxt-link>
         </li>
         <li>
-          <a href="#">Trabajos</a>
+          <nuxt-link to="/proyectos">Proyectos</nuxt-link>
         </li>
       </ul>
       <div class="button">
@@ -105,8 +105,9 @@
         </div>
       </div>
     </div>
-    <div class="content"><span>ENDERSON</span><strong>VIZCAINO</strong></div>
-    <nuxt/>
+    <div class="content">
+      <nuxt/>
+    </div>
   </div>
 </template>
 
@@ -123,6 +124,6 @@ export default {
 };
 </script>
 
+<style scoped>
 
-<style>
 </style>
