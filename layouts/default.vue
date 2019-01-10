@@ -114,6 +114,19 @@
 <script>
 export default {
   mounted() {
+    /* let a = document.querySelector(".button a");
+    let overlay = document.querySelector(".overlay");
+
+    a.addEventListener("click", function() {
+      console.log("Click");
+      try {
+        overlay.classList.toggle("btn-open");
+        overlay.classList.toggle("btn-close");
+      } catch (error) {
+        console.log(error);
+      }
+    }); */
+
     $(".button a").click(function() {
       $(".overlay").fadeToggle(200);
       $(this)
@@ -125,5 +138,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
