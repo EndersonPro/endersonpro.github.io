@@ -37,10 +37,10 @@
             </ul>
           </li>
           <li>
-            <a href="#">Services</a>
+            <a href="#">Servicios</a>
             <ul>
               <li>
-                <a href="https://www.google.hr/">Web Design</a>
+                <a href="#">Web Design</a>
               </li>
               <li>
                 <a href="#">Development</a>
@@ -57,7 +57,7 @@
             </ul>
           </li>
           <li>
-            <a href="#">Work</a>
+            <a href="#">Trabajos</a>
             <ul>
               <li>
                 <a href="#">Web</a>
@@ -71,7 +71,7 @@
             </ul>
           </li>
         </ul>
-        <div class="social">
+        <!-- <div class="social">
           <a href="http://mario-loncarek.from.hr/">
             <div class="social-icon">
               <i class="fa fa-facebook"></i>
@@ -102,7 +102,7 @@
             <br>Site:
             <a href="http://mario-loncarek.from.hr/">mario-loncarek.from.hr</a>
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="content">
