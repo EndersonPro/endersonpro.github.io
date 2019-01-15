@@ -42,7 +42,7 @@
               <a href="#">CSS</a>
             </li>
           </ul>
-        </li> -->
+        </li>-->
       </ul>
     </div>
     <div class="description">
@@ -50,7 +50,8 @@
       <h2>{{published}}</h2>
       <p>{{description}}</p>
       <p class="read-more">
-        <a href="#">Read More</a>
+        <nuxt-link :to="{path:'youtube/video/'+id, params:{id:1}}">Read More</nuxt-link>
+        <!-- <a href="#"></a> -->
       </p>
     </div>
   </div>
@@ -61,10 +62,10 @@ import moment from "moment";
 
 export default {
   props: ["img", "title", "description", "id", "publishedAt", "channelTitle"],
-  computed:{
-    published(){
+  computed: {
+    published() {
       moment.locale("es");
-      return moment(this.publishedAt).format("DD, MMM YYYY")
+      return moment(this.publishedAt).format("DD, MMM YYYY");
     }
   }
 };
@@ -180,7 +181,7 @@ $color_grey_dark: #a2a2a2;
       font-size: 1.5rem;
     }
     h2 {
-      font-size: .8rem;
+      font-size: 0.8rem;
       font-weight: 300;
       text-transform: uppercase;
       color: $color_grey_dark;
