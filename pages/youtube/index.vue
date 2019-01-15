@@ -10,6 +10,8 @@
       :title="video.title"
       :description="video.description"
       :id="video.id"
+      :publishedAt="video.publishedAt"
+      :channelTitle="video.channelTitle"
     ></ItemYouTube>
   </div>
 </template>
@@ -56,7 +58,9 @@ export default {
             id: element.id.videoId,
             description: element.snippet.description,
             title: element.snippet.title,
-            img: element.snippet.thumbnails.high.url
+            img: element.snippet.thumbnails.high.url,
+            publishedAt:element.snippet.publishedAt,
+            channelTitle: element.snippet.channelTitle
           };
           arrVideos.push(objVideo);
         });
