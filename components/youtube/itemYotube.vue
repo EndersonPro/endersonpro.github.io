@@ -50,7 +50,7 @@
       <h2>{{published}}</h2>
       <p>{{description}}</p>
       <p class="read-more">
-        <nuxt-link :to="{path:'youtube/video/'+id, params:{id:1}}">Read More</nuxt-link>
+        <nuxt-link :to="{path:'youtube/'+id}">Read More</nuxt-link>
         <!-- <a href="#"></a> -->
       </p>
     </div>
