@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav">
     <nav>
       <ul>
         <li>
@@ -138,4 +138,8 @@ export default {
 </script>
 
 <style scoped>
+.nav{
+  background-color: #00010D;
+}
+
 </style>

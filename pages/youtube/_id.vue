@@ -1,8 +1,11 @@
 <template>
   <div class="contenedor">
-    <h1>Espera un momento, estamos cargando el video...</h1>
+    <h1>Cargando video</h1>
+    <div class="cont_video_youtube">
     <div class="yt-video">
-      <iframe id="player" type="text/html" :src="src"></iframe>
+      <iframe id="player" frameborder="0" type="text/html" :src="src"></iframe>
+    </div>
+
     </div>
   </div>
 </template>
@@ -12,8 +15,7 @@ export default {
     src() {
       return (
         "http://www.youtube.com/embed/" +
-        this.$route.params.id +
-        "?enablejsapi=1&origin=http://endersonpro.github.io"
+        this.$route.params.id
       );
     }
   },
@@ -21,20 +23,22 @@ export default {
   created() {}
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 h1 {
   color: white;
 }
 .contenedor {
   display: flex;
-  
-  align-items: center;
-  justify-items: center;
+  flex-direction: column;
+  .cont_video_youtube{
+    padding: .5em;
+  }
 }
 .yt-video {
   height: 0;
   padding-bottom: 56.25%;
   overflow: hidden;
+  padding-top: 30px;
   position: relative;
 }
 

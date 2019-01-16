@@ -12,6 +12,7 @@
       :id="video.id"
       :publishedAt="video.publishedAt"
       :channelTitle="video.channelTitle"
+      :fullUrl="video.fullUrl"
     ></ItemYouTube>
   </div>
 </template>
@@ -31,18 +32,15 @@ export default {
       color: "orange",
       YOUTUBE_KEY: "AIzaSyC6n6TtDL7DoeqrNVhcf-jcCEa9Gymx1e0",
       options: {
-        /* q: "nodejs", */
         part: "snippet",
         type: "video",
         channelId: "UCIbDKTvHPeSQc1-jqkAPJhw",
         publishedAfter: "2017-07-22T00:00:00+00:00",
         maxResults: 15,
         order: "date"
-      }
+      },
+      Videos: Array
     };
-  },
-  asyncData(context) {
-    return { Videos: context.getData };
   },
   mounted() {
     this.getData();
@@ -51,18 +49,19 @@ export default {
     async getData() {
       try {
         let result = await searchYoutube(this.YOUTUBE_KEY, this.options);
-        console.log(result.items);
         let arrVideos = new Array();
+        console.log(result);
         result.items.forEach(element => {
           let objVideo = {
             id: element.id.videoId,
             description: element.snippet.description,
             title: element.snippet.title,
             img: element.snippet.thumbnails.high.url,
-            publishedAt:element.snippet.publishedAt,
-            channelTitle: element.snippet.channelTitle
+            publishedAt: element.snippet.publishedAt,
+            channelTitle: element.snippet.channelTitle,
+            fullUrl: `https://www.youtube.com/watch?v=${element.id.videoId}`
           };
-          arrVideos.push(objVideo);
+          arrVideos = [...arrVideos, objVideo];
         });
         this.Videos = arrVideos;
         this.isload = true;
