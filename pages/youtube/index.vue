@@ -1,8 +1,9 @@
 <template>
   <div class="contenedor">
     <BounceLoader :color="color" v-if="!isload"></BounceLoader>
+    <!-- Le quite la clase items que le da una animacion -->
     <ItemYouTube
-      class="items"
+      class=""
       v-else
       v-for="(video, index) in Videos"
       :key="index"

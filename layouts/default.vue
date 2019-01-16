@@ -20,23 +20,20 @@
       <div class="wrap">
         <ul class="wrap-nav">
           <li>
-            <a href="#">Sobre Mi</a>
+            <!-- <a href="#">Sobre Mi</a> -->
             <ul>
-              <li>
-                <a href="#">About Company</a>
+              <li class="button">
+                <nuxt-link to="/">Inicio</nuxt-link>
               </li>
-              <li>
-                <a href="#">Designers</a>
+              <li class="button">
+                <nuxt-link to="/youtube">YouTube</nuxt-link>
               </li>
-              <li>
-                <a href="#">Developers</a>
-              </li>
-              <li>
-                <a href="#">Pets</a>
+              <li class="button">
+                <nuxt-link to="/proyectos">Proyectos</nuxt-link>
               </li>
             </ul>
           </li>
-          <li>
+          <!-- <li>
             <a href="#">Servicios</a>
             <ul>
               <li>
@@ -69,7 +66,7 @@
                 <a href="#">Apps</a>
               </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <!-- <div class="social">
           <a href="http://mario-loncarek.from.hr/">
@@ -102,7 +99,7 @@
             <br>Site:
             <a href="http://mario-loncarek.from.hr/">mario-loncarek.from.hr</a>
           </p>
-        </div> -->
+        </div>-->
       </div>
     </div>
     <div class="content">
@@ -138,8 +135,7 @@ export default {
 </script>
 
 <style scoped>
-.nav{
-  background-color: #00010D;
+.nav {
+  background-color: #00010d;
 }
-
 </style>

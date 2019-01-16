@@ -62,7 +62,6 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  min-height: 32rem;
   background-color: #00010d;
   display: flex;
   width: 100%;
