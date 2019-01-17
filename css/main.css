@@ -1,5 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
-@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+@import url(https://fonts.googleapis.com/css?family=Raleway:300, 700);
+@import url("https://fonts.googleapis.com/css?family=Inconsolata");
 
 * {
   box-sizing: border-box;
@@ -10,7 +10,6 @@
 body {
   margin: 0;
   padding: 0;
-  /* background: #00010D; */
   background: white;
   font-family: "Raleway", sans-serif;
   font-size: 12px;
@@ -40,16 +39,13 @@ nav ul li {
   display: inline-block;
 }
 nav ul li a {
-  /* color: #333; */
   color: #ebf2f1;
   display: inline-block;
   padding: 1em 3em;
   text-decoration: none;
   border-bottom: 2px solid #fff;
   transition-property: all 0.2s linear 0s;
-  -moz-transition: all 0.2s linear 0s;
-  -webkit-transition: all 0.2s linear 0s;
-  -o-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
   font-size: 16px;
 }
 nav ul li a:hover {
@@ -59,22 +55,20 @@ nav ul li a:hover {
 .button {
   display: inline;
   position: absolute;
-  right: 50px;
-  top: 6px;
+  right: 19px;
+  top: 10px;
   z-index: 999;
-  font-size: 30px;
+  font-size: 27px;
 }
 .button a {
   text-decoration: none;
 }
 .btn-open:after {
-  color:  #DADFE1;
+  color: #dadfe1;
   content: "\f0c9";
   font-family: "FontAwesome";
   transition-property: all 0.2s linear 0s;
-  -moz-transition: all 0.2s linear 0s;
-  -webkit-transition: all 0.2s linear 0s;
-  -o-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
 }
 .btn-open:hover:after {
   color: #34b484;
@@ -84,9 +78,7 @@ nav ul li a:hover {
   content: "\f00d";
   font-family: "FontAwesome";
   transition-property: all 0.2s linear 0s;
-  -moz-transition: all 0.2s linear 0s;
-  -webkit-transition: all 0.2s linear 0s;
-  -o-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
 }
 .btn-close:hover:after {
   color: #34b484;
@@ -126,9 +118,7 @@ nav ul li a:hover {
   padding: 8px 0;
   text-decoration: none;
   transition-property: all 0.2s linear 0s;
-  -moz-transition: all 0.2s linear 0s;
-  -webkit-transition: all 0.2s linear 0s;
-  -o-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
 }
 .wrap ul.wrap-nav li a:hover {
   color: #f0f0f0;
@@ -164,25 +154,7 @@ nav ul li a:hover {
   margin: 0;
   padding: 0;
 }
-.social-icon {
-  width: 80px;
-  height: 50px;
-  background: #e9e9e9;
-  color: #333;
-  display: inline-block;
-  margin: 0 20px;
-  transition-property: all 0.2s linear 0s;
-  -moz-transition: all 0.2s linear 0s;
-  -webkit-transition: all 0.2s linear 0s;
-  -o-transition: all 0.2s linear 0s;
-}
-.social-icon:hover {
-  background: #34b484;
-  color: #f0f0f0;
-}
-.social-icon i {
-  margin-top: 12px;
-}
+
 @media screen and (max-width: 48em) {
   .wrap ul.wrap-nav > li {
     width: 100%;
@@ -196,20 +168,9 @@ nav ul li a:hover {
     opacity: 0;
     visibility: hidden;
   }
-  .social {
-    color: #c1c1c1;
-    font-size: 25px;
-    padding: 15px 0;
-  }
-  .social-icon {
-    width: 100%;
-    height: 50px;
-    background: #fff;
-    color: #333;
-    display: block;
-    margin: 5px 0;
-  }
 }
+
+
 .content {
   /* display: flex;
   justify-content: center; */
@@ -218,12 +179,15 @@ nav ul li a:hover {
   color: #333;
   text-align: center; */
 }
+
+/* Estilos para las animaciones de las paginas */
 .page-enter-active,
-.page-leave-active {  
-  transition: all .5s;
+.page-leave-active {
+  transition: all 0.5s;
 }
 
-.page-enter, .page-leave-active{
+.page-enter,
+.page-leave-active {
   opacity: 0;
   transform: scale(0);
 }

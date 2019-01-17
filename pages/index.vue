@@ -46,9 +46,7 @@
     </div>
     <div class="sobremi">
       <div class="texto">
-        <div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates error officia accusamus voluptatibus sint ab voluptate earum dolore distinctio eligendi enim, alias, non aliquam quisquam quos aliquid nobis. Explicabo, natus.</p>
-        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates error officia accusamus voluptatibus sint ab voluptate earum dolore distinctio eligendi enim, alias, non aliquam quisquam quos aliquid nobis. Explicabo, natus.</p>
       </div>
     </div>
   </section>
@@ -175,9 +173,14 @@ export default {
   display: flex;
   width: 100%;
   background: #fbfbfb;
+  height: 400px;
+  flex-direction: column;
+  align-items: center;
   position: relative;
-  /* height: 300px; */
-  &::before {
+  justify-content: center;
+  -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+  /* &::before {
     content: "";
     display: block;
     position: absolute;
@@ -198,50 +201,42 @@ export default {
     background-color: #fbfbfb;
     top: -66px;
     right: 0;
+  } */
+  &::before {
+    content: "Sobre Mí";
+    position: absolute;
+    color: black;
+    font-size: 30px;
+    right: 7%;
+    top: 1em;
+    z-index: 2;
   }
-
+  &::after {
+    background: url(https://png.pngtree.com/element_origin_min_pic/16/10/07/1557f7558869880.jpg);
+    content: "";
+    opacity: 0.1;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: 1;
+  }
   .texto {
-    margin-top: 50px;
     display: block;
-    position: relative;
     width: 100%;
-    height: 400px;
-    div {
-      p {
-        margin: 0 auto;
-        color: black;
-        font-size: 17px;
-        text-align: justify;
-        line-height: 1.4em;
-        padding: 1em;
-      }
-      width: 100%;
-      position: absolute;
-
-      z-index: 3;
-    }
-    &::before {
-      content: "Sobre Mí";
-      position: absolute;
+    p {
+      margin: 0 auto;
       color: black;
-      font-size: 30px;
-      right: 7%;
-      top: -2em;
-      z-index: 2;
+      font-size: 17px;
+      text-align: justify;
+      line-height: 1.4em;
+      padding: 1em;
     }
-    &::after {
-      background: url(https://png.pngtree.com/element_origin_min_pic/16/10/07/1557f7558869880.jpg);
-      content: "";
-      opacity: 0.1;
-      background-repeat: no-repeat;
-      background-position: center;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      position: absolute;
-      z-index: 1;
-    }
+    width: 100%;
+    z-index: 3;
   }
 }
 
