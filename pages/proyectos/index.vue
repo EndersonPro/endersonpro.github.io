@@ -4,6 +4,7 @@
     <p>
         En proceso bro... <i class="em em-clock10"></i>
     </p>
+   
   </div>
 </template>
 <script>

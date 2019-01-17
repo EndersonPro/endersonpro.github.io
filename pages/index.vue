@@ -38,12 +38,7 @@
       </div>
     </div>
 
-    <div class="yo typewriter">
-      <span>
-        &copy; ENDERSON
-        <strong>VIZCAINO</strong>
-      </span>
-    </div>
+    
     <div class="sobremi">
       <div class="texto">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates error officia accusamus voluptatibus sint ab voluptate earum dolore distinctio eligendi enim, alias, non aliquam quisquam quos aliquid nobis. Explicabo, natus.</p>
@@ -80,9 +75,7 @@ export default {
     justify-content: center;
   }
 }
-.yo {
-  font-size: 16px;
-}
+
 .message {
   padding: 1em;
   font-size: 35px;
@@ -127,38 +120,6 @@ export default {
       list-style: none;
       display: inline-flex;
     }
-  }
-}
-
-.typewriter span {
-  color: #fff;
-  font-family: monospace;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.15em; /* Adjust as needed */
-  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: orange;
   }
 }
 

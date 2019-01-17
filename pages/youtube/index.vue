@@ -51,7 +51,6 @@ export default {
       try {
         let result = await searchYoutube(this.YOUTUBE_KEY, this.options);
         let arrVideos = new Array();
-        console.log(result);
         result.items.forEach(element => {
           let objVideo = {
             id: element.id.videoId,
