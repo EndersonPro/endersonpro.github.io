@@ -19,17 +19,17 @@
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://www.facebook.com/EndersonVizcaino">
+              <a target="_blank" href="https://www.instagram.com/endersonvizc/">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://www.facebook.com/EndersonVizcaino">
+              <a target="_blank" href="https://github.com/EndersonPro">
                 <i class="fa fa-github" aria-hidden="true"></i>
               </a>
             </li>
             <li>
-              <a target="_blank" href="https://www.facebook.com/EndersonVizcaino">
+              <a target="_blank" href="https://twitter.com/Endersonj_">
                 <i class="fa fa-twitter-square" aria-hidden="true"></i>
               </a>
             </li>

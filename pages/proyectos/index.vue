@@ -3,6 +3,7 @@
     <h1>Proyectos</h1>
     <p>
         En proceso bro... <i class="em em-clock10"></i>
+        Aqui estaran listados todos mis proyectos... 
     </p>
    
   </div>
