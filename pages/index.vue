@@ -37,19 +37,17 @@
         </div>
       </div>
     </div>
-
-    
-    <div class="sobremi">
-      <div class="texto">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates error officia accusamus voluptatibus sint ab voluptate earum dolore distinctio eligendi enim, alias, non aliquam quisquam quos aliquid nobis. Explicabo, natus.</p>
-      </div>
-    </div>
+    <AboutMe/>
   </section>
 </template>
 
 <script>
+import AboutMe from "../components/aboutme";
+
 export default {
-  components: {}
+  components: {
+    AboutMe
+  }
 };
 </script>
 
@@ -126,78 +124,6 @@ export default {
 @media screen and (max-width: 48em) {
   .message {
     width: 85%;
-  }
-}
-
-.sobremi {
-  margin-top: 100px;
-  display: flex;
-  width: 100%;
-  background: #fbfbfb;
-  height: 400px;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  justify-content: center;
-  -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
-  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
-  /* &::before {
-    content: "";
-    display: block;
-    position: absolute;
-    border-radius: 156% 59% 152% 0%;
-    width: 55%;
-    height: 136px;
-    background-color: #00010d;
-    left: -6px;
-    top: -91px;
-  }
-  &::after {
-    content: "";
-    display: block;
-    position: absolute;
-    border-radius: 162% 0% 0% 0%;
-    width: 57%;
-    height: 108px;
-    background-color: #fbfbfb;
-    top: -66px;
-    right: 0;
-  } */
-  &::before {
-    content: "Sobre Mí";
-    position: absolute;
-    color: black;
-    font-size: 30px;
-    right: 7%;
-    top: 1em;
-    z-index: 2;
-  }
-  &::after {
-    background: url(https://png.pngtree.com/element_origin_min_pic/16/10/07/1557f7558869880.jpg);
-    content: "";
-    opacity: 0.1;
-    background-repeat: no-repeat;
-    background-position: center;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: 1;
-  }
-  .texto {
-    display: block;
-    width: 100%;
-    p {
-      margin: 0 auto;
-      color: black;
-      font-size: 17px;
-      text-align: justify;
-      line-height: 1.4em;
-      padding: 1em;
-    }
-    width: 100%;
-    z-index: 3;
   }
 }
 
