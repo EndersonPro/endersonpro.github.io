@@ -702,8 +702,8 @@ html {
 
 body {
   color: #F2F2F2;
-  /* font-family: 'Source Sans Pro', sans-serif; */
-  font-family: 'Fira Code', monospace;
+  font-family: 'Source Sans Pro', sans-serif;
+  /* font-family: 'Fira Code', monospace; */
   font-weight: 400; }
 
 li {
@@ -789,8 +789,8 @@ img {
     padding-bottom: 0; }
   .article__title {
     color: #7DC1FF;
-    font-size: 20px;
-    margin-bottom: 20px; }
+    font-size: 30px;
+    /* margin-bottom: 20px; */ }
     .article__title__link {
       color: inherit;
       border-bottom: 1px solid transparent; }
