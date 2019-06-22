@@ -730,7 +730,7 @@ img {
 .container {
   margin: 0 auto;
   padding: 0 10px;
-  max-width: 700px;
+  max-width: 900px;
   width: 100%; }
   .container__wrapper {
     padding-bottom: 20px; }
@@ -802,7 +802,7 @@ img {
     .article__tags__link {
       margin-left: 3px; }
       .article__tags__link:after {
-        content: ', '; }
+        content: ", "; }
       .article__tags__link:hover {
         color: #F24141; }
   .article__body {
@@ -814,7 +814,11 @@ img {
     .article__body a {
       color: #F24141;
       text-decoration: underline; }
-    .article__body > h2, .article__body h3, .article__body h4, .article__body h5, .article__body h6 {
+    .article__body > h2,
+    .article__body h3,
+    .article__body h4,
+    .article__body h5,
+    .article__body h6 {
       font-size: 20px;
       margin: 15px 0; }
     .article__body > blockquote {
@@ -823,27 +827,76 @@ img {
       color: #262626;
       padding: 10px 15px; }
     .article__body > p > code.highlighter-rouge {
-      background-color: #F8F8F8;
+      background-color: #f8f8f8;
       font-size: 12px;
       padding: 5px; }
     .article__body > ul > li {
       margin: 5px 0; }
       .article__body > ul > li:before {
-        content: '•';
+        content: "•";
         margin: 0 10px; }
       .article__body > ul > li > a {
         display: inline-block; }
     .article__body > .highlight {
-      background-color: #262626 !important;
-      border: 1px solid #828282;
-      border-radius: 5px;
+      background-color: #26261E !important;
+      /* border: 1px solid $metaData; */
+      /* border-radius: 5px; */
       font-size: 14px;
+      position: relative;
       line-height: 16px;
       overflow-y: auto; }
+      .article__body > .highlight::before {
+        content: "Code";
+        z-index: 2;
+        padding: 0.3em;
+        float: right;
+        color: white;
+        font-size: 13px;
+        background: grey; }
       .article__body > .highlight > table {
         padding: 5px 7px; }
         .article__body > .highlight > table .line {
           margin-right: 15px; }
+      .article__body > .highlight.html::before {
+        content: "HTML"; }
+      .article__body > .highlight.css::before {
+        content: "CSS"; }
+      .article__body > .highlight.javascript::before {
+        content: "JavaScript"; }
+      .article__body > .highlight.typescripe::before {
+        content: "TypeScript"; }
+      .article__body > .highlight.node::before {
+        content: "NodeJs"; }
+      .article__body > .highlight.scss::before {
+        content: "Scss"; }
+      .article__body > .highlight.less::before {
+        content: "Less"; }
+      .article__body > .highlight.stylus::before {
+        content: "Stylus"; }
+      .article__body > .highlight.java::before {
+        content: "Java"; }
+      .article__body > .highlight.python::before {
+        content: "Python"; }
+      .article__body > .highlight.php::before {
+        content: "PHP"; }
+      .article__body > .highlight.ruby::before {
+        content: "Ruby"; }
+      .article__body > .highlight.c::before {
+        content: "C"; }
+      .article__body > .highlight.cpp::before {
+        content: "C++"; }
+      .article__body > .highlight.swift::before {
+        content: "Swift"; }
+      .article__body > .highlight.objectivec::before {
+        content: "Objective-C"; }
+      .article__body > .highlight.go::before {
+        content: "Go"; }
+      .article__body > .highlight.json::before {
+        content: "JSON"; }
+      .article__body > .highlight.xml::before {
+        content: "XML"; }
+      .article__body > .highlight.yml::before {
+        content: "YAML"; }
   .article__link {
     color: #F24141;
     border-bottom: 1px solid transparent;
@@ -855,16 +908,16 @@ img {
   overflow: hidden; }
   .pagination__link {
     background-color: #8C3232;
-    border-bottom: 3px solid #90193E;
+    border-bottom: 3px solid #90193e;
     border-radius: 5px;
     color: #fff;
     margin: 4px 0;
     padding: 2px 6px;
     text-align: center;
-    text-shadow: 0px -2px #BF360C;
+    text-shadow: 0px -2px #bf360c;
     width: 70px; }
     .pagination__link:active {
-      border-bottom: 1px solid #90193E;
+      border-bottom: 1px solid #90193e;
       margin-top: 6px;
       text-shadow: none;
       transform: translateY(2px); }
