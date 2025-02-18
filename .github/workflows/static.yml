@@ -18,7 +18,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies 📦
-        run: npm ci
+        run: |
+          npm install -g pnpm@latest-10
+          pnpm install
 
       - name: Build project 🔨
         run: npm run build
