@@ -1,0 +1,155 @@
+.timeline-container {
+	--padding: 1em;
+	margin: 0 auto;
+	max-width: 800px;
+	height: 70vh;
+	/* margin: 20px auto; */
+	position: relative;
+	overflow-y: auto;
+	padding-right: 1em;
+	/* margin-top: var(--padding); */
+}
+
+/* Linea */
+.timeline-container::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translateX(calc(-50% - .5em));
+	width: 2px;
+	height: var(--timeline-height);
+	background-color: var(--grey-light);
+}
+
+.timeline-item {
+	display: flex;
+	margin-bottom: 40px;
+	position: relative;
+}
+
+.timeline-date {
+	flex: 1;
+	padding: 10px 20px;
+	text-align: right;
+	color: var(--grey-ultra-light);
+	font-weight: 500;
+}
+
+.timeline-content {
+	flex: 1;
+	padding: 1em;
+	background-color: rgba(255, 255, 255, 0.467);
+	border-radius: 16px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	margin-left: 30px;
+	position: relative;
+	transition: transform 0.3s ease;
+	filter: blur(0.5px);
+	color: var(--grey);
+}
+
+.timeline-content:hover {
+	transform: translateY(-5px);
+}
+.timeline-content h3 {
+	font-size: 1em;
+	font-weight: 600;
+	color: var(--red-middle);
+}
+
+.timeline-content h4 {
+	font-size: .9em;
+	font-style: italic;
+}
+
+.timeline-content p {
+	font-size: .8em;
+	line-height: 1.5;
+}
+
+/* Círculo indicador en la línea */
+.timeline-item::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 12px;
+	height: 12px;
+	background-color: var(--red-middle);
+	border: 2px solid white;
+	border-radius: 50%;
+	top: 20px;
+}
+
+/* ... (mantén todo el CSS anterior) ... */
+
+/* Items IMPARES (derecha) */
+.timeline-item:nth-child(odd) .timeline-content {
+	margin-left: 30px;
+	margin-right: 0;
+}
+
+.timeline-item:nth-child(odd) .timeline-date {
+	text-align: right;
+}
+
+/* Items PARES (izquierda) */
+.timeline-item:nth-child(even) .timeline-content {
+	margin-left: 0;
+	margin-right: 30px;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+	text-align: left;
+}
+
+/* Invierte el orden de los elementos pares */
+.timeline-item:nth-child(even) {
+	flex-direction: row-reverse;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+	.timeline-container::before {
+		left: 24px;
+	}
+
+	.timeline-item {
+		flex-direction: column;
+	}
+
+	.timeline-date {
+		/* text-align: left; */
+		margin-bottom: 10px;
+	}
+
+	.timeline-content {
+		margin-left: 40px;
+	}
+
+	.timeline-item::after {
+		left: 16px;
+	}
+
+	.timeline-item:nth-child(odd) .timeline-content {
+		margin-left: 40px;
+	}
+
+	.timeline-item:nth-child(odd) .timeline-date {
+		margin-bottom: 10px;
+	}
+
+	.timeline-item:nth-child(even) .timeline-content {
+		margin-left: 40px;
+		margin-right: 0px;
+	}
+
+	.timeline-item:nth-child(even) .timeline-date {
+		text-align: right;
+		margin-bottom: 10px;
+	}
+
+	.timeline-item:nth-child(even) {
+		flex-direction: column;
+	}
+}
