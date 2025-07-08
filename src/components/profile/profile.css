@@ -43,3 +43,17 @@
 	transform: translateY(-3px);
 	color: var(--red);
 }
+
+.emoji-wave {
+    animation: wave-animation 2.5s infinite;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(14deg); }
+    30% { transform: rotate(-8deg); }
+    45% { transform: rotate(14deg); }
+    60% { transform: rotate(-4deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+}
