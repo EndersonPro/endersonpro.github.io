@@ -1,37 +1,59 @@
 .image {
-	/* flex-basis: 10%; */
-	/* height: 80%; */
+	position: relative;
 	display: flex;
-	transition: transform 0.3s;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-}
-.image img {
-	width: 50%;
-	height: 50%;
-	object-fit: cover;
+	transition: transform 0.3s;
 }
 
-/* @media screen and (max-width: 1075px) {
-    .image {
-        width: 60%;
-    }
-} */
+.profile-img {
+	width: 150px; /* Ajusta el tamaño según sea necesario */
+	height: 150px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 3px solid rgba(255, 255, 255, 0.5);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	margin-bottom: 1rem;
+}
 
 .image_social_icons {
 	display: flex;
 	justify-content: center;
-	gap: 10px;
-	padding: 10px 0;
-	color: var(--grey-ultra-light);
+	gap: 1rem;
+	padding-top: 1.5rem;
 }
 
 .image_social_icons a {
-	text-decoration: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.15);
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(5px);
 	color: var(--grey-ultra-light);
+	transition: all 0.3s ease;
 }
 
 .image_social_icons a:hover {
+	background: rgba(255, 255, 255, 0.3);
+	transform: translateY(-3px);
 	color: var(--red);
+}
+
+.emoji-wave {
+    animation: wave-animation 2.5s infinite;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(14deg); }
+    30% { transform: rotate(-8deg); }
+    45% { transform: rotate(14deg); }
+    60% { transform: rotate(-4deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
 }
