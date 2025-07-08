@@ -7,12 +7,28 @@
 	gap: 2em;
 }
 
+.about_title {
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.18);
+	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+	padding: 10px 20px;
+	display: inline-block;
+	color: white;
+	font-size: 2em;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
 .about__title_content {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
 	flex-basis: 40%;
+	gap: 20px; /* Added spacing */
 }
 
 .about__content {

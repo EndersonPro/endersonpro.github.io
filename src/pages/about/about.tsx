@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { HeroText } from "../../components/profession/profession";
 import { Profile } from "../../components/profile/profile";
 import { Timeline } from "../../components/timeline/timeline";
 import "./about.css";
@@ -18,8 +17,8 @@ const pageTransition = {
 
 const staggerVariants = {
 	initial: { opacity: 0, y: 20 },
-	in: { 
-		opacity: 1, 
+	in: {
+		opacity: 1,
 		y: 0,
 		transition: {
 			staggerChildren: 0.15,
@@ -35,7 +34,7 @@ const itemVariants = {
 
 export const AboutPage = () => {
 	return (
-		<motion.div 
+		<motion.div
 			className="about"
 			initial="initial"
 			animate="in"
@@ -43,14 +42,14 @@ export const AboutPage = () => {
 			variants={pageVariants}
 			transition={pageTransition}
 		>
-			<motion.div 
+			<motion.div
 				className="about__title_content"
 				variants={staggerVariants}
 				initial="initial"
 				animate="in"
 			>
 				<motion.div variants={itemVariants}>
-					<HeroText id="profession" title="Sobre mi" />
+					<h3 className="about_title">Sobre mi</h3>
 				</motion.div>
 				<motion.div variants={itemVariants}>
 					<Profile />
@@ -81,7 +80,7 @@ export const AboutPage = () => {
 					</ul>
 				</motion.p>
 			</motion.div>
-			<motion.div 
+			<motion.div
 				className="experience"
 				initial={{ opacity: 0, y: 40 }}
 				animate={{ opacity: 1, y: 0 }}

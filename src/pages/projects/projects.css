@@ -9,7 +9,7 @@
 .projects_project {
     position: relative;
     max-width: 350px;
-    height: 480px;
+    min-height: 480px; /* Changed to min-height */
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -95,8 +95,7 @@
 .projects_project_content {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem; /* Increased spacing */
 }
 
 .projects_project_title {
@@ -117,7 +116,6 @@
     color: rgba(255, 255, 255, 0.8);
     line-height: 1.4;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    height: 4.2rem;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -156,7 +154,7 @@
     .projects_project {
         max-width: 100%;
         height: auto;
-        min-height: 450px;
+        min-height: auto;
     }
 
     .projects_project_image {
@@ -169,8 +167,11 @@
 
     .projects_project_description {
         font-size: 0.8rem;
-        height: 3.6rem;
+        overflow: hidden;
+        display: -webkit-box;
         -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
     }
 
     .projects_project_button {
@@ -187,7 +188,7 @@
     .projects_project {
         padding: 1rem;
         border-radius: 20px;
-        min-height: 420px;
+        min-height: auto;
     }
 
     .projects_project_image {
@@ -206,8 +207,11 @@
 
     .projects_project_description {
         font-size: 0.75rem;
-        height: 3.2rem;
+        overflow: hidden;
+        display: -webkit-box;
         -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
     }
 
     .projects_project_button {
