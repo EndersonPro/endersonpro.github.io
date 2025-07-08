@@ -32,12 +32,42 @@
 }
 
 .about__content {
-	line-height: 1.5;
+	line-height: 1.8;
 	font-size: 1em;
+	background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil */
+	backdrop-filter: blur(5px); /* Efecto de desenfoque */
+	-webkit-backdrop-filter: blur(5px);
+	border-radius: 12px; /* Bordes redondeados */
+	border: 1px solid rgba(255, 255, 255, 0.1); /* Borde ligero */
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+	padding: 20px; /* Espaciado interno */
+	color: rgba(255, 255, 255, 0.9); /* Color de texto para contraste */
 }
 
 .about__content ul {
 	list-style-type: none;
+	padding-left: 0; /* Eliminar padding por defecto */
+	margin-top: 15px;
+}
+
+.about__content ul li {
+	margin-bottom: 8px; /* Espacio entre elementos de lista */
+	padding-left: 10px; /* Indentación para los ítems */
+	position: relative;
+}
+
+.about__content ul li::before {
+	content: '•'; /* Viñeta personalizada */
+	color: var(--red); /* Color de la viñeta */
+	font-weight: bold;
+	display: inline-block;
+	width: 1em;
+	margin-left: -1em;
+}
+
+.about__content b {
+	color: var(--red-light); /* Resaltar texto en negrita */
+	font-weight: 600;
 }
 
 .line-blur {

@@ -11,10 +11,18 @@ export type Experience = {
 
 const experiences: Array<Experience> = [
     {
+        job: "Flutter Developer Sr",
+        company: "Siigo SAS",
+        date_start: "2025/06/16", // AAAA/MM/DD
+        date_end: "now",
+        description:
+            "Analizar, diseñar y desarrollar nuevas funcionalidades para la aplicación web de Siigo. Implementación de buenas prácticas de desarrollo y seguridad.",
+    },
+    {
         job: "Mobile Dev Lead",
         company: "Melonn SAS",
         date_start: "2024/01/02", // AAAA/MM/DD
-        date_end: "now",
+        date_end: "2025/03/19",
         description:
             "Encargado del correcto funcionamiento de todos los servicios necesarios para las aplicaciones móviles de la empresa. Gestión y desarrollo de nuevos servicios. Implementación de buenas prácticas de desarrollo y seguridad.",
     },

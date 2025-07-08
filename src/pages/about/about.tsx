@@ -59,7 +59,7 @@ export const AboutPage = () => {
 				<motion.p className="about__content" variants={itemVariants}>
 					Soy <b>Enderson Vizcaino</b>, un desarrollador Fullstack con más de 7 años de experiencia creando soluciones tecnológicas innovadoras. Mi pasión por la programación me ha llevado a trabajar en diversas áreas, desde el desarrollo backend y frontend hasta el liderazgo de equipos en entornos de desarrollo móvil y en la nube.
 
-					Actualmente, me desempeño como Mobile Lead en Melonn, donde lidero el desarrollo de soluciones móviles escalables. A lo largo de mi carrera, he trabajado en empresas destacadas como Condor Labs y Melonn, además de desempeñarme como freelancer, desarrollando desde eCommerce hasta aplicaciones móviles y sistemas empresariales.
+					Actualmente, me desempeño como Flutter Developer Sr en Siigo, donde me encuentro desarrollando, analizando y mejorando el rendimiento del aplicativo web llamado POS. A lo largo de mi carrera, he trabajado en empresas destacadas como Condor Labs y Melonn, además de desempeñarme como freelancer, desarrollando desde eCommerce hasta aplicaciones móviles y sistemas empresariales.
 
 					Mis tecnologías y herramientas favoritas incluyen:
 
