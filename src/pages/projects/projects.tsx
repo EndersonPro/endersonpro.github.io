@@ -1,3 +1,5 @@
+import { motion } from "framer-motion";
+import { HiExternalLink } from "react-icons/hi";
 import driversImg from '../../assets/img/projects/driversapp.png';
 import estarBienImg from '../../assets/img/projects/estarbien.png';
 import opsAppImg from '../../assets/img/projects/opsapp.png';
@@ -59,21 +61,104 @@ const projects: Array<Project> = [
 	// },
 ];
 
+const pageVariants = {
+	initial: { opacity: 0, y: 30, scale: 0.95 },
+	in: { opacity: 1, y: 0, scale: 1 },
+	out: { opacity: 0, y: -30, scale: 0.95 }
+};
+
+const pageTransition = {
+	type: "tween",
+	ease: [0.25, 0.46, 0.45, 0.94],
+	duration: 0.5
+};
+
+const containerVariants = {
+	initial: { opacity: 0 },
+	in: { 
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.1,
+			delayChildren: 0.3
+		}
+	}
+};
+
+const cardVariants = {
+	initial: { opacity: 0, y: 50, scale: 0.9 },
+	in: { 
+		opacity: 1, 
+		y: 0, 
+		scale: 1,
+		transition: {
+			type: "spring",
+			stiffness: 100,
+			damping: 15
+		}
+	}
+};
+
 export const ProjectsPage = () => {
+	const handleProjectClick = (url?: string, e?: React.MouseEvent) => {
+		if (e) {
+			e.stopPropagation();
+		}
+		if (url) {
+			window.open(url, "_blank", "noopener,noreferrer");
+		}
+	};
+
 	return (
-		<div className="projects">
-			{projects.map(({ title, description, image, url }) => (
-				// biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-				<div className="projects_project" key={title} onClick={() => {
-					window.open(url, "_blank");
-				}} >
-					<figure className="projects_project_image">
-						<img src={image} alt="title" />
-					</figure>
-					<h3 className="projects_project_title">{title}</h3>
-					<p className="projects_project_description">{description}</p>
-				</div>
-			))}
-		</div>
+		<motion.div 
+			className="projects"
+			initial="initial"
+			animate="in"
+			exit="out"
+			variants={pageVariants}
+			transition={pageTransition}
+		>
+			<motion.div 
+				variants={containerVariants}
+				initial="initial"
+				animate="in"
+				style={{ display: 'contents' }}
+			>
+				{projects.map(({ title, description, image, url }) => (
+					<motion.article 
+						className="projects_project" 
+						key={title}
+						variants={cardVariants}
+						whileHover={{
+							y: -8,
+							scale: 1.02,
+							transition: { duration: 0.2 }
+						}}
+						whileTap={{ scale: 0.98 }}
+					>
+						<figure className="projects_project_image">
+							<img 
+								src={image} 
+								alt={`Captura del proyecto ${title}`}
+								loading="lazy"
+								decoding="async"
+							/>
+						</figure>
+						<div className="projects_project_content">
+							<h3 className="projects_project_title">{title}</h3>
+							<p className="projects_project_description">{description}</p>
+						</div>
+						<motion.button 
+							className="projects_project_button btn btn_primary"
+							onClick={(e) => handleProjectClick(url, e)}
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							aria-label={`Ver proyecto ${title}`}
+						>
+							Ver proyecto <HiExternalLink />
+						</motion.button>
+					</motion.article>
+				))}
+			</motion.div>
+		</motion.div>
 	);
 };
