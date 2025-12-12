@@ -9,7 +9,7 @@ export const Nav = () => {
 						pathname: "/",
 					}}
 				>
-					<h1>EV</h1>
+					<h1>EV<span className="logo-accent">.</span></h1>
 				</NavLink>
 			</div>
 			<ul className="nav__menu">
@@ -22,7 +22,7 @@ export const Nav = () => {
 							pathname: "/",
 						}}
 					>
-						.is()
+						Inicio
 					</NavLink>
 				</li>
 				<li>
@@ -34,7 +34,7 @@ export const Nav = () => {
 							pathname: "/about",
 						}}
 					>
-						.about()
+						Sobre mí
 					</NavLink>
 				</li>
 				<li>
@@ -46,7 +46,7 @@ export const Nav = () => {
 							pathname: "/projects",
 						}}
 					>
-						.projects()
+						Proyectos
 					</NavLink>
 				</li>
 			</ul>

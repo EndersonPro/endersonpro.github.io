@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { HiChevronRight } from "react-icons/hi";
+import { LuLinkedin } from "react-icons/lu";
 import { NavLink } from "react-router";
 import { HeroText } from "../../components/profession/profession";
 import { Profile } from "../../components/profile/profile";
@@ -50,24 +51,38 @@ export const IsPage = () => {
 				animate="in"
 			>
 				<motion.h4 className="is_page__content__greeting" variants={itemVariants}>
-					Hola 👋, soy Enderson Vizcaino
+					Hola, soy Enderson Vizcaino
 				</motion.h4>
 				<motion.div variants={itemVariants}>
-					<HeroText id="profession" title="Fullstack developer" />
+					<HeroText id="profession" title="Software Engineer" />
 				</motion.div>
 				<motion.p className="is_page__content__about" variants={itemVariants}>
-					{" "}
-					Soy un desarrollador de software con experiencia en el desarrollo de
-					aplicaciones web y móviles. Me apasiona la tecnología y la
-					programación, y me encanta aprender cosas nuevas.{" "}
+					Especializado en Arquitectura Móvil con Flutter, desarrollo de microservicios
+					en la nube (AWS) y liderazgo de equipos técnicos. He construido aplicaciones
+					empresariales escalables para empresas como <a href="https://www.siigo.com/" target="_blank" rel="noopener noreferrer">Siigo</a> y <a href="https://www.melonn.com/" target="_blank" rel="noopener noreferrer">Melonn</a>.
 				</motion.p>
-				<motion.div variants={itemVariants}>
+				<motion.div className="is_page__content__stats" variants={itemVariants}>
+					<span className="stat">7+ años</span>
+					<span className="stat-divider">·</span>
+					<span className="stat">4 empresas</span>
+					<span className="stat-divider">·</span>
+					<span className="stat">10+ productos</span>
+				</motion.div>
+				<motion.div className="is_page__content__buttons" variants={itemVariants}>
 					<NavLink
 						to="/projects"
 						className="btn btn_primary is_page__content__button"
 					>
-						Proyectos <HiChevronRight />{" "}
+						Ver Proyectos <HiChevronRight />{" "}
 					</NavLink>
+					<a
+						href="https://www.linkedin.com/in/endersonvizcaino/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="btn btn_secondary is_page__content__button"
+					>
+						<LuLinkedin /> LinkedIn
+					</a>
 				</motion.div>
 			</motion.div>
 			<motion.div
@@ -80,3 +95,4 @@ export const IsPage = () => {
 		</motion.div>
 	);
 };
+

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import "./timeline.css";
 
 export type Experience = {
@@ -6,68 +6,58 @@ export type Experience = {
     company: string;
     date_start: string;
     date_end: string;
-    description: string;
+    description: ReactNode;
 };
 
 const experiences: Array<Experience> = [
     {
         job: "Flutter Developer Sr",
         company: "Siigo SAS",
-        date_start: "2025/06/16", // AAAA/MM/DD
+        date_start: "2025/06/16",
         date_end: "now",
-        description:
-            "Analizar, diseñar y desarrollar nuevas funcionalidades para la aplicación web de Siigo. Implementación de buenas prácticas de desarrollo y seguridad.",
+        description: <>Analizar, diseñar y desarrollar nuevas funcionalidades para la aplicación web de Siigo utilizando <b>Flutter</b>. Implementación de buenas prácticas de desarrollo y seguridad.</>,
     },
     {
         job: "Mobile Dev Lead",
         company: "Melonn SAS",
-        date_start: "2024/01/02", // AAAA/MM/DD
+        date_start: "2024/01/02",
         date_end: "2025/03/19",
-        description:
-            "Encargado del correcto funcionamiento de todos los servicios necesarios para las aplicaciones móviles de la empresa. Gestión y desarrollo de nuevos servicios. Implementación de buenas prácticas de desarrollo y seguridad.",
+        description: <>Encargado del correcto funcionamiento de todos los servicios necesarios para las aplicaciones móviles de la empresa con <b>Flutter</b>. Gestión y desarrollo de nuevos servicios. Implementación de buenas prácticas de desarrollo y seguridad.</>,
     },
     {
         job: "Cloud Engineer",
         company: "Melonn SAS",
-        date_start: "2021/09/02", // AAAA/MM/DD
+        date_start: "2021/09/02",
         date_end: "2024/01/02",
-        description:
-            "Desarrollo de microservicios, APIs, integraciones de sistemas, automatización de procesos y pruebas unitarias, desarrollo de aplicaciones móviles con Flutter.",
+        description: <>Desarrollo de microservicios, APIs, integraciones de sistemas, automatización de procesos y pruebas unitarias. Desarrollo de aplicaciones móviles con <b>Flutter</b>. Uso de <b>AWS</b>, <b>Node.js</b> y <b>TypeScript</b>.</>,
     },
     {
         job: "Software Engineer",
         company: "Condor Labs",
-        date_start: "2020/12/02", // AAAA/MM/DD
+        date_start: "2020/12/02",
         date_end: "2021/09/02",
-        description:
-            "Ingeniero de software, encargado de la investigación, diseño e implementación de nuevas funcionalidades y/o procesos sobre código legacy (C#) con React.js, NodeJS, MongoDB, CloudWatch, S3, Lambda, API Gateway. Optimización de procesos existentes. Creación/modificación de procesos de almacenamiento en Oracle DB.",
+        description: <>Ingeniero de software, encargado de la investigación, diseño e implementación de nuevas funcionalidades sobre código legacy (<b>C#</b>) con <b>React.js</b>, <b>Node.js</b>, <b>MongoDB</b>, <b>CloudWatch</b>, <b>S3</b>, <b>Lambda</b>, <b>API Gateway</b>. Optimización de procesos existentes. Creación/modificación de procesos en <b>Oracle DB</b>.</>,
     },
-
     {
         job: "Desarrollador Backend Junior",
         company: "SuperPesos",
-        date_start: "2019/11/02", // AAAA/MM/DD
+        date_start: "2019/11/02",
         date_end: "2020/11/02",
-        description:
-            "Desarrollador Backend Junior NodeJS, a cargo del mantenimiento, depuración y creación de microservicios en AWS, implementación de buenas prácticas de desarrollo, levantamiento y análisis de requerimientos. Uso de servicios de AWS, AWS Lambda, API Gateway, CloudWatch y S3 Bucket.",
+        description: <>Desarrollador Backend Junior <b>Node.js</b>, a cargo del mantenimiento, depuración y creación de microservicios en <b>AWS</b>. Uso de <b>AWS Lambda</b>, <b>API Gateway</b>, <b>CloudWatch</b> y <b>S3 Bucket</b>.</>,
     },
-
     {
         job: "Desarrollador Fullstack",
         company: "Freelance",
-        date_start: "2017/01/20", // AAAA/MM/DD
+        date_start: "2017/01/20",
         date_end: "2020/08/17",
-        description:
-            "Desarrollo de aplicaciones móviles y web como freelance, principalmente usando tecnologías web orientadas para propósito general con JavaScript como: React, Angular, Vue, ElectronJS, Ionic, TypeScript, NodeJS, MongoDB y también el uso de lenguajes como PHP y Go. Uso de frameworks como Laravel para la creación de APIs. Creación de aplicaciones móviles con Flutter.",
+        description: <>Desarrollo de aplicaciones móviles y web usando <b>JavaScript</b>, <b>React</b>, <b>Angular</b>, <b>Vue</b>, <b>ElectronJS</b>, <b>Ionic</b>, <b>TypeScript</b>, <b>Node.js</b>, <b>MongoDB</b>, <b>PHP</b>, <b>Go</b>, <b>Laravel</b> y <b>Flutter</b>.</>,
     },
-
     {
         job: "Desarrollador Fullstack",
         company: "JQAgencia",
-        date_start: "2019/01/16", // AAAA/MM/DD
+        date_start: "2019/01/16",
         date_end: "2019/12/02",
-        description:
-            "Desarrollo completo de un módulo para gestión de recursos industriales, usando el stack: PHP, MySQL, JavaScript, TypeScript, utilizando herramientas/tecnologías como: Angular, Laravel e Ionic.",
+        description: <>Desarrollo completo de un módulo para gestión de recursos industriales usando <b>PHP</b>, <b>MySQL</b>, <b>JavaScript</b>, <b>TypeScript</b>, <b>Angular</b>, <b>Laravel</b> e <b>Ionic</b>.</>,
     },
 ];
 

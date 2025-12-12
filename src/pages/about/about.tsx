@@ -49,36 +49,48 @@ export const AboutPage = () => {
 				animate="in"
 			>
 				<motion.div variants={itemVariants}>
-					<h3 className="about_title">Sobre mi</h3>
-				</motion.div>
-				<motion.div variants={itemVariants}>
 					<Profile />
 				</motion.div>
 				<motion.hr className="line-blur" variants={itemVariants} />
 
-				<motion.p className="about__content" variants={itemVariants}>
-					Soy <b>Enderson Vizcaino</b>, un desarrollador Fullstack con más de 7 años de experiencia creando soluciones tecnológicas innovadoras. Mi pasión por la programación me ha llevado a trabajar en diversas áreas, desde el desarrollo backend y frontend hasta el liderazgo de equipos en entornos de desarrollo móvil y en la nube.
+				<motion.div className="about__content" variants={itemVariants}>
+					<p className="about__bio">
+						Soy <b>Enderson Vizcaino</b>, un desarrollador Fullstack con más de 7 años de experiencia creando soluciones tecnológicas innovadoras. Mi pasión por la programación me ha llevado a trabajar en diversas áreas, desde el desarrollo backend y frontend hasta el liderazgo de equipos en entornos de desarrollo móvil y en la nube.
+					</p>
+					<p className="about__bio">
+						Actualmente, me desempeño como <b>Flutter Developer Sr</b> en <b>Siigo</b>, donde me encuentro desarrollando, analizando y mejorando el rendimiento del aplicativo web llamado POS. A lo largo de mi carrera, he trabajado en empresas destacadas como <b>Condor Labs</b> y <b>Melonn</b>, además de desempeñarme como freelancer, desarrollando desde eCommerce hasta aplicaciones móviles y sistemas empresariales.
+					</p>
 
-					Actualmente, me desempeño como Flutter Developer Sr en Siigo, donde me encuentro desarrollando, analizando y mejorando el rendimiento del aplicativo web llamado POS. A lo largo de mi carrera, he trabajado en empresas destacadas como Condor Labs y Melonn, además de desempeñarme como freelancer, desarrollando desde eCommerce hasta aplicaciones móviles y sistemas empresariales.
-
-					Mis tecnologías y herramientas favoritas incluyen:
-
-					<ul>
-						<li>
-							<b>Lenguajes:</b> JavaScript, TypeScript ❤️, Dart, Python, PHP
-
-						</li>
-						<li>
-							<b>Frameworks y Tecnologías:</b> Node.js, React, Flutter, Laravel
-
-
-						</li>
-						<li>
-							<b>Cloud & DevOps:</b> AWS ☁️, Docker, Firebase
-						</li>
-						<li><b>Bases de Datos:</b> MongoDB, OracleDB, MySQL</li>
-					</ul>
-				</motion.p>
+					<div className="tech-section">
+						<h4>🛠️ Tecnologías Clave</h4>
+						<div className="tech-tags">
+							<span className="tech-tag">TypeScript</span>
+							<span className="tech-tag">JavaScript</span>
+							<span className="tech-tag">Dart</span>
+							<span className="tech-tag">Python</span>
+							<span className="tech-tag">PHP</span>
+							<span className="tech-tag">C#</span>
+							<span className="tech-tag">Go</span>
+							<span className="tech-tag">Flutter</span>
+							<span className="tech-tag">React</span>
+							<span className="tech-tag">Node.js</span>
+							<span className="tech-tag">Angular</span>
+							<span className="tech-tag">Vue</span>
+							<span className="tech-tag">Laravel</span>
+							<span className="tech-tag">Ionic</span>
+							<span className="tech-tag">ElectronJS</span>
+							<span className="tech-tag">AWS Lambda</span>
+							<span className="tech-tag">API Gateway</span>
+							<span className="tech-tag">S3</span>
+							<span className="tech-tag">CloudWatch</span>
+							<span className="tech-tag">Docker</span>
+							<span className="tech-tag">Firebase</span>
+							<span className="tech-tag">MongoDB</span>
+							<span className="tech-tag">MySQL</span>
+							<span className="tech-tag">OracleDB</span>
+						</div>
+					</div>
+				</motion.div>
 			</motion.div>
 			<motion.div
 				className="experience"

@@ -9,16 +9,16 @@
 .projects_project {
     position: relative;
     max-width: 350px;
-    min-height: 480px; /* Changed to min-height */
+    min-height: 480px;
     display: flex;
     flex-direction: column;
     width: 100%;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(30, 41, 59, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(6, 182, 212, 0.15);
     box-shadow: 
-        0 8px 32px 0 rgba(0, 0, 0, 0.37),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        0 8px 32px 0 rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 1.5rem;
@@ -35,21 +35,21 @@
     bottom: 0;
     background: linear-gradient(
         135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0.05) 50%,
-        rgba(255, 255, 255, 0.02) 100%
+        rgba(6, 182, 212, 0.05) 0%,
+        rgba(59, 130, 246, 0.03) 50%,
+        transparent 100%
     );
-    border-radius: 24px;
+    border-radius: 20px;
     pointer-events: none;
 }
 
 .projects_project:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
-        0 16px 48px 0 rgba(0, 0, 0, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+        0 16px 48px 0 rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(6, 182, 212, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-color: rgba(6, 182, 212, 0.3);
 }
 
 .projects_project_image {

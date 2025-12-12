@@ -8,13 +8,24 @@
 }
 
 .profile-img {
-	width: 150px; /* Ajusta el tamaño según sea necesario */
-	height: 150px;
+	width: 180px;
+	height: 180px;
 	border-radius: 50%;
 	object-fit: cover;
-	border: 3px solid rgba(255, 255, 255, 0.5);
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	border: 3px solid rgba(6, 182, 212, 0.4);
+	box-shadow: 
+		0 4px 20px rgba(0, 0, 0, 0.3),
+		0 0 30px rgba(6, 182, 212, 0.15);
 	margin-bottom: 1rem;
+	transition: all 0.3s ease;
+}
+
+.profile-img:hover {
+	border-color: rgba(6, 182, 212, 0.6);
+	box-shadow: 
+		0 8px 30px rgba(0, 0, 0, 0.4),
+		0 0 40px rgba(6, 182, 212, 0.25);
+	transform: scale(1.02);
 }
 
 .image_social_icons {
@@ -28,20 +39,22 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 40px;
-	height: 40px;
+	width: 44px;
+	height: 44px;
 	border-radius: 50%;
-	background: rgba(255, 255, 255, 0.15);
-	border: 1px solid rgba(255, 255, 255, 0.25);
+	background: rgba(6, 182, 212, 0.1);
+	border: 1px solid rgba(6, 182, 212, 0.25);
 	backdrop-filter: blur(5px);
-	color: var(--grey-ultra-light);
+	color: var(--text-secondary);
 	transition: all 0.3s ease;
+	font-size: 1.2rem;
 }
 
 .image_social_icons a:hover {
-	background: rgba(255, 255, 255, 0.3);
-	transform: translateY(-3px);
-	color: var(--red);
+	background: rgba(6, 182, 212, 0.2);
+	transform: translateY(-4px);
+	color: var(--accent-400);
+	box-shadow: 0 8px 20px rgba(6, 182, 212, 0.2);
 }
 
 .emoji-wave {
