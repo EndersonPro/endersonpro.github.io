@@ -4,47 +4,33 @@ export const Nav = () => {
 	return (
 		<nav className="nav">
 			<div className="nav__logo">
-				<NavLink
-					to={{
-						pathname: "/",
-					}}
-				>
-					<h1>EV<span className="logo-accent">.</span></h1>
+				<NavLink to="/">
+					<h1>
+						EV<span className="logo-accent">.</span>
+					</h1>
 				</NavLink>
 			</div>
 			<ul className="nav__menu">
 				<li>
 					<NavLink
-						className={({ isActive }) =>
-							isActive ? "nav_nav__menu__active" : ""
-						}
-						to={{
-							pathname: "/",
-						}}
+						className={({ isActive }) => (isActive ? "active" : "")}
+						to="/"
 					>
 						Inicio
 					</NavLink>
 				</li>
 				<li>
 					<NavLink
-						className={({ isActive }) =>
-							isActive ? "nav_nav__menu__active" : ""
-						}
-						to={{
-							pathname: "/about",
-						}}
+						className={({ isActive }) => (isActive ? "active" : "")}
+						to="/about"
 					>
 						Sobre mí
 					</NavLink>
 				</li>
 				<li>
 					<NavLink
-						className={({ isActive }) =>
-							isActive ? "nav_nav__menu__active" : ""
-						}
-						to={{
-							pathname: "/projects",
-						}}
+						className={({ isActive }) => (isActive ? "active" : "")}
+						to="/projects"
 					>
 						Proyectos
 					</NavLink>

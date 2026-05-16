@@ -1,25 +1,34 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router";
-import { HeroProvider } from "./components/hero/context/hero-context";
 import { Nav } from "./components/nav";
 import { AboutPage } from "./pages/about/about";
-import { IsPage } from "./pages/is/is";
+import { HomePage } from "./pages/home/home";
 import { ProjectsPage } from "./pages/projects/projects";
+
+const pageTransition = {
+	initial: { opacity: 0, y: 20 },
+	animate: { opacity: 1, y: 0 },
+	exit: { opacity: 0, y: -20 },
+	transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] },
+};
 
 export const App = () => {
 	const location = useLocation();
 	return (
 		<div className="main">
 			<Nav />
-			<HeroProvider>
-				<AnimatePresence mode="wait">
-					<Routes location={location} key={location.pathname}>
-						<Route index element={<IsPage />} />
+			<AnimatePresence mode="wait">
+				<motion.div
+					key={location.pathname}
+					{...pageTransition}
+				>
+					<Routes location={location}>
+						<Route index element={<HomePage />} />
 						<Route path="/about" element={<AboutPage />} />
 						<Route path="/projects" element={<ProjectsPage />} />
 					</Routes>
-				</AnimatePresence>
-			</HeroProvider>
+				</motion.div>
+			</AnimatePresence>
 		</div>
 	);
 };
