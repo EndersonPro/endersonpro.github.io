@@ -5,6 +5,7 @@ import { AboutPage } from "./pages/about/about";
 import { HomePage } from "./pages/home/home";
 import { ProjectsPage } from "./pages/projects/projects";
 import { PrivacyInfinityPage } from "./pages/privacy/infinity";
+import { PrivacyPearMusicPage } from "./pages/privacy/pear-music";
 
 const pageTransition = {
 	initial: { opacity: 0, y: 20 },
@@ -16,10 +17,11 @@ const pageTransition = {
 export const App = () => {
 	const location = useLocation();
 
-	if (location.pathname === "/privacy/infinity") {
+	if (location.pathname === "/privacy/infinity" || location.pathname === "/privacy/pear-music") {
 		return (
 			<Routes location={location}>
 				<Route path="/privacy/infinity" element={<PrivacyInfinityPage />} />
+				<Route path="/privacy/pear-music" element={<PrivacyPearMusicPage />} />
 			</Routes>
 		);
 	}

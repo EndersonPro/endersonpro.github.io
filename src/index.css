@@ -972,3 +972,42 @@ body {
 	.privacy-policy { border-radius: 0; border-left: 0; border-right: 0; }
 	.privacy-policy__header { align-items: flex-start; flex-direction: column; }
 }
+
+/* ─── Pear Music Privacy Policy ─── */
+
+.privacy-page--pear {
+	--infinity-bg: #faf8f2;
+	--infinity-surface: #fffdf8;
+	--infinity-primary: #7d8a2e;
+	--infinity-cyan: #b4c24b;
+	--infinity-primary-soft: #667324;
+	--infinity-text: #29300f;
+	--infinity-muted: #5f624e;
+}
+
+.privacy-page--pear .privacy-page__glow { opacity: 0.18; }
+
+.privacy-page--pear .privacy-policy {
+	background: rgba(255, 253, 248, 0.92);
+	border-color: rgba(125, 138, 46, 0.28);
+	box-shadow: 0 28px 80px rgba(69, 78, 26, 0.15);
+}
+
+.privacy-page--pear .privacy-policy__header,
+.privacy-page--pear .privacy-policy__content section {
+	border-color: rgba(95, 98, 78, 0.2);
+}
+
+.privacy-page--pear .privacy-policy__logo {
+	box-shadow: 0 8px 24px rgba(125, 138, 46, 0.24);
+}
+
+.privacy-page--pear .privacy-policy__language {
+	background: rgba(250, 248, 242, 0.86);
+	border-color: rgba(95, 98, 78, 0.2);
+}
+
+.privacy-page--pear .privacy-policy__contact {
+	border-color: rgba(125, 138, 46, 0.42) !important;
+	background: rgba(180, 194, 75, 0.14);
+}
