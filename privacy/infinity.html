@@ -92,6 +92,7 @@ const policyCopy = {
 				title: "Advertising and consent",
 				paragraphs: [
 					"If the app configuration enables ads, Infinity may use Google AdMob. The Google User Messaging Platform (UMP) may present a consent flow where applicable. On iOS, App Tracking Transparency may be requested when the app asks for tracking permission under the platform's rules.",
+					"When an advert is requested, Google may receive your device's advertising identifier, IP address, device model, operating system version, coarse location derived from your IP address, and how you interacted with the advert. You can reset or delete your advertising identifier at any time in your device settings, and change your consent choices from your device's advertising settings.",
 					"The information processed by advertising and consent services depends on the applicable configuration, your choices, and Google's services. Please review Google's privacy information for details about those services.",
 				],
 			},
@@ -108,6 +109,28 @@ const policyCopy = {
 					"Photo Library (iOS): to let you select a video. Infinity accesses the item you choose.",
 					"Tracking (iOS): only when the app requests it through Apple's system prompt and under the platform's rules.",
 					"Android sharing: the system share sheet is opened only when you choose to share.",
+				],
+			},
+			{
+				title: "What Infinity never does",
+				items: [
+					"It never uploads the video you select or the files it produces.",
+					"It never sells or shares personal information for money or for cross-context behavioural advertising, as defined by California law.",
+					"It does not build a profile of you and has no means of identifying you individually.",
+					"It does not use your media to train any model.",
+				],
+			},
+			{
+				title: "Your rights",
+				paragraphs: [
+					"For the data Google receives as described above, you can exercise rights of access, correction, deletion, portability and objection under the GDPR, the UK GDPR, the CCPA/CPRA, or comparable laws, by contacting Google directly, since Google is the controller for that data. Google's own tools are at myadcenter.google.com and myaccount.google.com/data-and-privacy.",
+					"You may also write to the contact below with any question about this policy.",
+				],
+			},
+			{
+				title: "Children",
+				paragraphs: [
+					"Infinity is not directed at children under 13, and personal information is not knowingly collected from them. If you believe a child has provided personal information through the app, contact us below and it will be acted on.",
 				],
 			},
 			{
@@ -130,9 +153,12 @@ const policyCopy = {
 		sections: [
 			{ title: "Procesamiento en Galería local", paragraphs: ["Seleccionas un video de la galería de tu dispositivo. El recorte, la compresión y el procesamiento de audio se realizan en tu dispositivo. Los archivos generados por Infinity se guardan en el almacenamiento privado de la aplicación.", "Compartir es una acción iniciada por ti. En Android, Infinity usa los intents de compartición del sistema solo cuando eliges compartir un archivo."] },
 			{ title: "Servicios de la aplicación y actividad de red", paragraphs: ["Al iniciar, Infinity usa Firebase Remote Config, Firebase Analytics y Firebase Crashlytics.", "Firebase Analytics registra eventos y vistas de pantalla. Cuando Infinity puede derivarlo de un enlace rechazado, un evento puede incluir el host de ese enlace. Estos eventos no están destinados a incluir el texto ni la URL que introdujiste.", "Firebase Crashlytics puede enviar información de errores y diagnósticos cuando la aplicación falla. Firebase Remote Config obtiene configuraciones publicadas de la aplicación. Estos servicios pueden procesar información del dispositivo, la aplicación, la red e identificadores necesarios para prestarlos."] },
-			{ title: "Publicidad y consentimiento", paragraphs: ["Si la configuración de la aplicación habilita anuncios, Infinity puede usar Google AdMob. Google User Messaging Platform (UMP) puede mostrar un flujo de consentimiento cuando corresponda. En iOS, App Tracking Transparency puede solicitarse cuando la aplicación pida permiso de seguimiento según las reglas de la plataforma.", "La información procesada por los servicios de publicidad y consentimiento depende de la configuración aplicable, tus decisiones y los servicios de Google. Consulta la información de privacidad de Google para conocer los detalles."] },
+			{ title: "Publicidad y consentimiento", paragraphs: ["Si la configuración de la aplicación habilita anuncios, Infinity puede usar Google AdMob. Google User Messaging Platform (UMP) puede mostrar un flujo de consentimiento cuando corresponda. En iOS, App Tracking Transparency puede solicitarse cuando la aplicación pida permiso de seguimiento según las reglas de la plataforma.", "Cuando se solicita un anuncio, Google puede recibir el identificador de publicidad de tu dispositivo, tu dirección IP, el modelo del dispositivo, la versión del sistema operativo, una ubicación aproximada derivada de tu IP y cómo interactuaste con el anuncio. Puedes restablecer o eliminar tu identificador de publicidad en cualquier momento desde la configuración de tu dispositivo, y cambiar tus decisiones de consentimiento desde la configuración de publicidad de tu dispositivo.", "La información procesada por los servicios de publicidad y consentimiento depende de la configuración aplicable, tus decisiones y los servicios de Google. Consulta la información de privacidad de Google para conocer los detalles."] },
 			{ title: "Información almacenada en tu dispositivo", paragraphs: ["Infinity almacena localmente los archivos que seleccionas o creas, preferencias, contadores de capturas y estado de recompensas. Las preferencias pueden incluir opciones de procesamiento; los contadores y el estado de recompensas pueden usarse por funciones de la aplicación y flujos publicitarios."] },
 			{ title: "Permisos", paragraphs: ["Infinity solicita permisos solo cuando una función o plataforma correspondiente los requiere."], items: ["Fototeca (iOS): para permitirte seleccionar un video. Infinity accede al elemento que eliges.", "Seguimiento (iOS): únicamente cuando la aplicación lo solicita mediante el aviso del sistema de Apple y según las reglas de la plataforma.", "Compartir en Android: la hoja de compartición del sistema se abre solo cuando eliges compartir."] },
+			{ title: "Lo que Infinity nunca hace", items: ["Nunca sube el video que seleccionas ni los archivos que produce.", "Nunca vende ni comparte información personal a cambio de dinero, ni para publicidad conductual entre contextos, según la definición de la ley de California.", "No construye un perfil sobre ti ni tiene forma de identificarte individualmente.", "No usa tus archivos para entrenar ningún modelo."] },
+			{ title: "Tus derechos", paragraphs: ["Para los datos que Google recibe como se describe arriba, puedes ejercer derechos de acceso, corrección, eliminación, portabilidad y oposición conforme al RGPD, al RGPD del Reino Unido, la CCPA/CPRA u otras leyes comparables, contactando directamente a Google, ya que Google es el responsable de esos datos. Las herramientas de Google están en myadcenter.google.com y myaccount.google.com/data-and-privacy.", "También puedes escribirnos a la dirección de contacto con cualquier pregunta sobre esta política."] },
+			{ title: "Menores", paragraphs: ["Infinity no está dirigida a menores de 13 años y no recopila conscientemente información personal de ellos. Si crees que un menor proporcionó información personal a través de la app, contáctanos y actuaremos al respecto."] },
 			{ title: "Conservación y cambios", paragraphs: ["Los archivos y configuraciones locales permanecen en tu dispositivo hasta que los elimines, borres los datos de la aplicación o desinstales la aplicación. Los datos manejados por proveedores de servicios están sujetos a sus prácticas de conservación.", "Podemos actualizar esta política a medida que Infinity cambie. La versión más reciente estará disponible en esta URL con su fecha de revisión actualizada."] },
 		],
 		contactTitle: "Contacto",
@@ -147,9 +173,12 @@ const policyCopy = {
 		sections: [
 			{ title: "Processamento na Galeria local", paragraphs: ["Você seleciona um vídeo da galeria do seu dispositivo. O recorte, a compressão e o processamento de áudio ocorrem no seu dispositivo. Os arquivos produzidos pelo Infinity são salvos no armazenamento privado do aplicativo.", "O compartilhamento é iniciado por você. No Android, o Infinity usa os intents de compartilhamento do sistema somente quando você escolhe compartilhar um arquivo."] },
 			{ title: "Serviços do aplicativo e atividade de rede", paragraphs: ["Ao iniciar, o Infinity usa Firebase Remote Config, Firebase Analytics e Firebase Crashlytics.", "O Firebase Analytics registra eventos e visualizações de tela. Quando o Infinity consegue derivá-lo de um link rejeitado, um evento pode incluir o host desse link. Esses eventos não devem incluir o texto ou a URL inserida por você.", "O Firebase Crashlytics pode enviar informações de erro e diagnóstico quando o aplicativo falha. O Firebase Remote Config recupera configurações publicadas do aplicativo. Esses serviços podem processar informações de dispositivo, aplicativo, rede e identificadores necessários para fornecê-los."] },
-			{ title: "Publicidade e consentimento", paragraphs: ["Se a configuração do aplicativo habilitar anúncios, o Infinity poderá usar o Google AdMob. A Google User Messaging Platform (UMP) pode apresentar um fluxo de consentimento quando aplicável. No iOS, a App Tracking Transparency pode ser solicitada quando o aplicativo pedir permissão de rastreamento conforme as regras da plataforma.", "As informações processadas pelos serviços de publicidade e consentimento dependem da configuração aplicável, das suas escolhas e dos serviços do Google. Consulte as informações de privacidade do Google para detalhes sobre esses serviços."] },
+			{ title: "Publicidade e consentimento", paragraphs: ["Se a configuração do aplicativo habilitar anúncios, o Infinity poderá usar o Google AdMob. A Google User Messaging Platform (UMP) pode apresentar um fluxo de consentimento quando aplicável. No iOS, a App Tracking Transparency pode ser solicitada quando o aplicativo pedir permissão de rastreamento conforme as regras da plataforma.", "Quando um anúncio é solicitado, o Google pode receber o identificador de publicidade do seu dispositivo, seu endereço IP, o modelo do dispositivo, a versão do sistema operacional, uma localização aproximada derivada do seu IP e como você interagiu com o anúncio. Você pode redefinir ou excluir seu identificador de publicidade a qualquer momento nas configurações do seu dispositivo, e alterar suas escolhas de consentimento nas configurações de publicidade do dispositivo.", "As informações processadas pelos serviços de publicidade e consentimento dependem da configuração aplicável, das suas escolhas e dos serviços do Google. Consulte as informações de privacidade do Google para detalhes sobre esses serviços."] },
 			{ title: "Informações armazenadas no seu dispositivo", paragraphs: ["O Infinity armazena localmente os arquivos que você seleciona ou cria, preferências, contadores de captura e estado de recompensas. As preferências podem incluir escolhas de processamento; os contadores e o estado de recompensas podem ser usados por recursos do aplicativo e fluxos de publicidade."] },
 			{ title: "Permissões", paragraphs: ["O Infinity solicita permissões somente quando exigidas pelo recurso ou pela plataforma correspondente."], items: ["Biblioteca de Fotos (iOS): para permitir que você selecione um vídeo. O Infinity acessa o item escolhido.", "Rastreamento (iOS): somente quando o aplicativo o solicitar por meio do aviso do sistema da Apple e segundo as regras da plataforma.", "Compartilhamento no Android: a folha de compartilhamento do sistema é aberta somente quando você escolhe compartilhar."] },
+			{ title: "O que o Infinity nunca faz", items: ["Nunca envia o vídeo que você seleciona nem os arquivos que produz.", "Nunca vende nem compartilha informações pessoais em troca de dinheiro, nem para publicidade comportamental entre contextos, conforme definido pela lei da Califórnia.", "Não cria um perfil sobre você nem tem meios de identificá-lo individualmente.", "Não usa seus arquivos para treinar nenhum modelo."] },
+			{ title: "Seus direitos", paragraphs: ["Para os dados que o Google recebe conforme descrito acima, você pode exercer direitos de acesso, correção, exclusão, portabilidade e oposição segundo o RGPD, o RGPD do Reino Unido, a CCPA/CPRA ou leis comparáveis, entrando em contato diretamente com o Google, já que o Google é o controlador desses dados. As ferramentas do Google estão em myadcenter.google.com e myaccount.google.com/data-and-privacy.", "Você também pode escrever para o contato abaixo com qualquer dúvida sobre esta política."] },
+			{ title: "Crianças", paragraphs: ["O Infinity não é direcionado a crianças menores de 13 anos, e informações pessoais não são coletadas conscientemente delas. Se você acredita que uma criança forneceu informações pessoais através do aplicativo, entre em contato conosco e isso será tratado."] },
 			{ title: "Retenção e alterações", paragraphs: ["Os arquivos e configurações locais permanecem no seu dispositivo até que você os exclua, limpe os dados do aplicativo ou desinstale o aplicativo. Os dados tratados por prestadores de serviços estão sujeitos às suas práticas de retenção.", "Podemos atualizar esta política à medida que o Infinity mudar. A versão mais recente estará disponível nesta URL, com a data de revisão atualizada."] },
 		],
 		contactTitle: "Contato",
@@ -182,7 +211,7 @@ const policyCopy = {
       for (const section of copy.sections) {
         const sectionElement = document.createElement('section');
         addText(sectionElement, 'h2', section.title);
-        for (const paragraph of section.paragraphs) addText(sectionElement, 'p', paragraph);
+        for (const paragraph of section.paragraphs ?? []) addText(sectionElement, 'p', paragraph);
         if (section.items) {
           const list = document.createElement('ul');
           for (const item of section.items) addText(list, 'li', item);
