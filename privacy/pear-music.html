@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <title>Pear - Music & Playlist Privacy Policy</title>
+  <style>
+:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+body { min-height: 100vh; margin: 0; color: var(--muted); background: var(--bg); }
+.privacy-page { isolation: isolate; min-height: 100vh; padding: clamp(1rem, 4vw, 4rem); overflow: hidden; }
+.glow { position: fixed; z-index: -1; width: min(52vw, 680px); aspect-ratio: 1; border-radius: 50%; filter: blur(80px); opacity: .22; pointer-events: none; }
+.glow--one { top: -15rem; right: -12rem; background: var(--primary); }
+.glow--two { bottom: -20rem; left: -14rem; background: var(--secondary); }
+.privacy-policy { width: min(100%, 860px); margin: 0 auto; padding: clamp(1.5rem, 5vw, 4.5rem); background: var(--surface); border: 1px solid var(--border); border-radius: 28px; box-shadow: var(--shadow); }
+.header, .brand, .language { display: flex; align-items: center; }
+.header { justify-content: space-between; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.brand { gap: .85rem; }
+.logo { width: 48px; height: 48px; border-radius: 14px; box-shadow: var(--logo-shadow); }
+.eyebrow { display: block; color: var(--text); font-size: 1.1rem; font-weight: 700; }
+.brand p { margin: .1rem 0 0; font-size: .82rem; color: var(--muted); }
+.language { padding: .25rem; gap: .15rem; background: var(--language-bg); border: 1px solid var(--line); border-radius: 12px; }
+.language button { min-width: 2.7rem; padding: .45rem .5rem; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font: 700 .75rem inherit; letter-spacing: .04em; cursor: pointer; }
+.language button:hover, .language button:focus-visible { color: var(--text); }
+.language button:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.language button[aria-pressed="true"] { background: var(--primary); color: var(--active-text); }
+.intro { padding: clamp(2.25rem, 6vw, 4.5rem) 0 2.5rem; }
+h1, h2 { color: var(--text); letter-spacing: -.025em; }
+h1 { max-width: 680px; margin: 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }
+.intro p { max-width: 650px; margin: 1.25rem 0 0; font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.7; }
+time { display: block; margin-top: 1.5rem; color: var(--secondary); font-size: .85rem; font-weight: 600; }
+.content { display: grid; gap: 2.25rem; }
+.content section { padding-top: 2.25rem; border-top: 1px solid var(--line); }
+h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; }
+.content p, .content li { font-size: .98rem; line-height: 1.75; }
+.content p { margin: .9rem 0 0; }
+.content ul { margin: .9rem 0 0 1.25rem; padding: 0; }
+.content li + li { margin-top: .55rem; }
+a { color: var(--secondary); font-weight: 600; text-underline-offset: .2em; }
+a:hover { color: var(--primary-soft); }
+.contact { padding: 1.5rem !important; border: 1px solid var(--contact-border) !important; border-radius: 16px; background: var(--contact-bg); }
+.contact p { margin-top: .6rem; }
+@media (max-width: 560px) { .privacy-page { padding: 0; } .privacy-policy { border-right: 0; border-left: 0; border-radius: 0; } .header { align-items: flex-start; flex-direction: column; } }
+
+
+:root { color-scheme:light; --bg:#faf8f2; --surface:rgba(255,253,248,.92); --primary:#7d8a2e; --secondary:#b4c24b; --primary-soft:#667324; --text:#29300f; --muted:#5f624e; --border:rgba(125,138,46,.28); --line:rgba(95,98,78,.2); --language-bg:rgba(250,248,242,.86); --shadow:0 28px 80px rgba(69,78,26,.15); --logo-shadow:0 8px 24px rgba(125,138,46,.24); --contact-border:rgba(125,138,46,.42); --contact-bg:rgba(180,194,75,.14); --active-text:#fffdf8; }
+</style>
+</head>
+<body>
+  <main class="privacy-page">
+    <div class="glow glow--one"></div><div class="glow glow--two"></div>
+    <article class="privacy-policy">
+      <header class="header">
+        <div class="brand"><img src="assets/pear-music.png" alt="Pear - Music & Playlist" class="logo" /><div><span class="eyebrow">Pear - Music & Playlist</span><p id="page-label"></p></div></div>
+        <div class="language" id="language-selector" aria-label="Language">
+          <button type="button" data-locale="en" aria-pressed="true">EN</button>
+          <button type="button" data-locale="es" aria-pressed="false">ES</button>
+          <button type="button" data-locale="pt" aria-pressed="false">PT</button>
+        </div>
+      </header>
+      <div class="intro"><h1 id="title"></h1><p id="intro"></p><time id="updated" datetime="2026-08-17"></time></div>
+      <div class="content" id="content"></div>
+    </article>
+  </main>
+  <script>
+const policyCopy = {
+	en: {
+		languageLabel: "Language",
+		pageLabel: "Privacy policy",
+		title: "Pear - Music & Playlist Privacy Policy",
+		intro: "This policy explains how Pear - Music & Playlist handles information when you use its music player and streaming service.",
+		updated: "Last updated: 17 August 2026",
+		sections: [
+			{
+				title: "Information we process",
+				paragraphs: [
+					"Pear processes music-use information needed to provide and improve the app, such as searches, selections, playlists, and interactions with the player.",
+					"We may also process technical and diagnostic information, including app and device information, performance data, and error reports.",
+				],
+			},
+			{
+				title: "Music streaming",
+				paragraphs: [
+					"Pear provides music playback through a streaming service. The streaming connection may process your IP address and technical network information to deliver playback, maintain the service, and help protect it.",
+					"You do not need to create an account or sign in to use Pear.",
+				],
+			},
+			{
+				title: "Information stored on your device",
+				paragraphs: [
+					"Pear stores preferences and music-use information on your device. This can include search history, favorites, playlists, playback history, and cached content used to support the app experience.",
+				],
+			},
+			{
+				title: "Analytics, diagnostics, advertising, and consent",
+				paragraphs: [
+					"Pear uses Firebase Analytics to understand app use and Firebase Crashlytics to receive crash and diagnostic reports. These services may process device, app, network, and identifier information necessary for their services.",
+					"Pear may use Google Mobile Ads to show advertisements. The Google User Messaging Platform (UMP) may present consent choices where required. On iOS, App Tracking Transparency may be requested when tracking permission is required under Apple's platform rules.",
+					"Information processed by these providers depends on the applicable configuration, your choices, and their services. Please review their privacy information for further details.",
+				],
+			},
+			{
+				title: "Your controls",
+				paragraphs: [
+					"You can manage applicable consent choices, App Tracking Transparency, and device permissions through your device settings. You can also clear cached content and app data through the controls provided by your device.",
+				],
+			},
+			{
+				title: "Retention, security, and children",
+				paragraphs: [
+					"Retention periods vary according to the type of information, the purpose for which it is processed, your device controls, and the practices of our service providers. We use reasonable measures designed to protect information, but no method of transmission or storage is completely secure.",
+					"Pear is not directed to children where consent from a parent or guardian is required by applicable law. If you believe a child has provided personal information, please contact us.",
+				],
+			},
+			{
+				title: "Changes to this policy",
+				paragraphs: [
+					"We may update this policy as Pear changes. The latest version will be available at this URL and will show its revision date.",
+				],
+			},
+		],
+		contactTitle: "Contact",
+		contactText: "For privacy questions about Pear - Music & Playlist, contact",
+	},
+	es: {
+		languageLabel: "Idioma",
+		pageLabel: "Política de privacidad",
+		title: "Política de privacidad de Pear - Music & Playlist",
+		intro: "Esta política explica cómo Pear - Music & Playlist trata la información cuando usas su reproductor de música y servicio de streaming.",
+		updated: "Última actualización: 17 de agosto de 2026",
+		sections: [
+			{ title: "Información que tratamos", paragraphs: ["Pear trata información sobre el uso de música necesaria para ofrecer y mejorar la aplicación, como búsquedas, selecciones, playlists e interacciones con el reproductor.", "También podemos tratar información técnica y de diagnóstico, incluida información de la aplicación y el dispositivo, datos de rendimiento y reportes de errores."] },
+			{ title: "Streaming de música", paragraphs: ["Pear ofrece reproducción de música mediante un servicio de streaming. La conexión de streaming puede tratar tu dirección IP e información técnica de red para entregar la reproducción, mantener el servicio y ayudar a protegerlo.", "No necesitas crear una cuenta ni iniciar sesión para usar Pear."] },
+			{ title: "Información almacenada en tu dispositivo", paragraphs: ["Pear almacena preferencias e información de uso de música en tu dispositivo. Esto puede incluir historial de búsquedas, favoritos, playlists, historial de reproducción y contenido en caché utilizado para facilitar la experiencia de la aplicación."] },
+			{ title: "Analítica, diagnósticos, publicidad y consentimiento", paragraphs: ["Pear utiliza Firebase Analytics para comprender el uso de la aplicación y Firebase Crashlytics para recibir reportes de fallos y diagnósticos. Estos servicios pueden tratar información del dispositivo, la aplicación, la red e identificadores necesarios para sus servicios.", "Pear puede utilizar Google Mobile Ads para mostrar anuncios. Google User Messaging Platform (UMP) puede presentar opciones de consentimiento cuando sea necesario. En iOS, App Tracking Transparency puede solicitarse cuando se requiera permiso de seguimiento conforme a las reglas de la plataforma de Apple.", "La información tratada por estos proveedores depende de la configuración aplicable, tus elecciones y sus servicios. Consulta su información de privacidad para conocer más detalles."] },
+			{ title: "Tus controles", paragraphs: ["Puedes gestionar las opciones de consentimiento aplicables, App Tracking Transparency y los permisos del dispositivo desde la configuración de tu dispositivo. También puedes borrar el contenido en caché y los datos de la aplicación mediante los controles de tu dispositivo."] },
+			{ title: "Conservación, seguridad y menores", paragraphs: ["Los periodos de conservación varían según el tipo de información, la finalidad de su tratamiento, los controles de tu dispositivo y las prácticas de nuestros proveedores de servicios. Usamos medidas razonables diseñadas para proteger la información, pero ningún método de transmisión o almacenamiento es completamente seguro.", "Pear no está dirigida a menores cuando la legislación aplicable exige el consentimiento de un padre, madre o tutor. Si crees que un menor proporcionó información personal, comunícate con nosotros."] },
+			{ title: "Cambios en esta política", paragraphs: ["Podemos actualizar esta política a medida que Pear cambie. La versión más reciente estará disponible en esta URL e incluirá su fecha de revisión."] },
+		],
+		contactTitle: "Contacto",
+		contactText: "Para consultas de privacidad sobre Pear - Music & Playlist, escribe a",
+	},
+	pt: {
+		languageLabel: "Idioma",
+		pageLabel: "Política de privacidade",
+		title: "Política de privacidade do Pear - Music & Playlist",
+		intro: "Esta política explica como o Pear - Music & Playlist trata informações quando você usa seu reprodutor de música e serviço de streaming.",
+		updated: "Última atualização: 17 de agosto de 2026",
+		sections: [
+			{ title: "Informações que tratamos", paragraphs: ["O Pear trata informações de uso de música necessárias para fornecer e melhorar o aplicativo, como buscas, seleções, playlists e interações com o reprodutor.", "Também podemos tratar informações técnicas e de diagnóstico, incluindo informações do aplicativo e do dispositivo, dados de desempenho e relatórios de erros."] },
+			{ title: "Streaming de música", paragraphs: ["O Pear fornece reprodução de música por meio de um serviço de streaming. A conexão de streaming pode tratar seu endereço IP e informações técnicas de rede para fornecer a reprodução, manter o serviço e ajudar a protegê-lo.", "Você não precisa criar uma conta ou fazer login para usar o Pear."] },
+			{ title: "Informações armazenadas no seu dispositivo", paragraphs: ["O Pear armazena preferências e informações de uso de música no seu dispositivo. Isso pode incluir histórico de buscas, favoritos, playlists, histórico de reprodução e conteúdo em cache usado para apoiar a experiência no aplicativo."] },
+			{ title: "Análises, diagnósticos, publicidade e consentimento", paragraphs: ["O Pear usa Firebase Analytics para compreender o uso do aplicativo e Firebase Crashlytics para receber relatórios de falhas e diagnósticos. Esses serviços podem tratar informações de dispositivo, aplicativo, rede e identificadores necessários para seus serviços.", "O Pear pode usar Google Mobile Ads para exibir anúncios. A Google User Messaging Platform (UMP) pode apresentar opções de consentimento quando necessário. No iOS, a App Tracking Transparency pode ser solicitada quando a permissão de rastreamento for exigida pelas regras da plataforma da Apple.", "As informações tratadas por esses provedores dependem da configuração aplicável, das suas escolhas e dos serviços deles. Consulte as informações de privacidade desses provedores para mais detalhes."] },
+			{ title: "Seus controles", paragraphs: ["Você pode gerenciar as opções de consentimento aplicáveis, a App Tracking Transparency e as permissões do dispositivo nas configurações do seu dispositivo. Também pode limpar o conteúdo em cache e os dados do aplicativo pelos controles fornecidos pelo seu dispositivo."] },
+			{ title: "Retenção, segurança e crianças", paragraphs: ["Os períodos de retenção variam conforme o tipo de informação, a finalidade do tratamento, os controles do seu dispositivo e as práticas dos nossos provedores de serviços. Usamos medidas razoáveis destinadas a proteger as informações, mas nenhum método de transmissão ou armazenamento é totalmente seguro.", "O Pear não é direcionado a crianças quando a legislação aplicável exige o consentimento de um pai, mãe ou responsável. Se você acredita que uma criança forneceu informações pessoais, entre em contato conosco."] },
+			{ title: "Alterações nesta política", paragraphs: ["Podemos atualizar esta política à medida que o Pear mudar. A versão mais recente estará disponível nesta URL e mostrará sua data de revisão."] },
+		],
+		contactTitle: "Contato",
+		contactText: "Para questões de privacidade sobre o Pear - Music & Playlist, entre em contato com",
+	},
+};
+    const pageLabel = document.querySelector('#page-label');
+    const title = document.querySelector('#title');
+    const intro = document.querySelector('#intro');
+    const updated = document.querySelector('#updated');
+    const content = document.querySelector('#content');
+    const selector = document.querySelector('#language-selector');
+
+    function addText(parent, tag, value) {
+      const element = document.createElement(tag);
+      element.textContent = value;
+      parent.append(element);
+    }
+
+    function render(locale) {
+      const copy = policyCopy[locale];
+      document.documentElement.lang = locale === 'pt' ? 'pt' : locale;
+      document.title = copy.title;
+      pageLabel.textContent = copy.pageLabel;
+      title.textContent = copy.title;
+      intro.textContent = copy.intro;
+      updated.textContent = copy.updated;
+      selector.setAttribute('aria-label', copy.languageLabel);
+      content.replaceChildren();
+      for (const section of copy.sections) {
+        const sectionElement = document.createElement('section');
+        addText(sectionElement, 'h2', section.title);
+        for (const paragraph of section.paragraphs) addText(sectionElement, 'p', paragraph);
+        if (section.items) {
+          const list = document.createElement('ul');
+          for (const item of section.items) addText(list, 'li', item);
+          sectionElement.append(list);
+        }
+        content.append(sectionElement);
+      }
+      const contact = document.createElement('section');
+      contact.className = 'contact';
+      addText(contact, 'h2', copy.contactTitle);
+      const contactParagraph = document.createElement('p');
+      contactParagraph.append(document.createTextNode(`${copy.contactText} `));
+      const email = document.createElement('a');
+      email.href = 'mailto:khrienanime@gmail.com';
+      email.textContent = 'khrienanime@gmail.com';
+      contactParagraph.append(email, document.createTextNode('.'));
+      contact.append(contactParagraph);
+      content.append(contact);
+      for (const button of selector.querySelectorAll('button')) {
+        button.setAttribute('aria-pressed', String(button.dataset.locale === locale));
+      }
+    }
+
+    selector.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-locale]');
+      if (button) render(button.dataset.locale);
+    });
+    render('en');
+  </script>
+</body>
+</html>
