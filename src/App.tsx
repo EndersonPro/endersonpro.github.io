@@ -4,6 +4,7 @@ import { Nav } from "./components/nav";
 import { AboutPage } from "./pages/about/about";
 import { HomePage } from "./pages/home/home";
 import { ProjectsPage } from "./pages/projects/projects";
+import { PrivacyInfinityPage } from "./pages/privacy/infinity";
 
 const pageTransition = {
 	initial: { opacity: 0, y: 20 },
@@ -14,6 +15,15 @@ const pageTransition = {
 
 export const App = () => {
 	const location = useLocation();
+
+	if (location.pathname === "/privacy/infinity") {
+		return (
+			<Routes location={location}>
+				<Route path="/privacy/infinity" element={<PrivacyInfinityPage />} />
+			</Routes>
+		);
+	}
+
 	return (
 		<div className="main">
 			<Nav />
