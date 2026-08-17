@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/ico" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      const redirect = new URLSearchParams(window.location.search).get("redirect");
+      if (redirect?.startsWith("/")) {
+        window.history.replaceState(null, "", redirect);
+      }
+    </script>
     <title>Enderson Vizcaino | Software Engineer</title>
     <meta name="description" content="Software Engineer con más de 7 años de experiencia en Arquitectura Cloud, Desarrollo Móvil (Flutter) y Liderazgo Técnico. Basado en Colombia." />
     <meta name="author" content="Enderson Vizcaino" />
@@ -22,8 +28,8 @@
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#0f172a" />
-    <script type="module" crossorigin src="/assets/index-i-AiaLon.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DM9ZNVDx.css">
+    <script type="module" crossorigin src="/assets/index-DoD-gneu.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CckeboaM.css">
   </head>
   <body>
     <div id="root"></div>
