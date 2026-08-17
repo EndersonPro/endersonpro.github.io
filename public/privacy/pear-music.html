@@ -1,26 +1,71 @@
-import { useState } from "react";
-import pearMusicLogo from "../../assets/img/apps/pear-music.png";
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <title>Pear - Music & Playlist Privacy Policy</title>
+  <style>
+:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+body { min-height: 100vh; margin: 0; color: var(--muted); background: var(--bg); }
+.privacy-page { isolation: isolate; min-height: 100vh; padding: clamp(1rem, 4vw, 4rem); overflow: hidden; }
+.glow { position: fixed; z-index: -1; width: min(52vw, 680px); aspect-ratio: 1; border-radius: 50%; filter: blur(80px); opacity: .22; pointer-events: none; }
+.glow--one { top: -15rem; right: -12rem; background: var(--primary); }
+.glow--two { bottom: -20rem; left: -14rem; background: var(--secondary); }
+.privacy-policy { width: min(100%, 860px); margin: 0 auto; padding: clamp(1.5rem, 5vw, 4.5rem); background: var(--surface); border: 1px solid var(--border); border-radius: 28px; box-shadow: var(--shadow); }
+.header, .brand, .language { display: flex; align-items: center; }
+.header { justify-content: space-between; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.brand { gap: .85rem; }
+.logo { width: 48px; height: 48px; border-radius: 14px; box-shadow: var(--logo-shadow); }
+.eyebrow { display: block; color: var(--text); font-size: 1.1rem; font-weight: 700; }
+.brand p { margin: .1rem 0 0; font-size: .82rem; color: var(--muted); }
+.language { padding: .25rem; gap: .15rem; background: var(--language-bg); border: 1px solid var(--line); border-radius: 12px; }
+.language button { min-width: 2.7rem; padding: .45rem .5rem; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font: 700 .75rem inherit; letter-spacing: .04em; cursor: pointer; }
+.language button:hover, .language button:focus-visible { color: var(--text); }
+.language button:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.language button[aria-pressed="true"] { background: var(--primary); color: var(--active-text); }
+.intro { padding: clamp(2.25rem, 6vw, 4.5rem) 0 2.5rem; }
+h1, h2 { color: var(--text); letter-spacing: -.025em; }
+h1 { max-width: 680px; margin: 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }
+.intro p { max-width: 650px; margin: 1.25rem 0 0; font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.7; }
+time { display: block; margin-top: 1.5rem; color: var(--secondary); font-size: .85rem; font-weight: 600; }
+.content { display: grid; gap: 2.25rem; }
+.content section { padding-top: 2.25rem; border-top: 1px solid var(--line); }
+h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; }
+.content p, .content li { font-size: .98rem; line-height: 1.75; }
+.content p { margin: .9rem 0 0; }
+.content ul { margin: .9rem 0 0 1.25rem; padding: 0; }
+.content li + li { margin-top: .55rem; }
+a { color: var(--secondary); font-weight: 600; text-underline-offset: .2em; }
+a:hover { color: var(--primary-soft); }
+.contact { padding: 1.5rem !important; border: 1px solid var(--contact-border) !important; border-radius: 16px; background: var(--contact-bg); }
+.contact p { margin-top: .6rem; }
+@media (max-width: 560px) { .privacy-page { padding: 0; } .privacy-policy { border-right: 0; border-left: 0; border-radius: 0; } .header { align-items: flex-start; flex-direction: column; } }
 
-type Locale = "en" | "es" | "pt";
 
-type PolicySection = {
-	title: string;
-	paragraphs: string[];
-	items?: string[];
-};
-
-type PolicyCopy = {
-	languageLabel: string;
-	pageLabel: string;
-	title: string;
-	intro: string;
-	updated: string;
-	sections: PolicySection[];
-	contactTitle: string;
-	contactText: string;
-};
-
-const policyCopy: Record<Locale, PolicyCopy> = {
+:root { color-scheme:light; --bg:#faf8f2; --surface:rgba(255,253,248,.92); --primary:#7d8a2e; --secondary:#b4c24b; --primary-soft:#667324; --text:#29300f; --muted:#5f624e; --border:rgba(125,138,46,.28); --line:rgba(95,98,78,.2); --language-bg:rgba(250,248,242,.86); --shadow:0 28px 80px rgba(69,78,26,.15); --logo-shadow:0 8px 24px rgba(125,138,46,.24); --contact-border:rgba(125,138,46,.42); --contact-bg:rgba(180,194,75,.14); --active-text:#fffdf8; }
+</style>
+</head>
+<body>
+  <main class="privacy-page">
+    <div class="glow glow--one"></div><div class="glow glow--two"></div>
+    <article class="privacy-policy">
+      <header class="header">
+        <div class="brand"><img src="assets/pear-music.png" alt="Pear - Music & Playlist" class="logo" /><div><span class="eyebrow">Pear - Music & Playlist</span><p id="page-label"></p></div></div>
+        <div class="language" id="language-selector" aria-label="Language">
+          <button type="button" data-locale="en" aria-pressed="true">EN</button>
+          <button type="button" data-locale="es" aria-pressed="false">ES</button>
+          <button type="button" data-locale="pt" aria-pressed="false">PT</button>
+        </div>
+      </header>
+      <div class="intro"><h1 id="title"></h1><p id="intro"></p><time id="updated" datetime="2026-08-17"></time></div>
+      <div class="content" id="content"></div>
+    </article>
+  </main>
+  <script>
+const policyCopy = {
 	en: {
 		languageLabel: "Language",
 		pageLabel: "Privacy policy",
@@ -116,53 +161,61 @@ const policyCopy: Record<Locale, PolicyCopy> = {
 		contactText: "Para questões de privacidade sobre o Pear - Music & Playlist, entre em contato com",
 	},
 };
+    const pageLabel = document.querySelector('#page-label');
+    const title = document.querySelector('#title');
+    const intro = document.querySelector('#intro');
+    const updated = document.querySelector('#updated');
+    const content = document.querySelector('#content');
+    const selector = document.querySelector('#language-selector');
 
-export const PrivacyPearMusicPage = () => {
-	const [locale, setLocale] = useState<Locale>("en");
-	const copy = policyCopy[locale];
+    function addText(parent, tag, value) {
+      const element = document.createElement(tag);
+      element.textContent = value;
+      parent.append(element);
+    }
 
-	return (
-		<main className="privacy-page privacy-page--pear">
-			<div className="privacy-page__glow privacy-page__glow--one" />
-			<div className="privacy-page__glow privacy-page__glow--two" />
-			<article className="privacy-policy">
-				<header className="privacy-policy__header">
-					<div className="privacy-policy__brand">
-						<img src={pearMusicLogo} alt="Pear - Music & Playlist" className="privacy-policy__logo" />
-						<div>
-							<span className="privacy-policy__eyebrow">Pear - Music &amp; Playlist</span>
-							<p>{copy.pageLabel}</p>
-						</div>
-					</div>
-					<div className="privacy-policy__language" aria-label={copy.languageLabel}>
-						{(["en", "es", "pt"] as const).map((language) => (
-							<button key={language} type="button" className={locale === language ? "is-active" : undefined} onClick={() => setLocale(language)} aria-pressed={locale === language}>
-								{language.toUpperCase()}
-							</button>
-						))}
-					</div>
-				</header>
+    function render(locale) {
+      const copy = policyCopy[locale];
+      document.documentElement.lang = locale === 'pt' ? 'pt' : locale;
+      document.title = copy.title;
+      pageLabel.textContent = copy.pageLabel;
+      title.textContent = copy.title;
+      intro.textContent = copy.intro;
+      updated.textContent = copy.updated;
+      selector.setAttribute('aria-label', copy.languageLabel);
+      content.replaceChildren();
+      for (const section of copy.sections) {
+        const sectionElement = document.createElement('section');
+        addText(sectionElement, 'h2', section.title);
+        for (const paragraph of section.paragraphs) addText(sectionElement, 'p', paragraph);
+        if (section.items) {
+          const list = document.createElement('ul');
+          for (const item of section.items) addText(list, 'li', item);
+          sectionElement.append(list);
+        }
+        content.append(sectionElement);
+      }
+      const contact = document.createElement('section');
+      contact.className = 'contact';
+      addText(contact, 'h2', copy.contactTitle);
+      const contactParagraph = document.createElement('p');
+      contactParagraph.append(document.createTextNode(`${copy.contactText} `));
+      const email = document.createElement('a');
+      email.href = 'mailto:khrienanime@gmail.com';
+      email.textContent = 'khrienanime@gmail.com';
+      contactParagraph.append(email, document.createTextNode('.'));
+      contact.append(contactParagraph);
+      content.append(contact);
+      for (const button of selector.querySelectorAll('button')) {
+        button.setAttribute('aria-pressed', String(button.dataset.locale === locale));
+      }
+    }
 
-				<div className="privacy-policy__intro">
-					<h1>{copy.title}</h1>
-					<p>{copy.intro}</p>
-					<time dateTime="2026-08-17">{copy.updated}</time>
-				</div>
-
-				<div className="privacy-policy__content">
-					{copy.sections.map((section) => (
-						<section key={section.title}>
-							<h2>{section.title}</h2>
-							{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-							{section.items && <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}
-						</section>
-					))}
-					<section className="privacy-policy__contact">
-						<h2>{copy.contactTitle}</h2>
-						<p>{copy.contactText} <a href="mailto:khrienanime@gmail.com">khrienanime@gmail.com</a>.</p>
-					</section>
-				</div>
-			</article>
-		</main>
-	);
-};
+    selector.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-locale]');
+      if (button) render(button.dataset.locale);
+    });
+    render('en');
+  </script>
+</body>
+</html>

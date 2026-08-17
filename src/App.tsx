@@ -1,11 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Route, Routes, useLocation } from "react-router";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 import { Nav } from "./components/nav";
 import { AboutPage } from "./pages/about/about";
 import { HomePage } from "./pages/home/home";
 import { ProjectsPage } from "./pages/projects/projects";
-import { PrivacyInfinityPage } from "./pages/privacy/infinity";
-import { PrivacyPearMusicPage } from "./pages/privacy/pear-music";
 
 const pageTransition = {
 	initial: { opacity: 0, y: 20 },
@@ -20,8 +18,8 @@ export const App = () => {
 	if (location.pathname === "/privacy/infinity" || location.pathname === "/privacy/pear-music") {
 		return (
 			<Routes location={location}>
-				<Route path="/privacy/infinity" element={<PrivacyInfinityPage />} />
-				<Route path="/privacy/pear-music" element={<PrivacyPearMusicPage />} />
+				<Route path="/privacy/infinity" element={<Navigate to="/privacy/infinity.html" replace />} />
+				<Route path="/privacy/pear-music" element={<Navigate to="/privacy/pear-music.html" replace />} />
 			</Routes>
 		);
 	}
@@ -30,10 +28,7 @@ export const App = () => {
 		<div className="main">
 			<Nav />
 			<AnimatePresence mode="wait">
-				<motion.div
-					key={location.pathname}
-					{...pageTransition}
-				>
+				<motion.div key={location.pathname} {...pageTransition}>
 					<Routes location={location}>
 						<Route index element={<HomePage />} />
 						<Route path="/about" element={<AboutPage />} />
