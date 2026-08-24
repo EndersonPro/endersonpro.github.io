@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <title>Pear - Music &amp; Playlist Support</title>
+  <style>
+:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+body { min-height: 100vh; margin: 0; color: var(--muted); background: var(--bg); }
+.privacy-page { isolation: isolate; min-height: 100vh; padding: clamp(1rem, 4vw, 4rem); overflow: hidden; }
+.glow { position: fixed; z-index: -1; width: min(52vw, 680px); aspect-ratio: 1; border-radius: 50%; filter: blur(80px); opacity: .22; pointer-events: none; }
+.glow--one { top: -15rem; right: -12rem; background: var(--primary); }
+.glow--two { bottom: -20rem; left: -14rem; background: var(--secondary); }
+.privacy-policy { width: min(100%, 860px); margin: 0 auto; padding: clamp(1.5rem, 5vw, 4.5rem); background: var(--surface); border: 1px solid var(--border); border-radius: 28px; box-shadow: var(--shadow); }
+.header, .brand, .language { display: flex; align-items: center; }
+.header { justify-content: space-between; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.brand { gap: .85rem; }
+.logo { width: 48px; height: 48px; border-radius: 14px; box-shadow: var(--logo-shadow); }
+.eyebrow { display: block; color: var(--text); font-size: 1.1rem; font-weight: 700; }
+.brand p { margin: .1rem 0 0; font-size: .82rem; color: var(--muted); }
+.language { padding: .25rem; gap: .15rem; background: var(--language-bg); border: 1px solid var(--line); border-radius: 12px; }
+.language button { min-width: 2.7rem; padding: .45rem .5rem; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font: 700 .75rem inherit; letter-spacing: .04em; cursor: pointer; }
+.language button:hover, .language button:focus-visible { color: var(--text); }
+.language button:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.language button[aria-pressed="true"] { background: var(--primary); color: var(--active-text); }
+.intro { padding: clamp(2.25rem, 6vw, 4.5rem) 0 2.5rem; }
+h1, h2 { color: var(--text); letter-spacing: -.025em; }
+h1 { max-width: 680px; margin: 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }
+.intro p { max-width: 650px; margin: 1.25rem 0 0; font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.7; }
+.content { display: grid; gap: 2.25rem; }
+.content section { padding-top: 2.25rem; border-top: 1px solid var(--line); }
+h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; }
+.content p, .content li { font-size: .98rem; line-height: 1.75; }
+.content p { margin: .9rem 0 0; }
+.content ul { margin: .9rem 0 0 1.25rem; padding: 0; }
+.content li + li { margin-top: .55rem; }
+a { color: var(--secondary); font-weight: 600; text-underline-offset: .2em; }
+a:hover { color: var(--primary-soft); }
+.contact { padding: 1.5rem !important; border: 1px solid var(--contact-border) !important; border-radius: 16px; background: var(--contact-bg); }
+.contact p { margin-top: .6rem; }
+@media (max-width: 560px) { .privacy-page { padding: 0; } .privacy-policy { border-right: 0; border-left: 0; border-radius: 0; } .header { align-items: flex-start; flex-direction: column; } }
+
+
+:root { color-scheme:light; --bg:#faf8f2; --surface:rgba(255,253,248,.92); --primary:#7d8a2e; --secondary:#b4c24b; --primary-soft:#667324; --text:#29300f; --muted:#5f624e; --border:rgba(125,138,46,.28); --line:rgba(95,98,78,.2); --language-bg:rgba(250,248,242,.86); --shadow:0 28px 80px rgba(69,78,26,.15); --logo-shadow:0 8px 24px rgba(125,138,46,.24); --contact-border:rgba(125,138,46,.42); --contact-bg:rgba(180,194,75,.14); --active-text:#fffdf8; }
+</style>
+</head>
+<body>
+  <main class="privacy-page">
+    <div class="glow glow--one"></div><div class="glow glow--two"></div>
+    <article class="privacy-policy">
+      <header class="header">
+        <div class="brand"><img src="assets/pear-music.png" alt="Pear - Music &amp; Playlist" class="logo" /><div><span class="eyebrow">Pear - Music &amp; Playlist</span><p id="page-label"></p></div></div>
+        <div class="language" id="language-selector" aria-label="Language">
+          <button type="button" data-locale="en" aria-pressed="true">EN</button>
+          <button type="button" data-locale="es" aria-pressed="false">ES</button>
+          <button type="button" data-locale="pt" aria-pressed="false">PT</button>
+        </div>
+      </header>
+      <div class="intro"><h1 id="title"></h1><p id="intro"></p></div>
+      <div class="content" id="content"></div>
+    </article>
+  </main>
+  <script>
+const supportCopy = {
+	en: {
+		languageLabel: "Language",
+		pageLabel: "Support",
+		title: "Pear - Music & Playlist Support",
+		intro: "Answers to common questions, and how to reach us for anything else.",
+		sections: [
+			{
+				title: "Do I need an account to listen?",
+				paragraphs: [
+					"No. There is no sign-up and no login. A one-time welcome asks for your country, and optionally a name, so the app can start with music that fits where you are. Everything after that — your favorites, playlists, and history — stays on your device.",
+				],
+			},
+			{
+				title: "Where are my favorites, playlists, and queue?",
+				paragraphs: [
+					"Favorites and your playlists both live in the Playlists tab, with Favorites pinned at the top of the list. Recently played tracks appear on the home screen and open a full history you can clear.",
+					"Open the full player to reach Up Next, the running queue, which you can clear at any time. The player also holds shuffle, repeat, playback speed, and autoplay, which keeps the music going once the queue ends.",
+				],
+			},
+			{
+				title: "Can I use a sleep timer or adjust the sound?",
+				paragraphs: [
+					"Yes. The sleep timer stops playback after the number of minutes you pick, and can be turned off again at any time. Settings has an equalizer you can enable to adjust bass, mid, and treble.",
+				],
+			},
+			{
+				title: "Can I change how the app looks or which language it uses?",
+				paragraphs: [
+					"Settings has an Appearance section with a theme mode — System, Light, or Dark — and a choice of accent colors: Pear Green, Orchard Amber, Warm Clay, and Dusky Plum.",
+					"Language can follow your system or be set to English or Spanish. You can also turn haptic feedback and the auto-advancing charts carousel on or off.",
+				],
+			},
+			{
+				title: "A song will not play. What can I do?",
+				paragraphs: [
+					"Pear plays music from several sources, and a track is occasionally unavailable from the source serving it — the app tells you when that happens. Try it again later, or play another version of the song from search.",
+					"If nothing loads at all, check your connection — Pear needs one to search and to stream.",
+				],
+			},
+			{
+				title: "How do I free up space?",
+				paragraphs: [
+					"Settings has a Storage section covering both the app's cache and your saved music. Clear the cache or delete saved songs at any time, independently of each other. Clearing local data does not change your settings or your library.",
+				],
+			},
+			{
+				title: "Why do I see ads, and can I turn them off?",
+				paragraphs: [
+					"Pear is free to use and supported by ads. In the Ads section of Settings you can watch a short ad to turn ads off for the next 30 minutes; while that window is active, the section shows how much time is left.",
+					"If ad consent applies where you live, the same section shows an Ad privacy options button that reopens the consent form so you can change or withdraw your choices. See our privacy policy for what advertising involves.",
+				],
+			},
+		],
+		contactTitle: "Still stuck?",
+		contactText: "Write to us and we'll help — include your device model and iOS/Android version if it's a bug.",
+	},
+	es: {
+		languageLabel: "Idioma",
+		pageLabel: "Soporte",
+		title: "Soporte de Pear - Music & Playlist",
+		intro: "Respuestas a preguntas frecuentes, y cómo contactarnos para cualquier otra cosa.",
+		sections: [
+			{ title: "¿Necesito una cuenta para escuchar música?", paragraphs: ["No. No hay registro ni inicio de sesión. Una bienvenida inicial te pide tu país, y opcionalmente un nombre, para que la aplicación empiece con música acorde a donde estás. Todo lo demás — tus favoritos, playlists e historial — se queda en tu dispositivo."] },
+			{ title: "¿Dónde están mis favoritos, playlists y la cola?", paragraphs: ["Los favoritos y tus playlists están juntos en la pestaña Playlists, con Favoritos fijado arriba de la lista. Las canciones reproducidas recientemente aparecen en la pantalla de inicio y abren un historial completo que puedes borrar.", "Abre el reproductor completo para llegar a Up Next, la cola en curso, que puedes vaciar cuando quieras. El reproductor también tiene la reproducción aleatoria, la repetición, la velocidad de reproducción y la reproducción automática, que sigue poniendo música cuando termina la cola."] },
+			{ title: "¿Puedo usar un temporizador de apagado o ajustar el sonido?", paragraphs: ["Sí. El temporizador de apagado detiene la reproducción después de los minutos que elijas, y puedes desactivarlo cuando quieras. Ajustes incluye un ecualizador que puedes activar para ajustar graves, medios y agudos."] },
+			{ title: "¿Puedo cambiar la apariencia de la aplicación o su idioma?", paragraphs: ["Ajustes tiene una sección de Apariencia con un modo de tema — Sistema, Claro u Oscuro — y una selección de colores de acento: Pear Green, Orchard Amber, Warm Clay y Dusky Plum.", "El idioma puede seguir al del sistema o configurarse en inglés o español. También puedes activar o desactivar la respuesta háptica y el avance automático del carrusel de charts."] },
+			{ title: "Una canción no se reproduce. ¿Qué puedo hacer?", paragraphs: ["Pear reproduce música desde varias fuentes, y de vez en cuando una canción no está disponible en la fuente que la sirve — la aplicación te avisa cuando pasa. Vuelve a intentarlo más tarde, o reproduce otra versión de la canción desde la búsqueda.", "Si no carga nada, revisa tu conexión — Pear la necesita para buscar y para reproducir."] },
+			{ title: "¿Cómo libero espacio?", paragraphs: ["Ajustes tiene una sección de Almacenamiento que cubre tanto la caché de la aplicación como tu música guardada. Puedes vaciar la caché o eliminar las canciones guardadas en cualquier momento, de forma independiente. Limpiar los datos locales no cambia tus ajustes ni tu biblioteca."] },
+			{ title: "¿Por qué veo anuncios y puedo desactivarlos?", paragraphs: ["Pear es gratis y se sostiene con anuncios. En la sección Anuncios de Ajustes puedes ver un anuncio corto para desactivar los anuncios durante los próximos 30 minutos; mientras esa ventana está activa, la sección muestra cuánto tiempo queda.", "Si el consentimiento publicitario aplica donde vives, esa misma sección muestra un botón de Opciones de privacidad de anuncios que vuelve a abrir el formulario de consentimiento para que cambies o retires tus elecciones. Consulta nuestra política de privacidad para saber qué implica la publicidad."] },
+		],
+		contactTitle: "¿Todavía tienes dudas?",
+		contactText: "Escríbenos y te ayudamos — si es un error, incluye el modelo de tu dispositivo y la versión de iOS/Android.",
+	},
+	pt: {
+		languageLabel: "Idioma",
+		pageLabel: "Suporte",
+		title: "Suporte do Pear - Music & Playlist",
+		intro: "Respostas para perguntas comuns, e como falar conosco para qualquer outra coisa.",
+		sections: [
+			{ title: "Preciso de uma conta para ouvir música?", paragraphs: ["Não. Não há cadastro nem login. Uma boas-vindas inicial pede o seu país, e opcionalmente um nome, para o aplicativo começar com música de acordo com onde você está. Todo o resto — seus favoritos, playlists e histórico — fica no seu dispositivo."] },
+			{ title: "Onde ficam meus favoritos, playlists e a fila?", paragraphs: ["Favoritos e suas playlists ficam juntos na aba Playlists, com Favoritos fixado no topo da lista. As músicas tocadas recentemente aparecem na tela inicial e abrem um histórico completo que você pode limpar.", "Abra o reprodutor completo para chegar ao Up Next, a fila em andamento, que você pode limpar quando quiser. O reprodutor também tem o modo aleatório, a repetição, a velocidade de reprodução e a reprodução automática, que continua tocando quando a fila termina."] },
+			{ title: "Posso usar um timer para dormir ou ajustar o som?", paragraphs: ["Sim. O timer para dormir interrompe a reprodução depois dos minutos que você escolher, e pode ser desligado a qualquer momento. As Configurações têm um equalizador que você pode ativar para ajustar graves, médios e agudos."] },
+			{ title: "Posso mudar a aparência do aplicativo ou o idioma?", paragraphs: ["As Configurações têm uma seção de Aparência com um modo de tema — Sistema, Claro ou Escuro — e uma escolha de cores de destaque: Pear Green, Orchard Amber, Warm Clay e Dusky Plum.", "O idioma pode seguir o do sistema ou ser definido como inglês ou espanhol. Você também pode ligar ou desligar o retorno tátil e o avanço automático do carrossel de charts."] },
+			{ title: "Uma música não toca. O que eu posso fazer?", paragraphs: ["O Pear toca música a partir de várias fontes, e de vez em quando uma música não está disponível na fonte que a fornece — o aplicativo avisa quando isso acontece. Tente de novo mais tarde, ou toque outra versão da música pela busca.", "Se nada carregar, verifique sua conexão — o Pear precisa dela para buscar e para tocar."] },
+			{ title: "Como eu libero espaço?", paragraphs: ["As Configurações têm uma seção de Armazenamento que cobre tanto o cache do aplicativo quanto a sua música salva. Você pode limpar o cache ou excluir as músicas salvas a qualquer momento, de forma independente. Limpar os dados locais não altera suas configurações nem sua biblioteca."] },
+			{ title: "Por que eu vejo anúncios e posso desativá-los?", paragraphs: ["O Pear é gratuito e mantido por anúncios. Na seção Anúncios das Configurações você pode assistir a um anúncio curto para desativar os anúncios pelos próximos 30 minutos; enquanto essa janela está ativa, a seção mostra quanto tempo resta.", "Se o consentimento de publicidade se aplica onde você mora, essa mesma seção mostra um botão de Opções de privacidade de anúncios que reabre o formulário de consentimento para você alterar ou retirar suas escolhas. Veja nossa política de privacidade para saber o que a publicidade envolve."] },
+		],
+		contactTitle: "Ainda com dúvidas?",
+		contactText: "Escreva para nós e vamos ajudar — se for um bug, inclua o modelo do seu dispositivo e a versão do iOS/Android.",
+	},
+};
+    const pageLabel = document.querySelector('#page-label');
+    const title = document.querySelector('#title');
+    const intro = document.querySelector('#intro');
+    const content = document.querySelector('#content');
+    const selector = document.querySelector('#language-selector');
+
+    function addText(parent, tag, value) {
+      const element = document.createElement(tag);
+      element.textContent = value;
+      parent.append(element);
+    }
+
+    function render(locale) {
+      const copy = supportCopy[locale];
+      document.documentElement.lang = locale === 'pt' ? 'pt' : locale;
+      document.title = copy.title;
+      pageLabel.textContent = copy.pageLabel;
+      title.textContent = copy.title;
+      intro.textContent = copy.intro;
+      selector.setAttribute('aria-label', copy.languageLabel);
+      content.replaceChildren();
+      for (const section of copy.sections) {
+        const sectionElement = document.createElement('section');
+        addText(sectionElement, 'h2', section.title);
+        for (const paragraph of section.paragraphs ?? []) addText(sectionElement, 'p', paragraph);
+        content.append(sectionElement);
+      }
+      const contact = document.createElement('section');
+      contact.className = 'contact';
+      addText(contact, 'h2', copy.contactTitle);
+      const contactParagraph = document.createElement('p');
+      contactParagraph.append(document.createTextNode(`${copy.contactText} `));
+      const email = document.createElement('a');
+      email.href = 'mailto:khrienanime@gmail.com';
+      email.textContent = 'khrienanime@gmail.com';
+      contactParagraph.append(email, document.createTextNode('.'));
+      contact.append(contactParagraph);
+      content.append(contact);
+      for (const button of selector.querySelectorAll('button')) {
+        button.setAttribute('aria-pressed', String(button.dataset.locale === locale));
+      }
+    }
+
+    selector.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-locale]');
+      if (button) render(button.dataset.locale);
+    });
+    render('en');
+  </script>
+</body>
+</html>
