@@ -289,7 +289,7 @@ ios:
 						label="~/.config/reins-hook/config.yaml"
 						plain
 					/>
-					<p>{m.reins_gateway_config_p2()}</p>
+					<p>{renderRich(m.reins_gateway_config_p2())}</p>
 					<Note tone="warning">{renderRich(m.reins_gateway_config_ignored())}</Note>
 					<p>{renderRich(m.reins_gateway_config_precedence())}</p>
 					<p>
@@ -297,6 +297,20 @@ ios:
 						{m.reins_gateway_config_restart_b()} <code>reins-hook restart</code>
 						{m.reins_gateway_config_restart_c()}
 					</p>
+
+					<h3 className="docs__subtitle">{m.reins_gateway_config_sdkpath_heading()}</h3>
+					<p>
+						{m.reins_gateway_config_sdkpath_p1_a()} <code>~/Library/Android/sdk</code>
+						{m.reins_gateway_config_sdkpath_p1_b()} <code>android.sdkPath</code>{" "}
+						{m.reins_gateway_config_sdkpath_p1_c()}
+					</p>
+					<CodeBlock
+						code={`android:
+  sdkPath: /path/to/your/android-sdk`}
+						label="~/.config/reins-hook/config.yaml"
+						plain
+					/>
+					<p>{renderRich(m.reins_gateway_config_sdkpath_p2())}</p>
 				</Section>
 
 				<Section id="uso-diario">

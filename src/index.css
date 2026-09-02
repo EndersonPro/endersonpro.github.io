@@ -861,7 +861,6 @@ strong {
 	font-size: 12px;
 	line-height: 16px;
 	letter-spacing: 0.12em;
-	text-transform: uppercase;
 	color: var(--body-mid);
 	padding: 10px 64px 10px 16px;
 	border-bottom: 1px solid var(--hairline);
