@@ -197,6 +197,8 @@
 	"reins_update_install_comment": "los hooks viven dentro del binario: hay que reescribirlos",
 	"reins_update_p1": "Después reinicia toda sesión viva de Claude Code y OpenCode. Cargan hooks y plugins al arrancar, así que una sesión abierta sigue con la versión anterior.",
 	"reins_update_restart_heading": "Reiniciar el gateway",
+	"reins_update_config_note_a": "Esto también vale si solo tocaste",
+	"reins_update_config_note_b": ": la lee una vez al arrancar, no hay recarga en caliente. El mismo reinicio de arriba la aplica.",
 	"reins_update_p2": "Este es el paso que se olvida. Actualizar reemplaza el binario en disco, pero el proceso que ya corre conserva el que cargó al arrancar: sigue sirviendo la versión vieja hasta que lo reinicies. Y como todavía tiene el puerto, levantar otro encima falla:",
 	"reins_update_p3": "Con el servicio de Homebrew, una línea y listo:",
 	"reins_update_p4": "A mano, con la función de arriba ya definida, el reinicio es una palabra:",

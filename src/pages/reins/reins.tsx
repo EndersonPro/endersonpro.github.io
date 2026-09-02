@@ -330,6 +330,10 @@ reins-hook install         # ${m.reins_update_install_comment()}`}
 
 					<h3 className="docs__subtitle">{m.reins_update_restart_heading()}</h3>
 					<p>{m.reins_update_p2()}</p>
+					<p>
+						{m.reins_update_config_note_a()} <code>~/.config/reins-hook/config.yaml</code>
+						{m.reins_update_config_note_b()}
+					</p>
 					<CodeBlock
 						code="listen on 127.0.0.1:24543: bind: address already in use"
 						plain
