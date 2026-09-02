@@ -7,8 +7,11 @@ export const HomePage = () => {
 	return (
 		<div className="home">
 			<div className="home__content">
-				<p className="home__greeting">Hola, soy Enderson Vizcaino</p>
-				<h1 className="home__title">Software Engineer</h1>
+				<p className="eyebrow home__eyebrow">Hola, soy Enderson Vizcaino</p>
+				<h1 className="home__title">
+					<span>Software</span>
+					<span>Engineer</span>
+				</h1>
 				<p className="home__subtitle">
 					+7 años construyendo productos digitales de alto impacto. Especializado en{" "}
 					<b>arquitectura móvil con Flutter</b>, <b>microservicios en AWS</b> y{" "}
@@ -24,7 +27,7 @@ export const HomePage = () => {
 						Condor Labs
 					</a>.
 				</p>
-				<div className="home__stats">
+				<div className="home__meta">
 					<span>7+ años</span>
 					<span className="dot">·</span>
 					<span>Flutter</span>
@@ -35,7 +38,7 @@ export const HomePage = () => {
 				</div>
 				<div className="home__actions">
 					<NavLink to="/projects" className="btn btn_primary">
-						Ver Proyectos <HiChevronRight />
+						Ver proyectos <HiChevronRight />
 					</NavLink>
 					<a
 						href="https://www.linkedin.com/in/endersonvizcaino/"

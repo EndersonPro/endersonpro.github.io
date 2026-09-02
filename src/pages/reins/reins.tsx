@@ -59,7 +59,7 @@ export const ReinsPage = () => {
 					</p>
 					<div className="docs__hero-actions">
 						<a
-							className="btn btn_secondary"
+							className="btn btn_primary"
 							href="https://github.com/EndersonPro/homebrew-reins"
 							target="_blank"
 							rel="noopener noreferrer"

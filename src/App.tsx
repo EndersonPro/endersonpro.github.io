@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Navigate, Route, Routes, useLocation } from "react-router";
+import { Footer } from "./components/footer/footer";
 import { Nav } from "./components/nav";
 import { AboutPage } from "./pages/about/about";
 import { HomePage } from "./pages/home/home";
@@ -26,18 +27,21 @@ export const App = () => {
 	}
 
 	return (
-		<div className="main">
+		<div className="app">
 			<Nav />
-			<AnimatePresence mode="wait">
-				<motion.div key={location.pathname} {...pageTransition}>
-					<Routes location={location}>
-						<Route index element={<HomePage />} />
-						<Route path="/about" element={<AboutPage />} />
-						<Route path="/projects" element={<ProjectsPage />} />
-						<Route path="/reins" element={<ReinsPage />} />
-					</Routes>
-				</motion.div>
-			</AnimatePresence>
+			<main className="app__main">
+				<AnimatePresence mode="wait">
+					<motion.div key={location.pathname} className="container" {...pageTransition}>
+						<Routes location={location}>
+							<Route index element={<HomePage />} />
+							<Route path="/about" element={<AboutPage />} />
+							<Route path="/projects" element={<ProjectsPage />} />
+							<Route path="/reins" element={<ReinsPage />} />
+						</Routes>
+					</motion.div>
+				</AnimatePresence>
+			</main>
+			<Footer />
 		</div>
 	);
 };
