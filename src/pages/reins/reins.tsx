@@ -3,18 +3,20 @@ import { useState } from "react";
 import { HiExternalLink } from "react-icons/hi";
 import { CodeBlock } from "../../components/code-block/code-block";
 import { Toc, type TocEntry } from "../../components/toc/toc";
+import { renderRich } from "../../lib/rich-text";
+import { m } from "../../paraglide/messages.js";
 
 const sections: Array<TocEntry> = [
-	{ id: "piezas", title: "Las piezas" },
-	{ id: "instalacion", title: "Instalación" },
-	{ id: "conectividad", title: "Conectividad" },
-	{ id: "emparejar", title: "Emparejar el teléfono" },
-	{ id: "gateway", title: "El gateway" },
-	{ id: "uso-diario", title: "Uso diario" },
-	{ id: "siempre-arriba", title: "Que no se caiga" },
-	{ id: "actualizar", title: "Actualizar" },
-	{ id: "problemas", title: "Problemas comunes" },
-	{ id: "seguridad", title: "Seguridad" },
+	{ id: "piezas", title: m.reins_toc_piezas() },
+	{ id: "instalacion", title: m.reins_toc_instalacion() },
+	{ id: "conectividad", title: m.reins_toc_conectividad() },
+	{ id: "emparejar", title: m.reins_toc_emparejar() },
+	{ id: "gateway", title: m.reins_toc_gateway() },
+	{ id: "uso-diario", title: m.reins_toc_uso_diario() },
+	{ id: "siempre-arriba", title: m.reins_toc_siempre_arriba() },
+	{ id: "actualizar", title: m.reins_toc_actualizar() },
+	{ id: "problemas", title: m.reins_toc_problemas() },
+	{ id: "seguridad", title: m.reins_toc_seguridad() },
 ];
 
 const titles = new Map(sections.map(({ id, title }) => [id, title]));
@@ -35,11 +37,11 @@ const Note = ({ tone = "note", children }: NoteProps) => (
 );
 
 const pieces = [
-	{ piece: "Tailscale", runs: "Mac + teléfono", does: "Deja que el teléfono llegue al Mac desde cualquier red" },
-	{ piece: "herdr", runs: "Mac", does: "El multiplexor donde corren tus agentes" },
-	{ piece: "Agentes", runs: "Mac", does: "Claude Code, Codex, OpenCode: el que uses" },
-	{ piece: "reins-hook", runs: "Mac", does: "El gateway con el que habla el teléfono" },
-	{ piece: "Reins", runs: "Teléfono", does: "La app" },
+	{ piece: "Tailscale", runs: m.reins_piece_tailscale_runs(), does: m.reins_piece_tailscale_does() },
+	{ piece: "herdr", runs: "Mac", does: m.reins_piece_herdr_does() },
+	{ piece: m.reins_piece_agents_name(), runs: "Mac", does: m.reins_piece_agents_does() },
+	{ piece: "reins-hook", runs: "Mac", does: m.reins_piece_hook_does() },
+	{ piece: "Reins", runs: m.reins_piece_reins_runs(), does: m.reins_piece_reins_does() },
 ];
 
 type NetworkMode = "wifi" | "tailscale";
@@ -51,12 +53,9 @@ export const ReinsPage = () => {
 		<div className="docs-layout">
 			<div className="docs">
 				<header className="docs__hero">
-					<span className="docs__eyebrow">Documentación</span>
+					<span className="docs__eyebrow">{m.reins_hero_eyebrow()}</span>
 					<h1 className="docs__title">Reins</h1>
-					<p className="docs__lead">
-						Una terminal personal de teléfono a PC para manejar agentes de código. El tráfico
-						va directo del teléfono al computador por SSH: sin nube, sin cuenta y sin relay.
-					</p>
+					<p className="docs__lead">{m.reins_hero_lead()}</p>
 					<div className="docs__hero-actions">
 						<a
 							className="btn btn_primary"
@@ -64,23 +63,23 @@ export const ReinsPage = () => {
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							Homebrew tap <HiExternalLink />
+							{m.reins_hero_cta()} <HiExternalLink />
 						</a>
-						<span className="docs__badge">~20 min de setup</span>
+						<span className="docs__badge">{m.reins_hero_badge()}</span>
 					</div>
 				</header>
 
 				<details className="docs__toc-mobile">
-					<summary>En esta página</summary>
+					<summary>{m.toc_heading()}</summary>
 					<Toc entries={sections} />
 				</details>
 
 				<Section id="piezas">
 					<div className="docs-table">
 						<div className="docs-table__row docs-table__row--head">
-							<span>Pieza</span>
-							<span>Corre en</span>
-							<span>Qué hace</span>
+							<span>{m.reins_table_head_piece()}</span>
+							<span>{m.reins_table_head_runs()}</span>
+							<span>{m.reins_table_head_does()}</span>
 						</div>
 						{pieces.map(({ piece, runs, does }) => (
 							<div className="docs-table__row" key={piece}>
@@ -90,81 +89,65 @@ export const ReinsPage = () => {
 							</div>
 						))}
 					</div>
-					<p>
-						Todo lo que alcanza el teléfono pasa por un túnel SSH hacia un gateway atado a
-						loopback. Nada de esto abre un puerto en tu red.
-					</p>
+					<p>{m.reins_piezas_note()}</p>
 				</Section>
 
 				<Section id="instalacion">
-					<h3 className="docs__subtitle">Activar SSH</h3>
+					<h3 className="docs__subtitle">{m.reins_install_ssh_heading()}</h3>
 					<p>
-						En macOS: Configuración del Sistema → General → Compartir → <b>Inicio de sesión
-						remoto</b>. En Linux, <code>sudo systemctl enable --now sshd</code>.
+						{renderRich(m.reins_install_ssh_p1())} <code>sudo systemctl enable --now sshd</code>.
 					</p>
-					<p>Confirma tu usuario, lo necesitas al emparejar:</p>
+					<p>{m.reins_install_ssh_p2()}</p>
 					<CodeBlock code="whoami" />
 
 					<h3 className="docs__subtitle">herdr</h3>
 					<CodeBlock code="brew install herdr" />
-					<p>
-						Instala después la integración de cada agente que uses. herdr las necesita para
-						saber qué corre en cada panel, y hay que repetirlas tras cada actualización de
-						herdr:
-					</p>
+					<p>{m.reins_install_herdr_p1()}</p>
 					<CodeBlock
 						code={`herdr integration install claude
 herdr integration install codex
 herdr integration install opencode
 
-herdr integration status   # ver qué quedó conectado`}
+herdr integration status   # ${m.reins_herdr_status_comment()}`}
 					/>
 					<Note>
-						Reins lee la salida de <code>herdr agent list</code> y sólo acepta versiones para
-						las que tiene un parser: hoy <code>0.7.3</code> y cualquier <code>0.8</code>. Con
-						una versión más nueva, la app avisa en vez de adivinar.
+						{m.reins_install_herdr_note_1()} <code>herdr agent list</code>{" "}
+						{m.reins_install_herdr_note_2()} <code>0.7.3</code> {m.reins_install_herdr_note_3()}{" "}
+						<code>0.8</code>
+						{m.reins_install_herdr_note_4()}
 					</Note>
 
-					<h3 className="docs__subtitle">Los agentes</h3>
+					<h3 className="docs__subtitle">{m.reins_install_agents_heading()}</h3>
 					<CodeBlock
 						code={`brew install --cask claude-code    # Claude Code
-brew install --cask codex          # Codex: es un cask, no una formula
+brew install --cask codex          # ${m.reins_agents_codex_comment()}
 brew install opencode              # OpenCode`}
 					/>
 					<p>
-						Codex también sale por <code>npm i -g @openai/codex</code>. A Reins le da igual
-						cuál instales: maneja los que encuentre corriendo.
+						{m.reins_install_agents_p1_a()} <code>npm i -g @openai/codex</code>
+						{m.reins_install_agents_p1_b()}
 					</p>
 
 					<h3 className="docs__subtitle">reins-hook</h3>
 					<CodeBlock code="brew tap EndersonPro/reins && brew install reins-hook" label="macOS" />
 					<CodeBlock
 						code="curl -fsSL https://raw.githubusercontent.com/EndersonPro/homebrew-reins/main/install.sh | sh"
-						label="Linux / macOS sin Homebrew"
+						label={m.reins_label_linux_no_brew()}
 					/>
 					<CodeBlock
 						code={`scoop bucket add reins https://github.com/EndersonPro/homebrew-reins
 scoop install reins-hook`}
 						label="Windows (Scoop)"
 					/>
-					<p>
-						Luego conéctalo con los agentes. Esto escribe los hooks de Claude Code e instala
-						el plugin de OpenCode, con backup de lo que reemplace:
-					</p>
+					<p>{m.reins_install_hook_p1()}</p>
 					<CodeBlock code="reins-hook install" />
-					<Note tone="warning">
-						Reinicia cualquier sesión de Claude Code u OpenCode que ya estuviera abierta:
-						cargan hooks y plugins al arrancar y no los toman de otra forma.
-					</Note>
+					<Note tone="warning">{m.reins_install_hook_warning()}</Note>
 				</Section>
 
 				<Section id="conectividad">
-					<p className="docs__section-lead">
-						Cómo alcanza el teléfono a tu Mac. Wi-Fi local es cero configuración pero sólo
-						funciona en la misma red; Tailscale funciona desde cualquier parte.
-					</p>
+					<p className="docs__section-lead">{m.reins_connectivity_lead()}</p>
 
-					<div className="docs-tabs" role="tablist" aria-label="Modo de conexión">
+					<div className="docs-tabs" role="tablist" aria-label={m.reins_connectivity_tabs_aria()}>
 						<button
 							type="button"
 							role="tab"
@@ -172,7 +155,7 @@ scoop install reins-hook`}
 							className={`docs-tabs__tab ${mode === "wifi" ? "is-active" : ""}`}
 							onClick={() => setMode("wifi")}
 						>
-							Red Wi-Fi local
+							{m.reins_tab_wifi()}
 						</button>
 						<button
 							type="button"
@@ -188,41 +171,27 @@ scoop install reins-hook`}
 					{mode === "wifi" ? (
 						<div className="docs-tabs__panel" role="tabpanel">
 							<p>
-								Sin Tailscale el teléfono sólo llega al Mac cuando ambos están en la misma
-								red. No hay que instalar nada: <code>reins-hook setup</code> detecta la IP de
-								la LAN y la usa. Para verla tú mismo:
+								{m.reins_wifi_p1_a()} <code>reins-hook setup</code> {m.reins_wifi_p1_b()}
 							</p>
 							<CodeBlock
 								code={`ipconfig getifaddr en0    # Wi-Fi
-ipconfig getifaddr en1    # si en0 no responde (Ethernet/Thunderbolt)`}
+ipconfig getifaddr en1    # ${m.reins_wifi_fallback_comment()}`}
 							/>
-							<CodeBlock code="192.168.x.x" plain label="salida esperada" />
-							<p>
-								Dos cosas rompen esto y no son culpa de Reins. La IP de la LAN cambia con
-								DHCP, así que el host guardado en la app deja de responder cuando el router
-								te reasigna otra. Y muchas redes de oficina o públicas tienen{" "}
-								<i>client isolation</i>, que bloquea que un dispositivo alcance a otro aunque
-								compartan el Wi-Fi. Para uso diario, Tailscale.
-							</p>
+							<CodeBlock code="192.168.x.x" plain label={m.reins_label_expected_output()} />
+							<p>{renderRich(m.reins_wifi_p2())}</p>
 						</div>
 					) : (
 						<div className="docs-tabs__panel" role="tabpanel">
-							<p>
-								Tailscale arma una malla WireGuard cifrada entre tus dispositivos. El teléfono
-								alcanza el Mac desde cualquier red, sin abrir puertos ni tocar el router.
-								Gratis para uso personal.
-							</p>
+							<p>{m.reins_tailscale_p1()}</p>
 							<CodeBlock
 								code={`brew install --cask tailscale                      # macOS
 curl -fsSL https://tailscale.com/install.sh | sh   # Linux
 tailscale up
-tailscale ip -4                                    # la dirección 100.x.y.z`}
+tailscale ip -4                                    # ${m.reins_tailscale_ip_comment()}`}
 							/>
 							<p>
-								Instala Tailscale en el teléfono e inicia sesión con <b>la misma cuenta</b>.
-								Ambos dispositivos tienen que aparecer en el mismo tailnet. No hace falta
-								anotar la dirección: <code>reins-hook setup</code> la toma automáticamente, y
-								si Tailscale no está corriendo cae a una IP de LAN y lo avisa.
+								{renderRich(m.reins_tailscale_p2_a())} <code>reins-hook setup</code>{" "}
+								{m.reins_tailscale_p2_b()}
 							</p>
 						</div>
 					)}
@@ -231,68 +200,46 @@ tailscale ip -4                                    # la dirección 100.x.y.z`}
 				<Section id="emparejar">
 					<CodeBlock code="reins-hook setup" />
 					<p>
-						Genera una llave ed25519 nueva, agrega la mitad pública a{" "}
-						<code>~/.ssh/authorized_keys</code> e imprime un QR. Abre Reins, toca{" "}
-						<b>Pair host</b> y escanéalo.
+						{m.reins_pair_p1_a()} <code>~/.ssh/authorized_keys</code> {renderRich(m.reins_pair_p1_b())}
 					</p>
-					<Note tone="warning">
-						<b>El QR es un secreto.</b> Lleva la llave privada de ese dispositivo: quien le tome
-						una foto puede entrar como tú. No lo compartas y limpia la terminal apenas quede
-						emparejado.
-					</Note>
-					<p>
-						La llave privada nunca se escribe a disco en el Mac. En el teléfono va directo al
-						Keychain de iOS o al Keystore de Android.
-					</p>
+					<Note tone="warning">{renderRich(m.reins_pair_warning())}</Note>
+					<p>{m.reins_pair_p2()}</p>
 				</Section>
 
 				<Section id="gateway">
-					<p className="docs__section-lead">
-						Hay dos formas de correrlo, y la que elijas decide qué puede hacer la app. No son
-						intercambiables.
-					</p>
+					<p className="docs__section-lead">{m.reins_gateway_lead()}</p>
 
-					<h3 className="docs__subtitle">Supervisado, con Homebrew</h3>
+					<h3 className="docs__subtitle">{m.reins_gateway_supervised_heading()}</h3>
 					<CodeBlock code="brew services start reins-hook" />
 					<p>
-						La fórmula del tap trae un service block con <code>keep_alive</code>, así que
-						launchd lo arranca al iniciar sesión y lo revive si se cae. Sus logs quedan en{" "}
-						<code>/opt/homebrew/var/log/reins-hook.log</code>. Es la opción cómoda y la que
-						sobrevive a un reinicio.
+						{m.reins_gateway_supervised_p1_a()} <code>keep_alive</code>{" "}
+						{m.reins_gateway_supervised_p1_b()} <code>/opt/homebrew/var/log/reins-hook.log</code>
+						{m.reins_gateway_supervised_p1_c()}
 					</p>
 					<Note>
-						El servicio corre <code>reins-hook serve</code> <b>sin flags</b>. Con él al mando
-						nunca vas a tener el control de dispositivos: esas rutas no se montan.
+						{m.reins_gateway_supervised_note_a()} <code>reins-hook serve</code>{" "}
+						{renderRich(m.reins_gateway_supervised_note_b())}
 					</Note>
 
-					<h3 className="docs__subtitle">A mano</h3>
+					<h3 className="docs__subtitle">{m.reins_gateway_manual_heading()}</h3>
 					<CodeBlock
 						code={`mkdir -p ~/.local/state
 nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &`}
 					/>
-					<p>
-						Es la única forma de pasarle flags. A cambio, nadie lo supervisa: tras un reinicio
-						o un crash hay que levantarlo de nuevo.
-					</p>
+					<p>{m.reins_gateway_manual_p1()}</p>
 
 					<p>
-						En cualquiera de los dos casos escucha en <code>127.0.0.1:24543</code> y se niega a
-						arrancar en una dirección enrutable: el teléfono lo alcanza por el túnel SSH, nunca
-						por la red. Si el puerto está ocupado, pasa{" "}
-						<code>--addr 127.0.0.1:&lt;puerto&gt;</code>.
+						{m.reins_gateway_manual_note_a()} <code>127.0.0.1:24543</code>{" "}
+						{m.reins_gateway_manual_note_b()} <code>{m.reins_gateway_addr_flag()}</code>.
 					</p>
 
-					<h3 className="docs__subtitle">Opcional: controlar un Android o iOS desde la app</h3>
-					<p>
-						Sáltate esto si sólo quieres la terminal y el chat. Actívalo cuando además quieras
-						que Reins muestre la pantalla de un dispositivo y le reenvíe taps. Los flags vienen
-						apagados por defecto:
-					</p>
+					<h3 className="docs__subtitle">{m.reins_gateway_optional_heading()}</h3>
+					<p>{m.reins_gateway_optional_p1()}</p>
 					<Note tone="warning">
-						Si tienes el servicio de Homebrew corriendo, <b>páralo antes</b>. Con{" "}
-						<code>keep_alive</code> activo, launchd revive un <code>serve</code> sin flags a
-						los pocos segundos de que mates el tuyo, y el que arrancas con flags muere con{" "}
-						<code>bind: address already in use</code>. Parece aleatorio; no lo es.
+						{renderRich(m.reins_gateway_flags_warning_a())} <code>keep_alive</code>{" "}
+						{m.reins_gateway_flags_warning_b()} <code>serve</code> {m.reins_gateway_flags_warning_c()}{" "}
+						<code>bind: address already in use</code>
+						{m.reins_gateway_flags_warning_d()}
 					</Note>
 					<CodeBlock
 						code={`brew services stop reins-hook
@@ -302,18 +249,17 @@ nohup reins-hook serve \\
   --device-bridge-android --device-bridge-ios \\
   > ~/.local/state/reins-hook.log 2>&1 &`}
 					/>
-					<p>Comprueba que las rutas quedaron montadas:</p>
+					<p>{m.reins_gateway_check_routes()}</p>
 					<CodeBlock code="curl -s http://127.0.0.1:24543/v1/devices" />
 					<p>
-						Un <code>404</code> aquí no significa que no encuentre dispositivos: significa que
-						el gateway arrancó sin los flags y esas rutas no existen en ese proceso.
+						{m.reins_gateway_404_a()} <code>404</code> {m.reins_gateway_404_b()}
 					</p>
 					<p>
-						<code>read</code> expone la lista de dispositivos; <code>control</code> es el que
-						realmente permite manejarlos. <code>android</code> necesita <code>adb</code> en el{" "}
-						<code>PATH</code> (<code>brew install --cask android-platform-tools</code>) y un
-						emulador o un dispositivo con depuración USB. <code>ios</code> usa{" "}
-						<code>xcrun</code>/<code>simctl</code>.
+						<code>read</code> {m.reins_gateway_detail_1()} <code>control</code>{" "}
+						{m.reins_gateway_detail_2()} <code>android</code> {m.reins_gateway_detail_3()}{" "}
+						<code>adb</code> {m.reins_gateway_detail_4()} <code>PATH</code> (
+						<code>brew install --cask android-platform-tools</code>) {m.reins_gateway_detail_5()}{" "}
+						<code>ios</code> {m.reins_gateway_detail_6()} <code>xcrun</code>/<code>simctl</code>.
 					</p>
 				</Section>
 
@@ -322,52 +268,40 @@ nohup reins-hook serve \\
 						code={`cd ~/projects/mi-proyecto
 herdr`}
 					/>
-					<p>Dentro de herdr, arranca el agente que quieras:</p>
-					<CodeBlock code="claude      # o: codex, opencode" />
+					<p>{m.reins_daily_p1()}</p>
+					<CodeBlock code={`claude      # ${m.reins_daily_agent_comment()}`} />
 					<p>
-						Para salir de herdr sin detener tus agentes: <kbd>Ctrl+B</kbd> y luego{" "}
-						<kbd>Q</kbd>. Escribe <code>herdr</code> para volver.
+						{m.reins_daily_exit_a()} <kbd>Ctrl+B</kbd> {m.reins_daily_exit_b()} <kbd>Q</kbd>
+						{m.reins_daily_exit_c()} <code>herdr</code> {m.reins_daily_exit_d()}
 					</p>
-					<p>Comprobar que el gateway ve tus sesiones:</p>
+					<p>{m.reins_daily_p2()}</p>
 					<CodeBlock code="curl -s http://127.0.0.1:24543/agents | head -c 200" />
-					<p>
-						Si salen, abre Reins en el teléfono: el host debe decir <b>connected</b>, con tus
-						sesiones bajo RECENT.
-					</p>
+					<p>{renderRich(m.reins_daily_p3())}</p>
 				</Section>
 
 				<Section id="siempre-arriba">
-					<p className="docs__section-lead">
-						Un Mac dormido es un Mac inalcanzable. Esto es lo que hay que dejar en su sitio.
-					</p>
+					<p className="docs__section-lead">{m.reins_alive_lead()}</p>
 
-					<h3 className="docs__subtitle">Evitar la suspensión</h3>
-					<p>
-						Configuración del Sistema → Batería → Opciones: activa evitar la suspensión
-						mientras esté conectado a corriente. O temporalmente, mientras el comando corra:
-					</p>
+					<h3 className="docs__subtitle">{m.reins_alive_sleep_heading()}</h3>
+					<p>{m.reins_alive_sleep_p1()}</p>
 					<CodeBlock code="caffeinate -dims" />
 
-					<h3 className="docs__subtitle">Tailscale y SSH activos</h3>
+					<h3 className="docs__subtitle">{m.reins_alive_tailscale_heading()}</h3>
 					<p>
-						Tailscale arranca solo al iniciar sesión una vez hecho <code>tailscale up</code>.
-						Inicio de sesión remoto también persiste, salvo que una actualización de macOS lo
-						apague. Chequeo rápido después de cada update:
+						{m.reins_alive_tailscale_p1_a()} <code>tailscale up</code>. {m.reins_alive_tailscale_p1_b()}
 					</p>
 					<CodeBlock
 						code={`tailscale status
 sudo systemsetup -getremotelogin`}
 					/>
 
-					<h3 className="docs__subtitle">Levantarlo y reiniciarlo</h3>
+					<h3 className="docs__subtitle">{m.reins_alive_restart_heading()}</h3>
 					<p>
-						Si lo corres con el servicio de Homebrew, esto ya está resuelto:{" "}
-						<code>brew services restart reins-hook</code>, y launchd se encarga del resto.
+						{m.reins_alive_restart_p1_a()} <code>brew services restart reins-hook</code>
+						{m.reins_alive_restart_p1_b()}
 					</p>
 					<p>
-						Lo de abajo es para el arranque a mano, con el servicio parado. Una función en tu{" "}
-						<code>~/.zshrc</code> hace el trabajo aburrido, y sirve igual para arrancarlo en
-						frío que para reiniciarlo:
+						{m.reins_alive_restart_p2_a()} <code>~/.zshrc</code> {m.reins_alive_restart_p2_b()}
 					</p>
 					<CodeBlock
 						code={`reins-restart() {
@@ -380,64 +314,55 @@ sudo systemsetup -getremotelogin`}
 						plain
 					/>
 					<p>
-						La espera no es adorno. <code>/kill</code> cierra ordenado: deja de aceptar
-						conexiones y da hasta cinco segundos a las que siguen en curso. Durante ese rato
-						el puerto sigue tomado, así que encadenar con <code>&amp;&amp;</code> arranca el
-						nuevo demasiado pronto y falla.
+						{m.reins_alive_wait_a()} <code>/kill</code> {m.reins_alive_wait_b()} <code>&&</code>{" "}
+						{m.reins_alive_wait_c()}
 					</p>
-					<p>Y para ver si está vivo:</p>
+					<p>{m.reins_alive_health_p()}</p>
 					<CodeBlock code="curl -s http://127.0.0.1:24543/health" />
 				</Section>
 
 				<Section id="actualizar">
 					<CodeBlock
 						code={`brew upgrade reins-hook
-reins-hook install         # los hooks viven dentro del binario: hay que reescribirlos`}
+reins-hook install         # ${m.reins_update_install_comment()}`}
 					/>
-					<p>
-						Después reinicia toda sesión viva de Claude Code y OpenCode. Cargan hooks y plugins
-						al arrancar, así que una sesión abierta sigue con la versión anterior.
-					</p>
+					<p>{m.reins_update_p1()}</p>
 
-					<h3 className="docs__subtitle">Reiniciar el gateway</h3>
-					<p>
-						Este es el paso que se olvida. Actualizar reemplaza el binario en disco, pero el
-						proceso que ya corre conserva el que cargó al arrancar: sigue sirviendo la versión
-						vieja hasta que lo reinicies. Y como todavía tiene el puerto, levantar otro encima
-						falla:
-					</p>
-					<CodeBlock code="listen on 127.0.0.1:24543: bind: address already in use" plain label="error" />
-					<p>
-						Con el servicio de Homebrew, una línea y listo:
-					</p>
+					<h3 className="docs__subtitle">{m.reins_update_restart_heading()}</h3>
+					<p>{m.reins_update_p2()}</p>
+					<CodeBlock
+						code="listen on 127.0.0.1:24543: bind: address already in use"
+						plain
+						label="error"
+					/>
+					<p>{m.reins_update_p3()}</p>
 					<CodeBlock code="brew services restart reins-hook" />
-					<p>A mano, con la función de arriba ya definida, el reinicio es una palabra:</p>
+					<p>{m.reins_update_p4()}</p>
 					<CodeBlock code="reins-restart" />
-					<p>A mano es lo mismo en dos tiempos: pedirle que se detenga y volver a levantarlo.</p>
+					<p>{m.reins_update_p5()}</p>
 					<CodeBlock
 						code={`curl -s -X POST http://127.0.0.1:24543/kill
 nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &`}
 					/>
 					<p>
-						Si el proceso quedó colgado y no contesta <code>/kill</code>, búscalo por el puerto
-						y mándale una señal. <code>serve</code> atiende <code>SIGTERM</code>, así que
-						cierra por el mismo camino ordenado:
+						{m.reins_update_hung_a()} <code>/kill</code>
+						{m.reins_update_hung_b()} <code>serve</code> {m.reins_update_hung_c()}{" "}
+						<code>SIGTERM</code>
+						{m.reins_update_hung_d()}
 					</p>
 					<CodeBlock
-						code={`lsof -ti tcp:24543           # el PID que tiene el puerto
-kill $(lsof -ti tcp:24543)   # SIGTERM: cierra ordenado igual`}
+						code={`lsof -ti tcp:24543           # ${m.reins_update_lsof_comment()}
+kill $(lsof -ti tcp:24543)   # ${m.reins_update_kill_comment()}`}
 					/>
 					<Note tone="warning">
-						Deja <code>kill -9</code> para cuando nada más funcione. Corta el proceso en seco,
-						sin drenar las conexiones abiertas ni soltar su estado.
+						{m.reins_update_kill9_a()} <code>kill -9</code> {m.reins_update_kill9_b()}
 					</Note>
 					<p>
-						herdr se actualiza desde una terminal <b>fuera</b> de herdr; si no, se niega, para
-						no reemplazar su propio binario con el servidor vivo:
+						{renderRich(m.reins_update_herdr_p1())}
 					</p>
 					<CodeBlock
 						code={`herdr update
-herdr integration install claude    # repetir tras cada update
+herdr integration install claude    # ${m.reins_update_herdr_repeat_comment()}
 herdr integration install codex
 herdr integration install opencode`}
 					/>
@@ -446,77 +371,52 @@ herdr integration install opencode`}
 				<Section id="problemas">
 					<div className="docs-faq">
 						<details className="docs-faq__item">
-							<summary>La app no muestra sesiones de OpenCode</summary>
-							<p>
-								Casi siempre el gateway se reinició y las sesiones nunca volvieron a
-								registrarse. El plugin registra al arrancar y en reconexión, nunca reintenta,
-								así que una sesión más vieja que el gateway le es invisible.
-							</p>
+							<summary>{m.reins_faq1_q()}</summary>
+							<p>{m.reins_faq1_a1()}</p>
 							<CodeBlock code="curl -s http://127.0.0.1:24543/agents | grep -c opencode" />
-							<p>¿Cero? Reinicia tus sesiones de OpenCode.</p>
+							<p>{m.reins_faq1_a2()}</p>
 						</details>
 
 						<details className="docs-faq__item">
-							<summary>El teléfono no alcanza el Mac</summary>
+							<summary>{m.reins_faq2_q()}</summary>
 							<CodeBlock
-								code={`tailscale status          # ¿ambos en el mismo tailnet?
-tailscale ip -4           # ¿coincide con lo que marca la app?`}
+								code={`tailscale status          # ${m.reins_faq2_comment1()}
+tailscale ip -4           # ${m.reins_faq2_comment2()}`}
 							/>
-							<p>
-								Revisa también que Inicio de sesión remoto siga activo. Una actualización de
-								macOS puede apagarlo.
-							</p>
+							<p>{m.reins_faq2_a1()}</p>
 						</details>
 
 						<details className="docs-faq__item">
-							<summary>El catálogo o los permisos de un agente no responden</summary>
+							<summary>{m.reins_faq3_q()}</summary>
 							<p>
-								El plugin de OpenCode sólo llega a disco con <code>reins-hook install</code>.
-								Sáltatelo tras una actualización y el plugin en disco se queda una versión
-								atrás, en silencio.
+								{m.reins_faq3_a1_a()} <code>reins-hook install</code>
+								{m.reins_faq3_a1_b()}
 							</p>
 							<CodeBlock code="reins-hook install" />
-							<p>Luego reinicia la sesión de OpenCode.</p>
+							<p>{m.reins_faq3_a2()}</p>
 						</details>
 
 						<details className="docs-faq__item">
-							<summary>Revocar un dispositivo</summary>
+							<summary>{m.reins_faq4_q()}</summary>
 							<p>
-								Cada emparejamiento es una entrada revocable en <code>authorized_keys</code>:
+								{m.reins_faq4_a1()} <code>authorized_keys</code>:
 							</p>
 							<CodeBlock
-								code={`reins-hook keys           # lista las llaves con su fingerprint
-reins-hook revoke <id>    # elimina una; las ajenas quedan intactas`}
+								code={`reins-hook keys           # ${m.reins_faq4_keys_comment()}
+reins-hook revoke <id>    # ${m.reins_faq4_revoke_comment()}`}
 							/>
-							<p>
-								Olvidar un host en la app borra la llave del teléfono, pero el Mac conserva su
-								entrada hasta que la revoques aquí.
-							</p>
+							<p>{m.reins_faq4_a2()}</p>
 						</details>
 					</div>
 				</Section>
 
 				<Section id="seguridad">
 					<ul className="docs-list">
-						<li>
-							Llaves <b>ed25519</b>, una por dispositivo emparejado, revocables por separado.
-						</li>
-						<li>
-							<b>Ninguna llave privada en disco</b> en el Mac; sólo se autoriza la mitad
-							pública.
-						</li>
-						<li>
-							<b>Trust on first use</b> para llaves de host: la app la fija en la primera
-							conexión y se niega a conectar si cambia.
-						</li>
-						<li>
-							<b>Gateway sólo en loopback</b>, alcanzado por el túnel SSH. Nunca expuesto a tu
-							red.
-						</li>
-						<li>
-							<b>Sin APIs de agentes.</b> La vista de chat lee la salida de terminal del
-							agente; no llama a Claude, Codex ni OpenCode directamente.
-						</li>
+						<li>{renderRich(m.reins_security_item1())}</li>
+						<li>{renderRich(m.reins_security_item2())}</li>
+						<li>{renderRich(m.reins_security_item3())}</li>
+						<li>{renderRich(m.reins_security_item4())}</li>
+						<li>{renderRich(m.reins_security_item5())}</li>
 					</ul>
 				</Section>
 			</div>

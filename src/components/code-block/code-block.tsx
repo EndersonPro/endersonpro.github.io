@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { HiCheck, HiClipboardCopy } from "react-icons/hi";
+import { m } from "../../paraglide/messages.js";
 
 type CodeBlockProps = {
 	/** Raw command text. Multiple lines are supported. */
@@ -64,7 +65,7 @@ export const CodeBlock = ({ code, label, plain = false }: CodeBlockProps) => {
 				type="button"
 				className="code-block__copy"
 				onClick={handleCopy}
-				aria-label={copied ? "Comando copiado" : "Copiar comando"}
+				aria-label={copied ? m.code_block_copied() : m.code_block_copy()}
 			>
 				{copied ? <HiCheck /> : <HiClipboardCopy />}
 			</button>

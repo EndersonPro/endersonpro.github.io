@@ -1,54 +1,56 @@
 import { HiExternalLink } from "react-icons/hi";
+import { m } from "../../paraglide/messages.js";
 
 type Project = {
 	title: string;
-	description: string;
+	description: () => string;
 	url?: string;
-	meta?: string;
+	category: "mobile" | "opensource";
+	tech: string;
 };
 
 const projects: Array<Project> = [
 	{
 		title: "Melonn Drivers",
-		description:
-			"Aplicación para conductores de Melonn, donde pueden ver sus pedidos, rutas y demás información relevante para su trabajo.",
+		description: m.projects_melonn_drivers_desc,
 		url: "https://play.google.com/store/apps/details?id=com.melonn.drivers",
-		meta: "App móvil · Flutter",
+		category: "mobile",
+		tech: "Flutter",
 	},
 	{
 		title: "Melonn Ops",
-		description:
-			"Aplicación para operadores de Melonn, donde se gestionan varios procesos internos de las bodegas.",
+		description: m.projects_melonn_ops_desc,
 		url: "https://melonn.com/",
-		meta: "App móvil · Flutter",
+		category: "mobile",
+		tech: "Flutter",
 	},
 	{
 		title: "EstarBien Uninorte",
-		description:
-			"Aplicación enfocada en proporcionar psicoeducación guiada y herramientas relacionadas a la salud mental, física y bienestar emocional.",
+		description: m.projects_estarbien_desc,
 		url: "https://play.google.com/store/apps/details?id=co.edu.uninorte.estarbien.dev",
-		meta: "App móvil · Flutter",
+		category: "mobile",
+		tech: "Flutter",
 	},
 	{
 		title: "Solutoday",
-		description:
-			"Aplicación que ubica al instante a los mejores profesionales de servicio disponibles en tu zona para recibir una experiencia a domicilio.",
+		description: m.projects_solutoday_desc,
 		url: "https://solutoday.com/",
-		meta: "App móvil · Flutter",
+		category: "mobile",
+		tech: "Flutter",
 	},
 	{
 		title: "flutree",
-		description:
-			"Gestión del ciclo de vida de Git worktrees en multi-repo, pensada para flujos de desarrollo orientados a Flutter.",
+		description: m.projects_flutree_desc,
 		url: "https://github.com/EndersonPro/flutree",
-		meta: "Open source · Go",
+		category: "opensource",
+		tech: "Go",
 	},
 	{
 		title: "perfscope",
-		description:
-			"Observabilidad de rendimiento local para Flutter: detección de anomalías de frames en dispositivo, sesiones, reportes y comparaciones.",
+		description: m.projects_perfscope_desc,
 		url: "https://github.com/EndersonPro/perfscope",
-		meta: "Open source · Dart",
+		category: "opensource",
+		tech: "Dart",
 	},
 ];
 
@@ -56,34 +58,35 @@ export const ProjectsPage = () => {
 	return (
 		<div>
 			<header className="page-header">
-				<span className="eyebrow">Portafolio</span>
-				<h1 className="page-header__title">Proyectos</h1>
-				<p className="page-header__lead">
-					Productos en producción y herramientas open source: apps con
-					Flutter, utilidades para developers y sistemas empresariales.
-				</p>
+				<span className="eyebrow">{m.projects_eyebrow()}</span>
+				<h1 className="page-header__title">{m.projects_title()}</h1>
+				<p className="page-header__lead">{m.projects_lead()}</p>
 			</header>
 			<div className="projects">
-				{projects.map(({ title, description, url, meta }) => (
-					<article className="project-card" key={title}>
-						<div className="project-card__body">
-							{meta && <span className="eyebrow project-card__meta">{meta}</span>}
-							<h3 className="project-card__title">{title}</h3>
-							<p className="project-card__desc">{description}</p>
-							{url && (
-								<a
-									href={url}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="project-card__link"
-								>
-									{meta?.startsWith("Open source") ? "Ver repositorio" : "Ver proyecto"}{" "}
-									<HiExternalLink />
-								</a>
-							)}
-						</div>
-					</article>
-				))}
+				{projects.map(({ title, description, url, category, tech }) => {
+					const meta = `${category === "mobile" ? m.projects_category_mobile() : "Open source"} · ${tech}`;
+
+					return (
+						<article className="project-card" key={title}>
+							<div className="project-card__body">
+								<span className="eyebrow project-card__meta">{meta}</span>
+								<h3 className="project-card__title">{title}</h3>
+								<p className="project-card__desc">{description()}</p>
+								{url && (
+									<a
+										href={url}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="project-card__link"
+									>
+										{category === "opensource" ? m.projects_link_repo() : m.projects_link_project()}{" "}
+										<HiExternalLink />
+									</a>
+								)}
+							</div>
+						</article>
+					);
+				})}
 			</div>
 		</div>
 	);

@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --emit-ts-declarations && tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "paraglide-js compile --project ./project.inlang --outdir ./src/paraglide --emit-ts-declarations"
   },
   "dependencies": {
+    "@inlang/paraglide-js": "^2.25.0",
     "framer-motion": "^12.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

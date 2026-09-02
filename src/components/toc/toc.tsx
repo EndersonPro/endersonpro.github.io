@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { m } from "../../paraglide/messages.js";
 
 export type TocEntry = { id: string; title: string };
 
@@ -35,8 +36,8 @@ export const Toc = ({ entries }: TocProps) => {
 	}, [entries]);
 
 	return (
-		<nav className="toc" aria-label="Contenido de la página">
-			<span className="toc__heading">En esta página</span>
+		<nav className="toc" aria-label={m.toc_aria()}>
+			<span className="toc__heading">{m.toc_heading()}</span>
 			<ol className="toc__list">
 				{entries.map(({ id, title }) => (
 					<li key={id}>

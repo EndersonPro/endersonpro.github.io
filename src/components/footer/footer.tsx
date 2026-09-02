@@ -1,3 +1,5 @@
+import { m } from "../../paraglide/messages.js";
+
 export const Footer = () => {
 	return (
 		<footer className="site-footer">
@@ -5,9 +7,7 @@ export const Footer = () => {
 				<span className="site-footer__mark">
 					EV<span className="logo-accent">.</span>
 				</span>
-				<p className="site-footer__copy">
-					© {new Date().getFullYear()} Enderson Vizcaino — Software Engineer
-				</p>
+				<p className="site-footer__copy">{m.footer_copy({ year: new Date().getFullYear() })}</p>
 				<div className="site-footer__links">
 					<a
 						href="https://github.com/EndersonPro"

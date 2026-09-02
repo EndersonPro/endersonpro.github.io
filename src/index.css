@@ -188,6 +188,44 @@ strong {
 	color: var(--ink);
 }
 
+.nav__right {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.nav__lang {
+	display: inline-flex;
+	gap: 2px;
+	border: 1px solid var(--border-btn);
+	border-radius: var(--radius-pill);
+	padding: 2px;
+}
+
+.nav__lang-btn {
+	border: none;
+	background: transparent;
+	color: var(--body-mid);
+	font-family: var(--font-mono);
+	font-size: 11px;
+	letter-spacing: 0.08em;
+	padding: 4px 10px;
+	border-radius: var(--radius-pill);
+	cursor: pointer;
+	transition:
+		color 0.2s var(--ease),
+		background-color 0.2s var(--ease);
+}
+
+.nav__lang-btn:hover {
+	color: var(--ink);
+}
+
+.nav__lang-btn.is-active {
+	background: var(--primary);
+	color: var(--on-primary);
+}
+
 .nav__toggle {
 	display: none;
 	flex-direction: column;

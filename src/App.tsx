@@ -1,11 +1,18 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router";
 import { Footer } from "./components/footer/footer";
 import { Nav } from "./components/nav";
+import { m } from "./paraglide/messages.js";
+import { getLocale } from "./paraglide/runtime.js";
 import { AboutPage } from "./pages/about/about";
 import { HomePage } from "./pages/home/home";
 import { ProjectsPage } from "./pages/projects/projects";
 import { ReinsPage } from "./pages/reins/reins";
+
+const setMetaContent = (selector: string, content: string) => {
+	document.querySelector(selector)?.setAttribute("content", content);
+};
 
 const pageTransition = {
 	initial: { opacity: 0, y: 20 },
@@ -16,6 +23,16 @@ const pageTransition = {
 
 export const App = () => {
 	const location = useLocation();
+
+	useEffect(() => {
+		document.documentElement.lang = getLocale();
+		document.title = m.meta_title();
+		setMetaContent('meta[name="description"]', m.meta_description());
+		setMetaContent('meta[property="og:title"]', m.meta_title());
+		setMetaContent('meta[property="og:description"]', m.meta_og_description());
+		setMetaContent('meta[name="twitter:title"]', m.meta_title());
+		setMetaContent('meta[name="twitter:description"]', m.meta_og_description());
+	}, []);
 
 	if (location.pathname === "/privacy/infinity" || location.pathname === "/privacy/pear-music") {
 		return (
