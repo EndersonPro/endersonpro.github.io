@@ -38,9 +38,9 @@ const Note = ({ tone = "note", children }: NoteProps) => (
 
 const pieces = [
 	{ piece: "Tailscale", runs: m.reins_piece_tailscale_runs(), does: m.reins_piece_tailscale_does() },
-	{ piece: "herdr", runs: "Mac", does: m.reins_piece_herdr_does() },
-	{ piece: m.reins_piece_agents_name(), runs: "Mac", does: m.reins_piece_agents_does() },
-	{ piece: "reins-hook", runs: "Mac", does: m.reins_piece_hook_does() },
+	{ piece: "herdr", runs: "Mac · Linux · Windows", does: m.reins_piece_herdr_does() },
+	{ piece: m.reins_piece_agents_name(), runs: "Mac · Linux · Windows", does: m.reins_piece_agents_does() },
+	{ piece: "reins-hook", runs: "Mac · Linux · Windows", does: m.reins_piece_hook_does() },
 	{ piece: "Reins", runs: m.reins_piece_reins_runs(), does: m.reins_piece_reins_does() },
 ];
 
@@ -260,6 +260,42 @@ nohup reins-hook serve \\
 						<code>adb</code> {m.reins_gateway_detail_4()} <code>PATH</code> (
 						<code>brew install --cask android-platform-tools</code>) {m.reins_gateway_detail_5()}{" "}
 						<code>ios</code> {m.reins_gateway_detail_6()} <code>xcrun</code>/<code>simctl</code>.
+					</p>
+
+					<h3 className="docs__subtitle">{m.reins_gateway_config_heading()}</h3>
+					<p>
+						{m.reins_gateway_config_p1_a()} <code>~/.config/reins-hook/config.yaml</code>
+						{m.reins_gateway_config_p1_b()}
+					</p>
+					<CodeBlock
+						code={`server:
+  addr: 127.0.0.1:24543
+
+logging:
+  level: info
+
+deviceBridge:
+  read: true
+  control: true
+  seedDemoDevice: false
+  android: true
+  ios: true
+  mcp: false
+
+ios:
+  helperBundlePath: ""
+  helperRequirement: ""
+  simulatorPath: ""`}
+						label="~/.config/reins-hook/config.yaml"
+						plain
+					/>
+					<p>{m.reins_gateway_config_p2()}</p>
+					<Note tone="warning">{renderRich(m.reins_gateway_config_ignored())}</Note>
+					<p>{renderRich(m.reins_gateway_config_precedence())}</p>
+					<p>
+						{m.reins_gateway_config_restart_a()} <code>brew services restart reins-hook</code>
+						{m.reins_gateway_config_restart_b()} <code>reins-hook restart</code>
+						{m.reins_gateway_config_restart_c()}
 					</p>
 				</Section>
 
