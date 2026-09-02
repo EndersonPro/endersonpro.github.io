@@ -247,19 +247,40 @@ tailscale ip -4                                    # la dirección 100.x.y.z`}
 				</Section>
 
 				<Section id="gateway">
+					<p className="docs__section-lead">
+						Hay dos formas de correrlo, y la que elijas decide qué puede hacer la app. No son
+						intercambiables.
+					</p>
+
+					<h3 className="docs__subtitle">Supervisado, con Homebrew</h3>
+					<CodeBlock code="brew services start reins-hook" />
+					<p>
+						La fórmula del tap trae un service block con <code>keep_alive</code>, así que
+						launchd lo arranca al iniciar sesión y lo revive si se cae. Sus logs quedan en{" "}
+						<code>/opt/homebrew/var/log/reins-hook.log</code>. Es la opción cómoda y la que
+						sobrevive a un reinicio.
+					</p>
+					<Note>
+						El servicio corre <code>reins-hook serve</code> <b>sin flags</b>. Con él al mando
+						nunca vas a tener el control de dispositivos: esas rutas no se montan.
+					</Note>
+
+					<h3 className="docs__subtitle">A mano</h3>
 					<CodeBlock
 						code={`mkdir -p ~/.local/state
 nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &`}
 					/>
 					<p>
-						Escucha en <code>127.0.0.1:24543</code> y se niega a arrancar en una dirección
-						enrutable: el teléfono lo alcanza por el túnel SSH, nunca por la red. Si el puerto
-						está ocupado, pasa <code>--addr 127.0.0.1:&lt;puerto&gt;</code>.
+						Es la única forma de pasarle flags. A cambio, nadie lo supervisa: tras un reinicio
+						o un crash hay que levantarlo de nuevo.
 					</p>
-					<Note tone="warning">
-						Nada supervisa este proceso. No vuelve solo tras un reinicio o un crash: hay que
-						levantarlo de nuevo igual.
-					</Note>
+
+					<p>
+						En cualquiera de los dos casos escucha en <code>127.0.0.1:24543</code> y se niega a
+						arrancar en una dirección enrutable: el teléfono lo alcanza por el túnel SSH, nunca
+						por la red. Si el puerto está ocupado, pasa{" "}
+						<code>--addr 127.0.0.1:&lt;puerto&gt;</code>.
+					</p>
 
 					<h3 className="docs__subtitle">Opcional: controlar un Android o iOS desde la app</h3>
 					<p>
@@ -267,12 +288,26 @@ nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &`}
 						que Reins muestre la pantalla de un dispositivo y le reenvíe taps. Los flags vienen
 						apagados por defecto:
 					</p>
+					<Note tone="warning">
+						Si tienes el servicio de Homebrew corriendo, <b>páralo antes</b>. Con{" "}
+						<code>keep_alive</code> activo, launchd revive un <code>serve</code> sin flags a
+						los pocos segundos de que mates el tuyo, y el que arrancas con flags muere con{" "}
+						<code>bind: address already in use</code>. Parece aleatorio; no lo es.
+					</Note>
 					<CodeBlock
-						code={`nohup reins-hook serve \\
+						code={`brew services stop reins-hook
+
+nohup reins-hook serve \\
   --device-bridge-read --device-bridge-control \\
   --device-bridge-android --device-bridge-ios \\
   > ~/.local/state/reins-hook.log 2>&1 &`}
 					/>
+					<p>Comprueba que las rutas quedaron montadas:</p>
+					<CodeBlock code="curl -s http://127.0.0.1:24543/v1/devices" />
+					<p>
+						Un <code>404</code> aquí no significa que no encuentre dispositivos: significa que
+						el gateway arrancó sin los flags y esas rutas no existen en ese proceso.
+					</p>
 					<p>
 						<code>read</code> expone la lista de dispositivos; <code>control</code> es el que
 						realmente permite manejarlos. <code>android</code> necesita <code>adb</code> en el{" "}
@@ -324,16 +359,32 @@ herdr`}
 sudo systemsetup -getremotelogin`}
 					/>
 
-					<h3 className="docs__subtitle">Levantar el gateway tras un reinicio</h3>
+					<h3 className="docs__subtitle">Levantarlo y reiniciarlo</h3>
 					<p>
-						Como nadie lo supervisa, un alias en tu <code>~/.zshrc</code> hace el trabajo
-						aburrido:
+						Si lo corres con el servicio de Homebrew, esto ya está resuelto:{" "}
+						<code>brew services restart reins-hook</code>, y launchd se encarga del resto.
+					</p>
+					<p>
+						Lo de abajo es para el arranque a mano, con el servicio parado. Una función en tu{" "}
+						<code>~/.zshrc</code> hace el trabajo aburrido, y sirve igual para arrancarlo en
+						frío que para reiniciarlo:
 					</p>
 					<CodeBlock
-						code="alias reins-up='mkdir -p ~/.local/state && nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &'"
+						code={`reins-restart() {
+  curl -s -X POST http://127.0.0.1:24543/kill >/dev/null 2>&1
+  while lsof -ti tcp:24543 >/dev/null 2>&1; do sleep 0.2; done
+  mkdir -p ~/.local/state
+  nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &
+}`}
 						label="~/.zshrc"
 						plain
 					/>
+					<p>
+						La espera no es adorno. <code>/kill</code> cierra ordenado: deja de aceptar
+						conexiones y da hasta cinco segundos a las que siguen en curso. Durante ese rato
+						el puerto sigue tomado, así que encadenar con <code>&amp;&amp;</code> arranca el
+						nuevo demasiado pronto y falla.
+					</p>
 					<p>Y para ver si está vivo:</p>
 					<CodeBlock code="curl -s http://127.0.0.1:24543/health" />
 				</Section>
@@ -347,6 +398,39 @@ reins-hook install         # los hooks viven dentro del binario: hay que reescri
 						Después reinicia toda sesión viva de Claude Code y OpenCode. Cargan hooks y plugins
 						al arrancar, así que una sesión abierta sigue con la versión anterior.
 					</p>
+
+					<h3 className="docs__subtitle">Reiniciar el gateway</h3>
+					<p>
+						Este es el paso que se olvida. Actualizar reemplaza el binario en disco, pero el
+						proceso que ya corre conserva el que cargó al arrancar: sigue sirviendo la versión
+						vieja hasta que lo reinicies. Y como todavía tiene el puerto, levantar otro encima
+						falla:
+					</p>
+					<CodeBlock code="listen on 127.0.0.1:24543: bind: address already in use" plain label="error" />
+					<p>
+						Con el servicio de Homebrew, una línea y listo:
+					</p>
+					<CodeBlock code="brew services restart reins-hook" />
+					<p>A mano, con la función de arriba ya definida, el reinicio es una palabra:</p>
+					<CodeBlock code="reins-restart" />
+					<p>A mano es lo mismo en dos tiempos: pedirle que se detenga y volver a levantarlo.</p>
+					<CodeBlock
+						code={`curl -s -X POST http://127.0.0.1:24543/kill
+nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &`}
+					/>
+					<p>
+						Si el proceso quedó colgado y no contesta <code>/kill</code>, búscalo por el puerto
+						y mándale una señal. <code>serve</code> atiende <code>SIGTERM</code>, así que
+						cierra por el mismo camino ordenado:
+					</p>
+					<CodeBlock
+						code={`lsof -ti tcp:24543           # el PID que tiene el puerto
+kill $(lsof -ti tcp:24543)   # SIGTERM: cierra ordenado igual`}
+					/>
+					<Note tone="warning">
+						Deja <code>kill -9</code> para cuando nada más funcione. Corta el proceso en seco,
+						sin drenar las conexiones abiertas ni soltar su estado.
+					</Note>
 					<p>
 						herdr se actualiza desde una terminal <b>fuera</b> de herdr; si no, se niega, para
 						no reemplazar su propio binario con el servidor vivo:
