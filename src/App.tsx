@@ -4,6 +4,7 @@ import { Nav } from "./components/nav";
 import { AboutPage } from "./pages/about/about";
 import { HomePage } from "./pages/home/home";
 import { ProjectsPage } from "./pages/projects/projects";
+import { ReinsPage } from "./pages/reins/reins";
 
 const pageTransition = {
 	initial: { opacity: 0, y: 20 },
@@ -33,6 +34,7 @@ export const App = () => {
 						<Route index element={<HomePage />} />
 						<Route path="/about" element={<AboutPage />} />
 						<Route path="/projects" element={<ProjectsPage />} />
+						<Route path="/reins" element={<ReinsPage />} />
 					</Routes>
 				</motion.div>
 			</AnimatePresence>

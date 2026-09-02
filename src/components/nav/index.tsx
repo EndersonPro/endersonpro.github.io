@@ -35,6 +35,14 @@ export const Nav = () => {
 						Proyectos
 					</NavLink>
 				</li>
+				<li>
+					<NavLink
+						className={({ isActive }) => (isActive ? "active" : "")}
+						to="/reins"
+					>
+						Reins
+					</NavLink>
+				</li>
 			</ul>
 		</nav>
 	);
