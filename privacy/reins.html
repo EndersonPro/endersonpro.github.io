@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <title>Reins Privacy Policy</title>
+  <style>
+:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+body { min-height: 100vh; margin: 0; color: var(--muted); background: var(--bg); }
+.privacy-page { isolation: isolate; min-height: 100vh; padding: clamp(1rem, 4vw, 4rem); overflow: hidden; }
+.glow { position: fixed; z-index: -1; width: min(52vw, 680px); aspect-ratio: 1; border-radius: 50%; filter: blur(80px); opacity: .22; pointer-events: none; }
+.glow--one { top: -15rem; right: -12rem; background: var(--primary); }
+.glow--two { bottom: -20rem; left: -14rem; background: var(--secondary); }
+.privacy-policy { width: min(100%, 860px); margin: 0 auto; padding: clamp(1.5rem, 5vw, 4.5rem); background: var(--surface); border: 1px solid var(--border); border-radius: 28px; box-shadow: var(--shadow); }
+.header, .brand, .language { display: flex; align-items: center; }
+.header { justify-content: space-between; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.brand { gap: .85rem; }
+.logo { width: 48px; height: 48px; border-radius: 14px; box-shadow: var(--logo-shadow); }
+.eyebrow { display: block; color: var(--text); font-size: 1.1rem; font-weight: 700; }
+.brand p { margin: .1rem 0 0; font-size: .82rem; color: var(--muted); }
+.language { padding: .25rem; gap: .15rem; background: var(--language-bg); border: 1px solid var(--line); border-radius: 12px; }
+.language button { min-width: 2.7rem; padding: .45rem .5rem; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font: 700 .75rem inherit; letter-spacing: .04em; cursor: pointer; }
+.language button:hover, .language button:focus-visible { color: var(--text); }
+.language button:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.language button[aria-pressed="true"] { background: var(--primary); color: var(--active-text); }
+.intro { padding: clamp(2.25rem, 6vw, 4.5rem) 0 2.5rem; }
+h1, h2 { color: var(--text); letter-spacing: -.025em; }
+h1 { max-width: 680px; margin: 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }
+.intro p { max-width: 650px; margin: 1.25rem 0 0; font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.7; }
+time { display: block; margin-top: 1.5rem; color: var(--secondary); font-size: .85rem; font-weight: 600; }
+.content { display: grid; gap: 2.25rem; }
+.content section { padding-top: 2.25rem; border-top: 1px solid var(--line); }
+h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; }
+.content p, .content li { font-size: .98rem; line-height: 1.75; }
+.content p { margin: .9rem 0 0; }
+.content ul { margin: .9rem 0 0 1.25rem; padding: 0; }
+.content li + li { margin-top: .55rem; }
+a { color: var(--secondary); font-weight: 600; text-underline-offset: .2em; }
+a:hover { color: var(--primary-soft); }
+.contact { padding: 1.5rem !important; border: 1px solid var(--contact-border) !important; border-radius: 16px; background: var(--contact-bg); }
+.contact p { margin-top: .6rem; }
+@media (max-width: 560px) { .privacy-page { padding: 0; } .privacy-policy { border-right: 0; border-left: 0; border-radius: 0; } .header { align-items: flex-start; flex-direction: column; } }
+
+
+:root { --bg:#0a0a0f; --surface:rgba(22,22,30,.88); --primary:#4fd1c5; --secondary:#67e8d9; --primary-soft:#8ef0e4; --text:#f2f2f7; --muted:#a2a2b5; --border:rgba(79,209,197,.25); --line:rgba(162,162,181,.16); --language-bg:rgba(10,10,15,.7); --shadow:0 28px 80px rgba(0,0,0,.45); --logo-shadow:0 8px 24px rgba(79,209,197,.2); --contact-border:rgba(79,209,197,.42); --contact-bg:rgba(79,209,197,.1); --active-text:#0a0a0f; }
+</style>
+</head>
+<body>
+  <main class="privacy-page">
+    <div class="glow glow--one"></div><div class="glow glow--two"></div>
+    <article class="privacy-policy">
+      <header class="header">
+        <div class="brand"><img src="assets/reins.png" alt="Reins" class="logo" /><div><span class="eyebrow">Reins</span><p id="page-label"></p></div></div>
+        <div class="language" id="language-selector" aria-label="Language">
+          <button type="button" data-locale="en" aria-pressed="true">EN</button>
+          <button type="button" data-locale="es" aria-pressed="false">ES</button>
+          <button type="button" data-locale="pt" aria-pressed="false">PT</button>
+        </div>
+      </header>
+      <div class="intro"><h1 id="title"></h1><p id="intro"></p><time id="updated" datetime="2026-09-10"></time></div>
+      <div class="content" id="content"></div>
+    </article>
+  </main>
+  <script>
+const policyCopy = {
+	en: {
+		languageLabel: "Language",
+		pageLabel: "Privacy policy",
+		title: "Reins Privacy Policy",
+		intro: "This policy explains how Reins handles information when you use it to drive coding agents on your own computer.",
+		updated: "Last updated: 10 September 2026",
+		sections: [
+			{
+				title: "How Reins works",
+				paragraphs: [
+					"Reins is a personal phone-to-PC terminal for driving coding agents. It has two pieces: the Reins app on your phone and reins-hook, a companion program that runs on your own computer.",
+					"Terminal traffic goes straight from your phone to your computer over SSH. There is no cloud, no account, and no relay in between.",
+					"You do not need to create an account or sign in to use Reins.",
+				],
+			},
+			{
+				title: "Pairing",
+				paragraphs: [
+					"You pair the app by scanning the QR code printed by reins-hook on your computer. Pairing data, such as the host address and connection details, is stored on your device so the app can reconnect to your computer.",
+				],
+			},
+			{
+				title: "Terminal and agent chat",
+				paragraphs: [
+					"Once paired, Reins opens a live SSH terminal to your computer, and can show the real conversation of supported coding agents running there, including tool activity and permission requests that you approve with one tap.",
+					"Your terminal sessions, agent conversations, source code, and file contents travel only over the direct connection between your phone and your computer. They are never sent to us.",
+				],
+			},
+			{
+				title: "Information stored on your device",
+				paragraphs: [
+					"Reins stores app data locally on your device. This can include paired hosts and connection details, app settings, pinned sessions, and preferences.",
+					"Secrets such as SSH keys are kept in your device's secure storage. Everything Reins stores stays on your device until you delete it, clear app data, or uninstall the app.",
+				],
+			},
+			{
+				title: "Permissions",
+				paragraphs: ["Reins requests permissions only when required by the relevant feature or platform."],
+				items: [
+					"Internet: to reach your computer over your local network or VPN.",
+					"Camera: to scan the pairing QR code printed by reins-hook, and to attach a photo to a message.",
+					"Microphone and speech recognition: only when you dictate a message to the agent.",
+					"Photo library: only when you choose to attach a photo or video from your library to a message.",
+				],
+			},
+			{
+				title: "Networks and services you configure",
+				paragraphs: [
+					"On the same Wi-Fi, the phone reaches the computer directly. To reach it from anywhere, you can configure your own VPN such as Tailscale on both devices. That VPN is a third-party service governed by its own privacy terms; Reins does not operate it and receives nothing from it.",
+				],
+			},
+			{
+				title: "What Reins never does",
+				items: [
+					"It never uploads your terminal sessions, agent conversations, source code, or files to us or to any third party.",
+					"It has no analytics, no advertising, and no tracking of any kind.",
+					"It never sells or shares personal information for money or for cross-context behavioural advertising, as defined by California law.",
+					"It does not build a profile of you and has no means of identifying you individually.",
+					"It does not use your content to train any model.",
+				],
+			},
+			{
+				title: "Your rights",
+				paragraphs: [
+					"Because Reins stores your information only on your device and sends nothing to us, there is no server-side copy to access, correct, or delete. You control your data through the app and your device settings, including clearing app data or uninstalling the app.",
+					"You may also write to the contact below with any question about this policy.",
+				],
+			},
+			{
+				title: "Children",
+				paragraphs: [
+					"Reins is not directed at children under 13, and personal information is not knowingly collected from them. If you believe a child has provided personal information through the app, contact us below and it will be acted on.",
+				],
+			},
+			{
+				title: "Retention and changes",
+				paragraphs: [
+					"Local app data remains on your device until you delete it, clear app data, or uninstall the app.",
+					"We may update this policy as Reins changes. The latest version will be available at this URL, with its revision date updated.",
+				],
+			},
+		],
+		contactTitle: "Contact",
+		contactText: "For privacy questions about Reins, contact",
+	},
+	es: {
+		languageLabel: "Idioma",
+		pageLabel: "Política de privacidad",
+		title: "Política de privacidad de Reins",
+		intro: "Esta política explica cómo Reins trata la información cuando la usas para controlar agentes de programación en tu propia computadora.",
+		updated: "Última actualización: 10 de septiembre de 2026",
+		sections: [
+			{ title: "Cómo funciona Reins", paragraphs: ["Reins es una terminal personal del teléfono a la PC para controlar agentes de programación. Tiene dos piezas: la aplicación Reins en tu teléfono y reins-hook, un programa complementario que se ejecuta en tu propia computadora.", "El tráfico de la terminal va directamente de tu teléfono a tu computadora por SSH. No hay nube, ni cuenta, ni intermediario en el medio.", "No necesitas crear una cuenta ni iniciar sesión para usar Reins."] },
+			{ title: "Emparejamiento", paragraphs: ["Emparejas la aplicación escaneando el código QR que reins-hook muestra en tu computadora. Los datos de emparejamiento, como la dirección del host y los detalles de conexión, se almacenan en tu dispositivo para que la aplicación pueda reconectarse a tu computadora."] },
+			{ title: "Terminal y chat del agente", paragraphs: ["Una vez emparejada, Reins abre una terminal SSH en vivo hacia tu computadora y puede mostrar la conversación real de los agentes de programación compatibles que se ejecutan allí, incluida la actividad de herramientas y las solicitudes de permiso que apruebas con un toque.", "Tus sesiones de terminal, conversaciones con agentes, código fuente y contenido de archivos viajan únicamente por la conexión directa entre tu teléfono y tu computadora. Nunca se nos envían."] },
+			{ title: "Información almacenada en tu dispositivo", paragraphs: ["Reins almacena los datos de la aplicación localmente en tu dispositivo. Esto puede incluir los hosts emparejados y detalles de conexión, ajustes de la aplicación, sesiones fijadas y preferencias.", "Los secretos, como las claves SSH, se guardan en el almacenamiento seguro de tu dispositivo. Todo lo que Reins almacena permanece en tu dispositivo hasta que lo elimines, borres los datos de la aplicación o desinstales la aplicación."] },
+			{ title: "Permisos", paragraphs: ["Reins solicita permisos solo cuando una función o plataforma correspondiente los requiere."], items: ["Internet: para alcanzar tu computadora a través de tu red local o VPN.", "Cámara: para escanear el código QR de emparejamiento que muestra reins-hook y para adjuntar una foto a un mensaje.", "Micrófono y reconocimiento de voz: únicamente cuando dictas un mensaje al agente.", "Fototeca: solo cuando eliges adjuntar una foto o video de tu biblioteca a un mensaje."] },
+			{ title: "Redes y servicios que configuras", paragraphs: ["En la misma red Wi-Fi, el teléfono alcanza la computadora directamente. Para alcanzarla desde cualquier lugar, puedes configurar tu propia VPN, como Tailscale, en ambos dispositivos. Esa VPN es un servicio de terceros regido por sus propios términos de privacidad; Reins no la opera ni recibe nada de ella."] },
+			{ title: "Lo que Reins nunca hace", items: ["Nunca sube tus sesiones de terminal, conversaciones con agentes, código fuente ni archivos a nosotros ni a ningún tercero.", "No tiene analítica, ni publicidad, ni seguimiento de ningún tipo.", "Nunca vende ni comparte información personal a cambio de dinero, ni para publicidad conductual entre contextos, según la definición de la ley de California.", "No construye un perfil sobre ti ni tiene forma de identificarte individualmente.", "No usa tu contenido para entrenar ningún modelo."] },
+			{ title: "Tus derechos", paragraphs: ["Como Reins almacena tu información únicamente en tu dispositivo y no nos envía nada, no existe una copia en servidores a la cual acceder, corregir o eliminar. Controlas tus datos desde la aplicación y los ajustes de tu dispositivo, lo que incluye borrar los datos de la aplicación o desinstalarla.", "También puedes escribirnos a la dirección de contacto con cualquier pregunta sobre esta política."] },
+			{ title: "Menores", paragraphs: ["Reins no está dirigida a menores de 13 años y no recopila conscientemente información personal de ellos. Si crees que un menor proporcionó información personal a través de la aplicación, contáctanos y actuaremos al respecto."] },
+			{ title: "Conservación y cambios", paragraphs: ["Los datos locales de la aplicación permanecen en tu dispositivo hasta que los elimines, borres los datos de la aplicación o desinstales la aplicación.", "Podemos actualizar esta política a medida que Reins cambie. La versión más reciente estará disponible en esta URL con su fecha de revisión actualizada."] },
+		],
+		contactTitle: "Contacto",
+		contactText: "Para consultas de privacidad sobre Reins, escribe a",
+	},
+	pt: {
+		languageLabel: "Idioma",
+		pageLabel: "Política de privacidade",
+		title: "Política de privacidade do Reins",
+		intro: "Esta política explica como o Reins trata informações quando você o usa para controlar agentes de programação no seu próprio computador.",
+		updated: "Última atualização: 10 de setembro de 2026",
+		sections: [
+			{ title: "Como o Reins funciona", paragraphs: ["O Reins é um terminal pessoal do telefone para o PC para controlar agentes de programação. Ele tem duas partes: o aplicativo Reins no seu telefone e o reins-hook, um programa complementar executado no seu próprio computador.", "O tráfego do terminal vai direto do seu telefone para o seu computador por SSH. Não há nuvem, conta ou intermediário no meio.", "Você não precisa criar uma conta ou fazer login para usar o Reins."] },
+			{ title: "Emparelhamento", paragraphs: ["Você emparelha o aplicativo escaneando o código QR exibido pelo reins-hook no seu computador. Os dados de emparelhamento, como o endereço do host e os detalhes de conexão, são armazenados no seu dispositivo para que o aplicativo possa se reconectar ao seu computador."] },
+			{ title: "Terminal e chat do agente", paragraphs: ["Após o emparelhamento, o Reins abre um terminal SSH ao vivo para o seu computador e pode mostrar a conversa real dos agentes de programação compatíveis executados ali, incluindo a atividade de ferramentas e as solicitações de permissão que você aprova com um toque.", "Suas sessões de terminal, conversas com agentes, código-fonte e conteúdo de arquivos trafegam somente pela conexão direta entre o seu telefone e o seu computador. Eles nunca são enviados para nós."] },
+			{ title: "Informações armazenadas no seu dispositivo", paragraphs: ["O Reins armazena os dados do aplicativo localmente no seu dispositivo. Isso pode incluir os hosts emparelhados e detalhes de conexão, configurações do aplicativo, sessões fixadas e preferências.", "Segredos, como chaves SSH, são guardados no armazenamento seguro do seu dispositivo. Tudo o que o Reins armazena permanece no seu dispositivo até que você o exclua, limpe os dados do aplicativo ou desinstale o aplicativo."] },
+			{ title: "Permissões", paragraphs: ["O Reins solicita permissões somente quando exigidas pelo recurso ou pela plataforma correspondente."], items: ["Internet: para alcançar o seu computador pela rede local ou VPN.", "Câmera: para escanear o código QR de emparelhamento exibido pelo reins-hook e para anexar uma foto a uma mensagem.", "Microfone e reconhecimento de voz: somente quando você dita uma mensagem ao agente.", "Biblioteca de fotos: somente quando você escolhe anexar uma foto ou vídeo da sua biblioteca a uma mensagem."] },
+			{ title: "Redes e serviços que você configura", paragraphs: ["Na mesma rede Wi-Fi, o telefone alcança o computador diretamente. Para alcançá-lo de qualquer lugar, você pode configurar sua própria VPN, como o Tailscale, em ambos os dispositivos. Essa VPN é um serviço de terceiros regido pelos seus próprios termos de privacidade; o Reins não a opera nem recebe nada dela."] },
+			{ title: "O que o Reins nunca faz", items: ["Nunca envia suas sessões de terminal, conversas com agentes, código-fonte ou arquivos para nós ou para terceiros.", "Não tem análises, publicidade nem rastreamento de nenhum tipo.", "Nunca vende nem compartilha informações pessoais em troca de dinheiro, nem para publicidade comportamental entre contextos, conforme definido pela lei da Califórnia.", "Não cria um perfil sobre você nem tem meios de identificá-lo individualmente.", "Não usa seu conteúdo para treinar nenhum modelo."] },
+			{ title: "Seus direitos", paragraphs: ["Como o Reins armazena suas informações somente no seu dispositivo e não nos envia nada, não existe cópia em servidores para acessar, corrigir ou excluir. Você controla seus dados pelo aplicativo e pelas configurações do seu dispositivo, incluindo limpar os dados do aplicativo ou desinstalá-lo.", "Você também pode escrever para o contato abaixo com qualquer dúvida sobre esta política."] },
+			{ title: "Crianças", paragraphs: ["O Reins não é direcionado a crianças menores de 13 anos, e informações pessoais não são coletadas conscientemente delas. Se você acredita que uma criança forneceu informações pessoais através do aplicativo, entre em contato conosco e isso será tratado."] },
+			{ title: "Retenção e alterações", paragraphs: ["Os dados locais do aplicativo permanecem no seu dispositivo até que você os exclua, limpe os dados do aplicativo ou desinstale o aplicativo.", "Podemos atualizar esta política à medida que o Reins mudar. A versão mais recente estará disponível nesta URL, com a data de revisão atualizada."] },
+		],
+		contactTitle: "Contato",
+		contactText: "Para questões de privacidade sobre o Reins, entre em contato com",
+	},
+};
+    const pageLabel = document.querySelector('#page-label');
+    const title = document.querySelector('#title');
+    const intro = document.querySelector('#intro');
+    const updated = document.querySelector('#updated');
+    const content = document.querySelector('#content');
+    const selector = document.querySelector('#language-selector');
+
+    function addText(parent, tag, value) {
+      const element = document.createElement(tag);
+      element.textContent = value;
+      parent.append(element);
+    }
+
+    function render(locale) {
+      const copy = policyCopy[locale];
+      document.documentElement.lang = locale === 'pt' ? 'pt' : locale;
+      document.title = copy.title;
+      pageLabel.textContent = copy.pageLabel;
+      title.textContent = copy.title;
+      intro.textContent = copy.intro;
+      updated.textContent = copy.updated;
+      selector.setAttribute('aria-label', copy.languageLabel);
+      content.replaceChildren();
+      for (const section of copy.sections) {
+        const sectionElement = document.createElement('section');
+        addText(sectionElement, 'h2', section.title);
+        for (const paragraph of section.paragraphs ?? []) addText(sectionElement, 'p', paragraph);
+        if (section.items) {
+          const list = document.createElement('ul');
+          for (const item of section.items) addText(list, 'li', item);
+          sectionElement.append(list);
+        }
+        content.append(sectionElement);
+      }
+      const contact = document.createElement('section');
+      contact.className = 'contact';
+      addText(contact, 'h2', copy.contactTitle);
+      const contactParagraph = document.createElement('p');
+      contactParagraph.append(document.createTextNode(`${copy.contactText} `));
+      const email = document.createElement('a');
+      email.href = 'mailto:khrienanime@gmail.com';
+      email.textContent = 'khrienanime@gmail.com';
+      contactParagraph.append(email, document.createTextNode('.'));
+      contact.append(contactParagraph);
+      content.append(contact);
+      for (const button of selector.querySelectorAll('button')) {
+        button.setAttribute('aria-pressed', String(button.dataset.locale === locale));
+      }
+    }
+
+    selector.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-locale]');
+      if (button) render(button.dataset.locale);
+    });
+    render('en');
+  </script>
+</body>
+</html>
