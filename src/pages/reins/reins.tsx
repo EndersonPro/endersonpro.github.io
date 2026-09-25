@@ -8,13 +8,15 @@ import { m } from "../../paraglide/messages.js";
 
 const sections: Array<TocEntry> = [
 	{ id: "components", title: m.reins_toc_piezas() },
+	{ id: "quick-start", title: m.reins_toc_quick_start() },
 	{ id: "installation", title: m.reins_toc_instalacion() },
 	{ id: "connectivity", title: m.reins_toc_conectividad() },
 	{ id: "pairing", title: m.reins_toc_emparejar() },
 	{ id: "gateway", title: m.reins_toc_gateway() },
-	{ id: "devices", title: m.reins_toc_dispositivos() },
 	{ id: "daily-use", title: m.reins_toc_uso_diario() },
 	{ id: "notifications", title: m.reins_toc_notificaciones() },
+	{ id: "devices", title: m.reins_toc_dispositivos() },
+	{ id: "extras", title: m.reins_toc_extras() },
 	{ id: "keep-running", title: m.reins_toc_siempre_arriba() },
 	{ id: "updating", title: m.reins_toc_actualizar() },
 	{ id: "troubleshooting", title: m.reins_toc_problemas() },
@@ -30,6 +32,37 @@ const Section = ({ id, children }: SectionProps) => (
 		<h2 className="docs__section-title">{titles.get(id)}</h2>
 		{children}
 	</section>
+);
+
+type SubtitleProps = { id: string; children: ReactNode };
+
+const Subtitle = ({ id, children }: SubtitleProps) => (
+	<h3 className="docs__subtitle" id={id}>
+		<a className="docs__subtitle-anchor" href={`#${id}`}>
+			{children}
+		</a>
+	</h3>
+);
+
+type DocLinkProps = { to: string; children?: ReactNode };
+
+/** Links to a section by its id; without children it shows the section's TOC title. */
+const DocLink = ({ to, children }: DocLinkProps) => (
+	<a className="docs-link" href={`#${to}`}>
+		{children ?? titles.get(to)}
+	</a>
+);
+
+const TESTFLIGHT_URL = "https://testflight.apple.com/join/wnuwa8Bu";
+const ANDROID_BETA_GROUP_URL = "https://groups.google.com/g/reins-beta-testers";
+const ANDROID_BETA_OPT_IN_URL = "https://play.google.com/apps/testing/dev.endersonvizc.reins";
+
+type ExternalLinkProps = { href: string; children: ReactNode };
+
+const ExternalLink = ({ href, children }: ExternalLinkProps) => (
+	<a className="docs-link" href={href} target="_blank" rel="noopener noreferrer">
+		{children}
+	</a>
 );
 
 type NoteProps = { tone?: "note" | "warning"; children: ReactNode };
@@ -67,6 +100,12 @@ export const ReinsPage = () => {
 						>
 							{m.reins_hero_cta()} <HiExternalLink />
 						</a>
+						<a className="btn btn_secondary" href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer">
+							{m.reins_hero_ios_cta()} <HiExternalLink />
+						</a>
+						<a className="btn btn_secondary" href="#installation-app">
+							{m.reins_hero_android_cta()}
+						</a>
 						<span className="docs__badge">{m.reins_hero_badge()}</span>
 					</div>
 				</header>
@@ -94,10 +133,65 @@ export const ReinsPage = () => {
 					<p>{m.reins_piezas_note()}</p>
 				</Section>
 
+				<Section id="quick-start">
+					<p className="docs__section-lead">{m.reins_quick_lead()}</p>
+					<ol className="docs-steps">
+						<li>
+							{renderRich(m.reins_quick_step0())} <DocLink to="installation-app">→ {m.reins_install_app_heading()}</DocLink>
+						</li>
+						<li>
+							{renderRich(m.reins_quick_step1())} <DocLink to="installation-ssh">→ {m.reins_install_ssh_heading()}</DocLink>
+						</li>
+						<li>
+							{renderRich(m.reins_quick_step2())} <DocLink to="installation">→ {m.reins_toc_instalacion()}</DocLink>
+						</li>
+						<li>
+							{renderRich(m.reins_quick_step3())} <DocLink to="connectivity">→ {m.reins_toc_conectividad()}</DocLink>
+						</li>
+						<li>
+							{renderRich(m.reins_quick_step4())} <DocLink to="pairing">→ {m.reins_toc_emparejar()}</DocLink>
+						</li>
+						<li>
+							{renderRich(m.reins_quick_step5())} <DocLink to="gateway">→ {m.reins_toc_gateway()}</DocLink>
+						</li>
+						<li>
+							{renderRich(m.reins_quick_step6())} <DocLink to="daily-use">→ {m.reins_toc_uso_diario()}</DocLink>
+						</li>
+					</ol>
+					<p>
+						{m.reins_quick_optional()} <DocLink to="notifications" />, <DocLink to="devices" />,{" "}
+						<DocLink to="extras" />.
+					</p>
+				</Section>
+
 				<Section id="installation">
 					<Note>{m.reins_install_intro_note()}</Note>
+					<p>
+						{m.reins_install_extras_pointer()} <DocLink to="extras" />.
+					</p>
 
-					<h3 className="docs__subtitle">{m.reins_install_ssh_heading()}</h3>
+					<Subtitle id="installation-app">{m.reins_install_app_heading()}</Subtitle>
+					<p>{renderRich(m.reins_install_app_p1())}</p>
+					<p>
+						<b>iOS.</b> {m.reins_install_app_ios()}{" "}
+						<ExternalLink href={TESTFLIGHT_URL}>testflight.apple.com/join/wnuwa8Bu</ExternalLink>
+					</p>
+					<p>
+						<b>Android.</b> {m.reins_install_app_android()}
+					</p>
+					<ol className="docs-steps">
+						<li>
+							{m.reins_install_app_android_step1()}{" "}
+							<ExternalLink href={ANDROID_BETA_GROUP_URL}>groups.google.com/g/reins-beta-testers</ExternalLink>
+						</li>
+						<li>
+							{renderRich(m.reins_install_app_android_step2())}{" "}
+							<ExternalLink href={ANDROID_BETA_OPT_IN_URL}>play.google.com/apps/testing/dev.endersonvizc.reins</ExternalLink>
+						</li>
+					</ol>
+					<Note>{renderRich(m.reins_install_app_android_note())}</Note>
+
+					<Subtitle id="installation-ssh">{m.reins_install_ssh_heading()}</Subtitle>
 					<p>{m.reins_install_ssh_p1()}</p>
 					<p>{renderRich(m.reins_install_ssh_macos())}</p>
 					<CodeBlock
@@ -129,7 +223,7 @@ Set-Service -Name sshd -StartupType Automatic`}
 					<p>{m.reins_install_ssh_p2()}</p>
 					<CodeBlock code="whoami" />
 
-					<h3 className="docs__subtitle">herdr</h3>
+					<Subtitle id="installation-herdr">herdr</Subtitle>
 					<p>{m.reins_install_herdr_p0()}</p>
 					<CodeBlock
 						code={`curl -fsSL https://herdr.dev/install.sh | sh
@@ -154,65 +248,7 @@ herdr integration status   # ${m.reins_herdr_status_comment()}`}
 						<code>22</code> {m.reins_install_herdr_note_3()} {m.reins_install_herdr_note_4()}
 					</Note>
 
-					<h3 className="docs__subtitle">{m.reins_install_fork_heading()}</h3>
-					<p>{renderRich(m.reins_install_fork_p1())}</p>
-					<p>{m.reins_install_fork_p2()}</p>
-					<CodeBlock
-						code={`cp ~/.local/bin/herdr ~/.local/bin/herdr.stock   # ${m.reins_install_fork_backup_comment()}
-
-# ${m.reins_install_fork_binary_comment()}
-# ${m.reins_install_fork_asset_comment()}
-cp herdr-macos-aarch64 ~/.local/bin/herdr
-chmod +x ~/.local/bin/herdr
-codesign --force -s - ~/.local/bin/herdr         # ${m.reins_install_fork_codesign_comment()}
-herdr --version                                  # 0.9.0-preview…`}
-						label="macOS / Linux"
-					/>
-					<p>{m.reins_install_fork_windows_p()}</p>
-					<CodeBlock
-						code={`herdr server stop                               # ${m.reins_install_fork_stop_comment()}
-$dir = Split-Path (Get-Command herdr).Source    # ${m.reins_install_fork_dir_comment()}
-Copy-Item $dir "$dir.stock" -Recurse           # ${m.reins_install_fork_backup_comment()}
-
-# ${m.reins_install_fork_binary_comment()}
-# ${m.reins_install_fork_asset_comment()}
-Expand-Archive herdr-windows-x86_64.zip -DestinationPath $dir -Force
-herdr --version                                 # 0.9.0-preview…`}
-						label="Windows (PowerShell)"
-					/>
-					<p>{m.reins_install_fork_restart_p()}</p>
-					<CodeBlock
-						code={`herdr server stop
-herdr server &                                   # ${m.reins_install_fork_tui_comment()}
-herdr status | grep -E "protocol|version"        # ${m.reins_install_fork_protocol_comment()}`}
-						label="macOS / Linux"
-					/>
-					<CodeBlock
-						code={`herdr server                                     # ${m.reins_install_fork_window_comment()}
-# ${m.reins_install_fork_other_window_comment()}
-herdr status                                     # ${m.reins_install_fork_protocol_comment()}`}
-						label="Windows (PowerShell)"
-					/>
-					<Note tone="warning">{m.reins_install_fork_note_restart()}</Note>
-					<Note tone="warning">{renderRich(m.reins_install_fork_note_update())}</Note>
-					<p>{m.reins_install_fork_fallback()}</p>
-
-					<h3 className="docs__subtitle">{m.reins_install_mosh_heading()}</h3>
-					<p>{renderRich(m.reins_install_mosh_p1())}</p>
-					<p>{m.reins_install_mosh_p2()}</p>
-					<CodeBlock
-						code={`brew install mosh        # macOS
-sudo apt install mosh    # ${m.reins_install_mosh_apt_comment()}
-sudo dnf install mosh    # ${m.reins_install_mosh_dnf_comment()}
-sudo pacman -S mosh      # ${m.reins_install_mosh_pacman_comment()}`}
-					/>
-					<p>{renderRich(m.reins_install_mosh_p3())}</p>
-					<CodeBlock
-						code={`curl -s http://127.0.0.1:24543/health   # ${m.reins_install_mosh_health_comment()}`}
-					/>
-					<Note>{renderRich(m.reins_install_mosh_note())}</Note>
-
-					<h3 className="docs__subtitle">{m.reins_install_agents_heading()}</h3>
+					<Subtitle id="installation-agents">{m.reins_install_agents_heading()}</Subtitle>
 					<CodeBlock
 						code={`brew install --cask claude-code    # Claude Code
 brew install --cask codex          # ${m.reins_agents_codex_comment()}
@@ -236,7 +272,7 @@ npm install -g opencode-ai                                                      
 						{m.reins_install_agents_p1_b()}
 					</p>
 
-					<h3 className="docs__subtitle">reins-hook</h3>
+					<Subtitle id="installation-reins-hook">reins-hook</Subtitle>
 					<CodeBlock
 						code="brew tap EndersonPro/reins && brew install reins-hook"
 						label="macOS / Linux (Homebrew)"
@@ -335,7 +371,7 @@ Restart-Service sshd`}
 				<Section id="gateway">
 					<p className="docs__section-lead">{m.reins_gateway_lead()}</p>
 
-					<h3 className="docs__subtitle">{m.reins_gateway_supervised_heading()}</h3>
+					<Subtitle id="gateway-service">{m.reins_gateway_supervised_heading()}</Subtitle>
 					<CodeBlock code="brew services start reins-hook" />
 					<p>
 						{m.reins_gateway_supervised_p1_a()} <code>keep_alive</code>{" "}
@@ -343,12 +379,11 @@ Restart-Service sshd`}
 						{m.reins_gateway_supervised_p1_c()}
 					</p>
 					<Note>
-						{m.reins_gateway_supervised_note_a()} <code>reins-hook serve</code>{" "}
-						{renderRich(m.reins_gateway_supervised_note_b())}
+						{renderRich(m.reins_gateway_supervised_note())} <DocLink to="gateway-config">{m.reins_gateway_config_heading()}</DocLink>.
 					</Note>
 					<p>{renderRich(m.reins_gateway_supervised_linux_p())}</p>
 
-					<h3 className="docs__subtitle">{m.reins_gateway_linux_heading()}</h3>
+					<Subtitle id="gateway-systemd">{m.reins_gateway_linux_heading()}</Subtitle>
 					<p>{renderRich(m.reins_gateway_linux_p1())}</p>
 					<CodeBlock
 						code={`[Unit]
@@ -369,7 +404,7 @@ loginctl enable-linger $USER      # ${m.reins_gateway_linger_comment()}`}
 					/>
 					<Note>{renderRich(m.reins_gateway_linux_note())}</Note>
 
-					<h3 className="docs__subtitle">{m.reins_gateway_manual_heading()}</h3>
+					<Subtitle id="gateway-manual">{m.reins_gateway_manual_heading()}</Subtitle>
 					<CodeBlock
 						code={`mkdir -p ~/.local/state
 nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &`}
@@ -382,36 +417,7 @@ nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &`}
 						{m.reins_gateway_manual_note_b()} <code>{m.reins_gateway_addr_flag()}</code>.
 					</p>
 
-					<h3 className="docs__subtitle">{m.reins_gateway_optional_heading()}</h3>
-					<p>{m.reins_gateway_optional_p1()}</p>
-					<Note tone="warning">
-						{renderRich(m.reins_gateway_flags_warning_a())} <code>keep_alive</code>{" "}
-						{m.reins_gateway_flags_warning_b()} <code>serve</code> {m.reins_gateway_flags_warning_c()}{" "}
-						<code>bind: address already in use</code>
-						{m.reins_gateway_flags_warning_d()}
-					</Note>
-					<CodeBlock
-						code={`brew services stop reins-hook
-
-nohup reins-hook serve \\
-  --device-bridge-read --device-bridge-control \\
-  --device-bridge-android --device-bridge-ios \\
-  > ~/.local/state/reins-hook.log 2>&1 &`}
-					/>
-					<p>{m.reins_gateway_check_routes()}</p>
-					<CodeBlock code="curl -s http://127.0.0.1:24543/v1/devices" />
-					<p>
-						{m.reins_gateway_404_a()} <code>404</code> {m.reins_gateway_404_b()}
-					</p>
-					<p>
-						<code>read</code> {m.reins_gateway_detail_1()} <code>control</code>{" "}
-						{m.reins_gateway_detail_2()} <code>android</code> {m.reins_gateway_detail_3()}{" "}
-						<code>adb</code> {m.reins_gateway_detail_4()} <code>PATH</code> (
-						<code>brew install --cask android-platform-tools</code>) {m.reins_gateway_detail_5()}{" "}
-						<code>ios</code> {m.reins_gateway_detail_6()} <code>xcrun</code>/<code>simctl</code>.
-					</p>
-
-					<h3 className="docs__subtitle">{m.reins_gateway_config_heading()}</h3>
+					<Subtitle id="gateway-config">{m.reins_gateway_config_heading()}</Subtitle>
 					<p>
 						{m.reins_gateway_config_p1_a()} <code>~/.config/reins-hook/config.yaml</code>
 						{m.reins_gateway_config_p1_b()}
@@ -443,13 +449,38 @@ ios:
 					<Note tone="warning">{renderRich(m.reins_gateway_config_ignored())}</Note>
 					<p>{renderRich(m.reins_gateway_config_precedence())}</p>
 					<p>
-						{m.reins_gateway_config_restart_a()} <code>brew services restart reins-hook</code>
-						{m.reins_gateway_config_restart_b()} <code>reins-hook restart</code>
-						{m.reins_gateway_config_restart_c()}
+						{m.reins_gateway_config_restart_pointer()}{" "}
+						<DocLink to="gateway-restart">{m.reins_gateway_restart_heading()}</DocLink>.
 					</p>
-					<p>{renderRich(m.reins_gateway_restart_cross_p())}</p>
 
-					<h3 className="docs__subtitle">{m.reins_gateway_config_sdkpath_heading()}</h3>
+					<Subtitle id="gateway-flags">{m.reins_gateway_optional_heading()}</Subtitle>
+					<p>{m.reins_gateway_optional_p1()}</p>
+					<Note tone="warning">
+						{renderRich(m.reins_gateway_flags_warning_a())} <code>keep_alive</code>{" "}
+						{m.reins_gateway_flags_warning_b()} <code>serve</code> {m.reins_gateway_flags_warning_c()}{" "}
+						<code>bind: address already in use</code>
+						{m.reins_gateway_flags_warning_d()}
+					</Note>
+					<CodeBlock
+						code={`brew services stop reins-hook
+
+nohup reins-hook serve \\
+  --device-bridge-read --device-bridge-control \\
+  --device-bridge-android --device-bridge-ios \\
+  > ~/.local/state/reins-hook.log 2>&1 &`}
+					/>
+					<p>
+						<code>read</code> {m.reins_gateway_detail_1()} <code>control</code>{" "}
+						{m.reins_gateway_detail_2()} <code>android</code> {m.reins_gateway_detail_3()}{" "}
+						<code>adb</code> {m.reins_gateway_detail_4()} <code>PATH</code> (
+						<code>brew install --cask android-platform-tools</code>) {m.reins_gateway_detail_5()}{" "}
+						<code>ios</code> {m.reins_gateway_detail_6()} <code>xcrun</code>/<code>simctl</code>.
+					</p>
+					<p>
+						{m.reins_gateway_devices_pointer()} <DocLink to="devices" />.
+					</p>
+
+					<Subtitle id="android-sdk-path">{m.reins_gateway_config_sdkpath_heading()}</Subtitle>
 					<p>
 						{m.reins_gateway_config_sdkpath_p1_a()} <code>~/Library/Android/sdk</code>
 						{m.reins_gateway_config_sdkpath_p1_b()} <code>android.sdkPath</code>{" "}
@@ -462,73 +493,49 @@ ios:
 						plain
 					/>
 					<p>{renderRich(m.reins_gateway_config_sdkpath_p2())}</p>
-				</Section>
 
-				<Section id="devices">
-					<p>{renderRich(m.reins_devices_lead())}</p>
-
-					<h3 className="docs__subtitle">{m.reins_devices_bridge_heading()}</h3>
-					<p>{renderRich(m.reins_devices_bridge_p1())}</p>
+					<Subtitle id="gateway-restart">{m.reins_gateway_restart_heading()}</Subtitle>
+					<p>{renderRich(m.reins_gateway_restart_p1())}</p>
 					<CodeBlock
-						code={`deviceBridge:
-  read: true
-  control: true
-  android: true
-  ios: true`}
-						label="~/.config/reins-hook/config.yaml"
+						code={`brew services restart reins-hook       # ${m.reins_gateway_restart_brew_comment()}
+systemctl --user restart reins-hook    # ${m.reins_gateway_restart_systemd_comment()}
+nohup reins-hook restart > ~/.local/state/reins-hook.log 2>&1 &   # ${m.reins_gateway_restart_manual_comment()}`}
+					/>
+					<p>{renderRich(m.reins_update_restart_windows_p())}</p>
+					<p>{renderRich(m.reins_gateway_restart_cross_p())}</p>
+					<p>{m.reins_gateway_restart_error_p()}</p>
+					<CodeBlock
+						code="listen on 127.0.0.1:24543: bind: address already in use"
 						plain
+						label="error"
+					/>
+					<p>
+						{m.reins_update_hung_a()} <code>/kill</code>
+						{m.reins_update_hung_b()} <code>serve</code> {m.reins_update_hung_c()}{" "}
+						<code>SIGTERM</code>
+						{m.reins_update_hung_d()}
+					</p>
+					<CodeBlock
+						code={`lsof -ti tcp:24543           # ${m.reins_update_lsof_comment()}
+kill $(lsof -ti tcp:24543)   # ${m.reins_update_kill_comment()}`}
+						label="macOS"
 					/>
 					<CodeBlock
-						code={`brew services restart reins-hook   # ${m.reins_devices_restart_brew_comment()}
-reins-hook restart                 # ${m.reins_devices_restart_manual_comment()}
-curl -s http://127.0.0.1:24543/v1/devices`}
+						code={`ss -ltnp 'sport = :24543'        # ${m.reins_update_lsof_comment()}
+sudo lsof -i tcp:24543           # ${m.reins_update_lsof_alt_comment()}
+kill $(sudo lsof -ti tcp:24543)  # ${m.reins_update_kill_comment()}`}
+						label="Linux"
 					/>
-					<p>{renderRich(m.reins_devices_bridge_p2())}</p>
-
-					<h3 className="docs__subtitle">{m.reins_devices_android_heading()}</h3>
-					<p>{renderRich(m.reins_devices_android_step1())}</p>
-					<Note tone="warning">{renderRich(m.reins_devices_android_platform_tools_note())}</Note>
-					<p>{renderRich(m.reins_devices_android_step2())}</p>
-					<p>{renderRich(m.reins_devices_android_step3())}</p>
 					<CodeBlock
-						code={`~/Library/Android/sdk/emulator/emulator -list-avds   # ${m.reins_devices_android_list_comment()}
-adb devices -l                                       # ${m.reins_devices_android_adb_comment()}`}
+						code={`Get-NetTCPConnection -LocalPort 24543 | Select-Object OwningProcess   # ${m.reins_update_lsof_comment()}
+Stop-Process -Id <pid>   # ${m.reins_update_windows_stop_comment()}`}
+						label="Windows (PowerShell)"
 					/>
-					<p>{renderRich(m.reins_devices_android_step4())}</p>
-					<p>{renderRich(m.reins_devices_android_boot())}</p>
-					<p>{renderRich(m.reins_devices_android_physical())}</p>
-
-					<h3 className="docs__subtitle">{m.reins_devices_ios_heading()}</h3>
-					<p>{renderRich(m.reins_devices_ios_step1())}</p>
-					<CodeBlock
-						code={`sudo xcode-select -s /Applications/Xcode.app   # ${m.reins_devices_ios_select_comment()}
-xcrun simctl list devices available            # ${m.reins_devices_ios_list_comment()}`}
-					/>
-					<p>{renderRich(m.reins_devices_ios_step2())}</p>
-					<CodeBlock
-						code={`brew install baguette
-which baguette   # ${m.reins_devices_ios_which_comment()}`}
-					/>
-					<p>{renderRich(m.reins_devices_ios_step3())}</p>
-					<CodeBlock
-						code={`xcrun simctl boot "iPhone 16"
-open -a Simulator`}
-					/>
-					<p>{renderRich(m.reins_devices_ios_step4())}</p>
-					<Note>{renderRich(m.reins_devices_ios_lifecycle_note())}</Note>
-					<p>{renderRich(m.reins_devices_ios_port())}</p>
-					<p>{renderRich(m.reins_devices_ios_heal())}</p>
-
-					<h3 className="docs__subtitle">{m.reins_devices_trouble_heading()}</h3>
-					<p>{renderRich(m.reins_devices_trouble_logs())}</p>
-					<ul className="docs-list">
-						<li>{renderRich(m.reins_devices_trouble_404())}</li>
-						<li>{renderRich(m.reins_devices_trouble_adb())}</li>
-						<li>{renderRich(m.reins_devices_trouble_emulator())}</li>
-						<li>{renderRich(m.reins_devices_trouble_unavailable())}</li>
-						<li>{renderRich(m.reins_devices_trouble_xcrun())}</li>
-						<li>{renderRich(m.reins_devices_trouble_ios_degraded())}</li>
-					</ul>
+					<Note tone="warning">
+						{m.reins_update_kill9_a()} <code>kill -9</code> {m.reins_update_kill9_b()}
+					</Note>
+					<p>{m.reins_alive_health_p()}</p>
+					<CodeBlock code="curl -s http://127.0.0.1:24543/health" />
 				</Section>
 
 				<Section id="daily-use">
@@ -563,10 +570,144 @@ herdr`}
 					/>
 				</Section>
 
+				<Section id="devices">
+					<p>{renderRich(m.reins_devices_lead())}</p>
+
+					<Subtitle id="devices-bridge">{m.reins_devices_bridge_heading()}</Subtitle>
+					<p>{renderRich(m.reins_devices_bridge_p1())}</p>
+					<CodeBlock
+						code={`deviceBridge:
+  read: true
+  control: true
+  android: true
+  ios: true`}
+						label="~/.config/reins-hook/config.yaml"
+						plain
+					/>
+					<CodeBlock
+						code={`brew services restart reins-hook   # ${m.reins_devices_restart_brew_comment()}
+curl -s http://127.0.0.1:24543/v1/devices`}
+					/>
+					<p>
+						{renderRich(m.reins_devices_bridge_p2())}{" "}
+						<DocLink to="gateway-restart">{m.reins_gateway_restart_heading()}</DocLink>.
+					</p>
+
+					<Subtitle id="devices-android">{m.reins_devices_android_heading()}</Subtitle>
+					<p>{renderRich(m.reins_devices_android_step1())}</p>
+					<Note tone="warning">{renderRich(m.reins_devices_android_platform_tools_note())}</Note>
+					<p>{renderRich(m.reins_devices_android_step2())}</p>
+					<p>{renderRich(m.reins_devices_android_step3())}</p>
+					<CodeBlock
+						code={`~/Library/Android/sdk/emulator/emulator -list-avds   # ${m.reins_devices_android_list_comment()}
+adb devices -l                                       # ${m.reins_devices_android_adb_comment()}`}
+					/>
+					<p>{renderRich(m.reins_devices_android_step4())}</p>
+					<p>{renderRich(m.reins_devices_android_boot())}</p>
+					<p>{renderRich(m.reins_devices_android_physical())}</p>
+
+					<Subtitle id="devices-ios">{m.reins_devices_ios_heading()}</Subtitle>
+					<p>{renderRich(m.reins_devices_ios_step1())}</p>
+					<CodeBlock
+						code={`sudo xcode-select -s /Applications/Xcode.app   # ${m.reins_devices_ios_select_comment()}
+xcrun simctl list devices available            # ${m.reins_devices_ios_list_comment()}`}
+					/>
+					<p>{renderRich(m.reins_devices_ios_step2())}</p>
+					<CodeBlock
+						code={`brew install baguette
+which baguette   # ${m.reins_devices_ios_which_comment()}`}
+					/>
+					<p>{renderRich(m.reins_devices_ios_step3())}</p>
+					<CodeBlock
+						code={`xcrun simctl boot "iPhone 16"
+open -a Simulator`}
+					/>
+					<p>
+						{renderRich(m.reins_devices_ios_step4())}{" "}
+						<DocLink to="gateway-restart">{m.reins_gateway_restart_heading()}</DocLink>.
+					</p>
+					<Note>{renderRich(m.reins_devices_ios_lifecycle_note())}</Note>
+					<p>{renderRich(m.reins_devices_ios_port())}</p>
+					<p>{renderRich(m.reins_devices_ios_heal())}</p>
+
+					<Subtitle id="devices-troubleshooting">{m.reins_devices_trouble_heading()}</Subtitle>
+					<p>{renderRich(m.reins_devices_trouble_logs())}</p>
+					<ul className="docs-list">
+						<li>{renderRich(m.reins_devices_trouble_404())}</li>
+						<li>{renderRich(m.reins_devices_trouble_adb())}</li>
+						<li>{renderRich(m.reins_devices_trouble_emulator())}</li>
+						<li>{renderRich(m.reins_devices_trouble_unavailable())}</li>
+						<li>{renderRich(m.reins_devices_trouble_xcrun())}</li>
+						<li>{renderRich(m.reins_devices_trouble_ios_degraded())}</li>
+					</ul>
+				</Section>
+
+				<Section id="extras">
+					<p className="docs__section-lead">{m.reins_extras_lead()}</p>
+
+					<Subtitle id="native-mode">{m.reins_install_fork_heading()}</Subtitle>
+					<p>{renderRich(m.reins_install_fork_p1())}</p>
+					<p>{m.reins_install_fork_p2()}</p>
+					<CodeBlock
+						code={`cp ~/.local/bin/herdr ~/.local/bin/herdr.stock   # ${m.reins_install_fork_backup_comment()}
+
+# ${m.reins_install_fork_binary_comment()}
+# ${m.reins_install_fork_asset_comment()}
+cp herdr-macos-aarch64 ~/.local/bin/herdr
+chmod +x ~/.local/bin/herdr
+codesign --force -s - ~/.local/bin/herdr         # ${m.reins_install_fork_codesign_comment()}
+herdr --version                                  # 0.9.0-preview…`}
+						label="macOS / Linux"
+					/>
+					<p>{m.reins_install_fork_windows_p()}</p>
+					<CodeBlock
+						code={`herdr server stop                               # ${m.reins_install_fork_stop_comment()}
+$dir = Split-Path (Get-Command herdr).Source    # ${m.reins_install_fork_dir_comment()}
+Copy-Item $dir "$dir.stock" -Recurse           # ${m.reins_install_fork_backup_comment()}
+
+# ${m.reins_install_fork_binary_comment()}
+# ${m.reins_install_fork_asset_comment()}
+Expand-Archive herdr-windows-x86_64.zip -DestinationPath $dir -Force
+herdr --version                                 # 0.9.0-preview…`}
+						label="Windows (PowerShell)"
+					/>
+					<p>{m.reins_install_fork_restart_p()}</p>
+					<CodeBlock
+						code={`herdr server stop
+herdr server &                                   # ${m.reins_install_fork_tui_comment()}
+herdr status | grep -E "protocol|version"        # ${m.reins_install_fork_protocol_comment()}`}
+						label="macOS / Linux"
+					/>
+					<CodeBlock
+						code={`herdr server                                     # ${m.reins_install_fork_window_comment()}
+# ${m.reins_install_fork_other_window_comment()}
+herdr status                                     # ${m.reins_install_fork_protocol_comment()}`}
+						label="Windows (PowerShell)"
+					/>
+					<Note tone="warning">{m.reins_install_fork_note_restart()}</Note>
+					<Note tone="warning">{renderRich(m.reins_install_fork_note_update())}</Note>
+					<p>{m.reins_install_fork_fallback()}</p>
+
+					<Subtitle id="mosh">{m.reins_install_mosh_heading()}</Subtitle>
+					<p>{renderRich(m.reins_install_mosh_p1())}</p>
+					<p>{m.reins_install_mosh_p2()}</p>
+					<CodeBlock
+						code={`brew install mosh        # macOS
+sudo apt install mosh    # ${m.reins_install_mosh_apt_comment()}
+sudo dnf install mosh    # ${m.reins_install_mosh_dnf_comment()}
+sudo pacman -S mosh      # ${m.reins_install_mosh_pacman_comment()}`}
+					/>
+					<p>{renderRich(m.reins_install_mosh_p3())}</p>
+					<CodeBlock
+						code={`curl -s http://127.0.0.1:24543/health   # ${m.reins_install_mosh_health_comment()}`}
+					/>
+					<Note>{renderRich(m.reins_install_mosh_note())}</Note>
+				</Section>
+
 				<Section id="keep-running">
 					<p className="docs__section-lead">{m.reins_alive_lead()}</p>
 
-					<h3 className="docs__subtitle">{m.reins_alive_sleep_heading()}</h3>
+					<Subtitle id="keep-running-sleep">{m.reins_alive_sleep_heading()}</Subtitle>
 					<p>{m.reins_alive_sleep_p1()}</p>
 					<CodeBlock code="caffeinate -dims" label="macOS" />
 					<p>{m.reins_alive_sleep_linux()}</p>
@@ -582,7 +723,7 @@ powercfg /change hibernate-timeout-ac 0   # ${m.reins_alive_optional_comment()}`
 						label="Windows (PowerShell admin)"
 					/>
 
-					<h3 className="docs__subtitle">{m.reins_alive_tailscale_heading()}</h3>
+					<Subtitle id="keep-running-ssh">{m.reins_alive_tailscale_heading()}</Subtitle>
 					<p>
 						{m.reins_alive_tailscale_p1_a()} <code>tailscale up</code>. {m.reins_alive_tailscale_p1_b()}
 					</p>
@@ -603,39 +744,23 @@ Get-Service sshd`}
 						label="Windows (PowerShell)"
 					/>
 
-					<h3 className="docs__subtitle">{m.reins_alive_restart_heading()}</h3>
+					<Subtitle id="keep-running-restart">{m.reins_alive_restart_heading()}</Subtitle>
 					<p>
-						{m.reins_alive_restart_p1_a()} <code>brew services restart reins-hook</code>
-						{m.reins_alive_restart_p1_b()}
+						{m.reins_alive_restart_p1()} <DocLink to="gateway-restart">{m.reins_gateway_restart_heading()}</DocLink>.
 					</p>
-					<p>{m.reins_alive_restart_linux_p()}</p>
-					<CodeBlock
-						code="systemctl --user restart reins-hook"
-						label="Linux"
-					/>
-					<p>{renderRich(m.reins_alive_restart_cross_p())}</p>
-					<p>
-						{m.reins_alive_restart_p2_a()} <code>~/.zshrc</code> {m.reins_alive_restart_p2_b()}
-					</p>
-					<CodeBlock
-						code={`reins-restart() {
-  curl -s -X POST http://127.0.0.1:24543/kill >/dev/null 2>&1
-  while lsof -ti tcp:24543 >/dev/null 2>&1; do sleep 0.2; done
-  mkdir -p ~/.local/state
-  nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &
-}`}
-						label="~/.zshrc"
-						plain
-					/>
-					<p>
-						{m.reins_alive_wait_a()} <code>/kill</code> {m.reins_alive_wait_b()} <code>&&</code>{" "}
-						{m.reins_alive_wait_c()}
-					</p>
-					<p>{m.reins_alive_health_p()}</p>
-					<CodeBlock code="curl -s http://127.0.0.1:24543/health" />
 				</Section>
 
 				<Section id="updating">
+					<p className="docs__section-lead">{m.reins_update_lead()}</p>
+					<CodeBlock
+						code={`reins-hook upgrade --dry-run   # ${m.reins_update_dryrun_comment()}
+reins-hook upgrade`}
+						label="macOS / Linux"
+					/>
+					<p>{m.reins_update_p1()}</p>
+
+					<Subtitle id="updating-manual">{m.reins_update_manual_heading()}</Subtitle>
+					<p>{m.reins_update_manual_p()}</p>
 					<CodeBlock
 						code={`brew update && brew upgrade reins-hook
 reins-hook install         # ${m.reins_update_install_comment()}`}
@@ -647,59 +772,13 @@ reins-hook install         # ${m.reins_update_install_comment()}`}
 reins-hook install         # ${m.reins_update_install_comment()}`}
 						label="Windows (Scoop)"
 					/>
-					<p>{m.reins_update_p1()}</p>
+					<p>
+						{m.reins_update_manual_restart_p()}{" "}
+						<DocLink to="gateway-restart">{m.reins_gateway_restart_heading()}</DocLink>.
+					</p>
 
-					<h3 className="docs__subtitle">{m.reins_update_restart_heading()}</h3>
-					<p>{m.reins_update_p2()}</p>
-					<p>
-						{m.reins_update_config_note_a()} <code>~/.config/reins-hook/config.yaml</code>
-						{m.reins_update_config_note_b()}
-					</p>
-					<CodeBlock
-						code="listen on 127.0.0.1:24543: bind: address already in use"
-						plain
-						label="error"
-					/>
-					<p>{m.reins_update_p3()}</p>
-					<CodeBlock code="brew services restart reins-hook" />
-					<p>{m.reins_update_restart_linux_p()}</p>
-					<CodeBlock code="systemctl --user restart reins-hook" label="Linux" />
-					<p>{renderRich(m.reins_update_restart_windows_p())}</p>
-					<p>{m.reins_update_p4()}</p>
-					<CodeBlock code="reins-restart" />
-					<p>{m.reins_update_p5()}</p>
-					<CodeBlock
-						code={`curl -s -X POST http://127.0.0.1:24543/kill
-nohup reins-hook serve > ~/.local/state/reins-hook.log 2>&1 &`}
-					/>
-					<p>
-						{m.reins_update_hung_a()} <code>/kill</code>
-						{m.reins_update_hung_b()} <code>serve</code> {m.reins_update_hung_c()}{" "}
-						<code>SIGTERM</code>
-						{m.reins_update_hung_d()}
-					</p>
-					<CodeBlock
-						code={`lsof -ti tcp:24543           # ${m.reins_update_lsof_comment()}
-kill $(lsof -ti tcp:24543)   # ${m.reins_update_kill_comment()}`}
-						label="macOS"
-					/>
-					<CodeBlock
-						code={`ss -ltnp 'sport = :24543'        # ${m.reins_update_lsof_comment()}
-sudo lsof -i tcp:24543           # ${m.reins_update_lsof_alt_comment()}
-kill $(sudo lsof -ti tcp:24543)  # ${m.reins_update_kill_comment()}`}
-						label="Linux"
-					/>
-					<CodeBlock
-						code={`Get-NetTCPConnection -LocalPort 24543 | Select-Object OwningProcess   # ${m.reins_update_lsof_comment()}
-Stop-Process -Id <pid>   # ${m.reins_update_windows_stop_comment()}`}
-						label="Windows (PowerShell)"
-					/>
-					<Note tone="warning">
-						{m.reins_update_kill9_a()} <code>kill -9</code> {m.reins_update_kill9_b()}
-					</Note>
-					<p>
-						{renderRich(m.reins_update_herdr_p1())}
-					</p>
+					<Subtitle id="updating-herdr">herdr</Subtitle>
+					<p>{renderRich(m.reins_update_herdr_p1())}</p>
 					<CodeBlock
 						code={`herdr update
 herdr integration install claude    # ${m.reins_update_herdr_repeat_comment()}
@@ -747,6 +826,21 @@ tailscale ip -4           # ${m.reins_faq2_comment2()}`}
 reins-hook revoke <id>    # ${m.reins_faq4_revoke_comment()}`}
 							/>
 							<p>{m.reins_faq4_a2()}</p>
+						</details>
+
+						<details className="docs-faq__item">
+							<summary>{m.reins_faq5_q()}</summary>
+							<p>
+								{m.reins_faq5_a()}{" "}
+								<DocLink to="devices-troubleshooting">{m.reins_devices_trouble_heading()}</DocLink>.
+							</p>
+						</details>
+
+						<details className="docs-faq__item">
+							<summary>{renderRich(m.reins_faq6_q())}</summary>
+							<p>
+								{m.reins_faq6_a()} <DocLink to="gateway-restart">{m.reins_gateway_restart_heading()}</DocLink>.
+							</p>
 						</details>
 					</div>
 				</Section>
