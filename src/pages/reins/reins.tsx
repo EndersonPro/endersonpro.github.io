@@ -12,6 +12,7 @@ const sections: Array<TocEntry> = [
 	{ id: "conectividad", title: m.reins_toc_conectividad() },
 	{ id: "emparejar", title: m.reins_toc_emparejar() },
 	{ id: "gateway", title: m.reins_toc_gateway() },
+	{ id: "dispositivos", title: m.reins_toc_dispositivos() },
 	{ id: "uso-diario", title: m.reins_toc_uso_diario() },
 	{ id: "notificaciones", title: m.reins_toc_notificaciones() },
 	{ id: "siempre-arriba", title: m.reins_toc_siempre_arriba() },
@@ -461,6 +462,73 @@ ios:
 						plain
 					/>
 					<p>{renderRich(m.reins_gateway_config_sdkpath_p2())}</p>
+				</Section>
+
+				<Section id="dispositivos">
+					<p>{renderRich(m.reins_devices_lead())}</p>
+
+					<h3 className="docs__subtitle">{m.reins_devices_bridge_heading()}</h3>
+					<p>{renderRich(m.reins_devices_bridge_p1())}</p>
+					<CodeBlock
+						code={`deviceBridge:
+  read: true
+  control: true
+  android: true
+  ios: true`}
+						label="~/.config/reins-hook/config.yaml"
+						plain
+					/>
+					<CodeBlock
+						code={`brew services restart reins-hook   # ${m.reins_devices_restart_brew_comment()}
+reins-hook restart                 # ${m.reins_devices_restart_manual_comment()}
+curl -s http://127.0.0.1:24543/v1/devices`}
+					/>
+					<p>{renderRich(m.reins_devices_bridge_p2())}</p>
+
+					<h3 className="docs__subtitle">{m.reins_devices_android_heading()}</h3>
+					<p>{renderRich(m.reins_devices_android_step1())}</p>
+					<Note tone="warning">{renderRich(m.reins_devices_android_platform_tools_note())}</Note>
+					<p>{renderRich(m.reins_devices_android_step2())}</p>
+					<p>{renderRich(m.reins_devices_android_step3())}</p>
+					<CodeBlock
+						code={`~/Library/Android/sdk/emulator/emulator -list-avds   # ${m.reins_devices_android_list_comment()}
+adb devices -l                                       # ${m.reins_devices_android_adb_comment()}`}
+					/>
+					<p>{renderRich(m.reins_devices_android_step4())}</p>
+					<p>{renderRich(m.reins_devices_android_boot())}</p>
+					<p>{renderRich(m.reins_devices_android_physical())}</p>
+
+					<h3 className="docs__subtitle">{m.reins_devices_ios_heading()}</h3>
+					<p>{renderRich(m.reins_devices_ios_step1())}</p>
+					<CodeBlock
+						code={`sudo xcode-select -s /Applications/Xcode.app   # ${m.reins_devices_ios_select_comment()}
+xcrun simctl list devices available            # ${m.reins_devices_ios_list_comment()}`}
+					/>
+					<p>{renderRich(m.reins_devices_ios_step2())}</p>
+					<CodeBlock
+						code={`brew install baguette
+which baguette   # ${m.reins_devices_ios_which_comment()}`}
+					/>
+					<p>{renderRich(m.reins_devices_ios_step3())}</p>
+					<CodeBlock
+						code={`xcrun simctl boot "iPhone 16"
+open -a Simulator`}
+					/>
+					<p>{renderRich(m.reins_devices_ios_step4())}</p>
+					<Note>{renderRich(m.reins_devices_ios_lifecycle_note())}</Note>
+					<p>{renderRich(m.reins_devices_ios_port())}</p>
+					<p>{renderRich(m.reins_devices_ios_heal())}</p>
+
+					<h3 className="docs__subtitle">{m.reins_devices_trouble_heading()}</h3>
+					<p>{renderRich(m.reins_devices_trouble_logs())}</p>
+					<ul className="docs-list">
+						<li>{renderRich(m.reins_devices_trouble_404())}</li>
+						<li>{renderRich(m.reins_devices_trouble_adb())}</li>
+						<li>{renderRich(m.reins_devices_trouble_emulator())}</li>
+						<li>{renderRich(m.reins_devices_trouble_unavailable())}</li>
+						<li>{renderRich(m.reins_devices_trouble_xcrun())}</li>
+						<li>{renderRich(m.reins_devices_trouble_ios_degraded())}</li>
+					</ul>
 				</Section>
 
 				<Section id="uso-diario">
