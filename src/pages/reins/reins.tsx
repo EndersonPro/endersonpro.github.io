@@ -7,18 +7,18 @@ import { renderRich } from "../../lib/rich-text";
 import { m } from "../../paraglide/messages.js";
 
 const sections: Array<TocEntry> = [
-	{ id: "piezas", title: m.reins_toc_piezas() },
-	{ id: "instalacion", title: m.reins_toc_instalacion() },
-	{ id: "conectividad", title: m.reins_toc_conectividad() },
-	{ id: "emparejar", title: m.reins_toc_emparejar() },
+	{ id: "components", title: m.reins_toc_piezas() },
+	{ id: "installation", title: m.reins_toc_instalacion() },
+	{ id: "connectivity", title: m.reins_toc_conectividad() },
+	{ id: "pairing", title: m.reins_toc_emparejar() },
 	{ id: "gateway", title: m.reins_toc_gateway() },
-	{ id: "dispositivos", title: m.reins_toc_dispositivos() },
-	{ id: "uso-diario", title: m.reins_toc_uso_diario() },
-	{ id: "notificaciones", title: m.reins_toc_notificaciones() },
-	{ id: "siempre-arriba", title: m.reins_toc_siempre_arriba() },
-	{ id: "actualizar", title: m.reins_toc_actualizar() },
-	{ id: "problemas", title: m.reins_toc_problemas() },
-	{ id: "seguridad", title: m.reins_toc_seguridad() },
+	{ id: "devices", title: m.reins_toc_dispositivos() },
+	{ id: "daily-use", title: m.reins_toc_uso_diario() },
+	{ id: "notifications", title: m.reins_toc_notificaciones() },
+	{ id: "keep-running", title: m.reins_toc_siempre_arriba() },
+	{ id: "updating", title: m.reins_toc_actualizar() },
+	{ id: "troubleshooting", title: m.reins_toc_problemas() },
+	{ id: "security", title: m.reins_toc_seguridad() },
 ];
 
 const titles = new Map(sections.map(({ id, title }) => [id, title]));
@@ -76,7 +76,7 @@ export const ReinsPage = () => {
 					<Toc entries={sections} />
 				</details>
 
-				<Section id="piezas">
+				<Section id="components">
 					<div className="docs-table">
 						<div className="docs-table__row docs-table__row--head">
 							<span>{m.reins_table_head_piece()}</span>
@@ -94,7 +94,7 @@ export const ReinsPage = () => {
 					<p>{m.reins_piezas_note()}</p>
 				</Section>
 
-				<Section id="instalacion">
+				<Section id="installation">
 					<Note>{m.reins_install_intro_note()}</Note>
 
 					<h3 className="docs__subtitle">{m.reins_install_ssh_heading()}</h3>
@@ -257,7 +257,7 @@ scoop install reins-hook`}
 					<Note tone="warning">{m.reins_install_hook_warning()}</Note>
 				</Section>
 
-				<Section id="conectividad">
+				<Section id="connectivity">
 					<p className="docs__section-lead">{m.reins_connectivity_lead()}</p>
 
 					<div className="docs-tabs" role="tablist" aria-label={m.reins_connectivity_tabs_aria()}>
@@ -314,7 +314,7 @@ tailscale ip -4                                    # ${m.reins_tailscale_ip_comm
 					)}
 				</Section>
 
-				<Section id="emparejar">
+				<Section id="pairing">
 					<CodeBlock code="reins-hook setup" />
 					<p>
 						{m.reins_pair_p1_a()} <code>~/.ssh/authorized_keys</code> {renderRich(m.reins_pair_p1_b())}
@@ -464,7 +464,7 @@ ios:
 					<p>{renderRich(m.reins_gateway_config_sdkpath_p2())}</p>
 				</Section>
 
-				<Section id="dispositivos">
+				<Section id="devices">
 					<p>{renderRich(m.reins_devices_lead())}</p>
 
 					<h3 className="docs__subtitle">{m.reins_devices_bridge_heading()}</h3>
@@ -531,7 +531,7 @@ open -a Simulator`}
 					</ul>
 				</Section>
 
-				<Section id="uso-diario">
+				<Section id="daily-use">
 					<CodeBlock
 						code={`cd ~/projects/mi-proyecto
 herdr`}
@@ -547,7 +547,7 @@ herdr`}
 					<p>{renderRich(m.reins_daily_p3())}</p>
 				</Section>
 
-				<Section id="notificaciones">
+				<Section id="notifications">
 					<p className="docs__section-lead">{m.reins_notif_lead()}</p>
 					<p>{renderRich(m.reins_notif_p1())}</p>
 					<p>{m.reins_notif_p2()}</p>
@@ -563,7 +563,7 @@ herdr`}
 					/>
 				</Section>
 
-				<Section id="siempre-arriba">
+				<Section id="keep-running">
 					<p className="docs__section-lead">{m.reins_alive_lead()}</p>
 
 					<h3 className="docs__subtitle">{m.reins_alive_sleep_heading()}</h3>
@@ -635,7 +635,7 @@ Get-Service sshd`}
 					<CodeBlock code="curl -s http://127.0.0.1:24543/health" />
 				</Section>
 
-				<Section id="actualizar">
+				<Section id="updating">
 					<CodeBlock
 						code={`brew update && brew upgrade reins-hook
 reins-hook install         # ${m.reins_update_install_comment()}`}
@@ -709,7 +709,7 @@ herdr integration install opencode`}
 					<Note tone="warning">{renderRich(m.reins_update_herdr_fork_note())}</Note>
 				</Section>
 
-				<Section id="problemas">
+				<Section id="troubleshooting">
 					<div className="docs-faq">
 						<details className="docs-faq__item">
 							<summary>{m.reins_faq1_q()}</summary>
@@ -751,7 +751,7 @@ reins-hook revoke <id>    # ${m.reins_faq4_revoke_comment()}`}
 					</div>
 				</Section>
 
-				<Section id="seguridad">
+				<Section id="security">
 					<ul className="docs-list">
 						<li>{renderRich(m.reins_security_item1())}</li>
 						<li>{renderRich(m.reins_security_item2())}</li>
