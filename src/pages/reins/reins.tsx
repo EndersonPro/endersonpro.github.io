@@ -3,6 +3,7 @@ import { useState } from "react";
 import { HiExternalLink } from "react-icons/hi";
 import { CodeBlock } from "../../components/code-block/code-block";
 import { Toc, type TocEntry } from "../../components/toc/toc";
+import { ANDROID_BETA_GROUP_URL, ANDROID_BETA_OPT_IN_URL, TESTFLIGHT_URL } from "../../lib/reins-links";
 import { renderRich } from "../../lib/rich-text";
 import { m } from "../../paraglide/messages.js";
 
@@ -52,10 +53,6 @@ const DocLink = ({ to, children }: DocLinkProps) => (
 		{children ?? titles.get(to)}
 	</a>
 );
-
-const TESTFLIGHT_URL = "https://testflight.apple.com/join/wnuwa8Bu";
-const ANDROID_BETA_GROUP_URL = "https://groups.google.com/g/reins-beta-testers";
-const ANDROID_BETA_OPT_IN_URL = "https://play.google.com/apps/testing/dev.endersonvizc.reins";
 
 type ExternalLinkProps = { href: string; children: ReactNode };
 

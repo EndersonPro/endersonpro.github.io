@@ -1,15 +1,31 @@
-import { HiExternalLink } from "react-icons/hi";
+import { HiChevronRight, HiExternalLink } from "react-icons/hi";
+import { NavLink } from "react-router";
 import { m } from "../../paraglide/messages.js";
 
 type Project = {
 	title: string;
 	description: () => string;
 	url?: string;
-	category: "mobile" | "opensource";
+	/** Internal route; takes precedence over `url` and opens in the same tab. */
+	to?: string;
+	category: "product" | "mobile" | "opensource";
 	tech: string;
 };
 
+const categoryLabel: Record<Project["category"], () => string> = {
+	product: m.projects_category_product,
+	mobile: m.projects_category_mobile,
+	opensource: () => "Open source",
+};
+
 const projects: Array<Project> = [
+	{
+		title: "Reins",
+		description: m.projects_reins_desc,
+		to: "/reins",
+		category: "product",
+		tech: "Flutter",
+	},
 	{
 		title: "Melonn Drivers",
 		description: m.projects_melonn_drivers_desc,
@@ -63,8 +79,8 @@ export const ProjectsPage = () => {
 				<p className="page-header__lead">{m.projects_lead()}</p>
 			</header>
 			<div className="projects">
-				{projects.map(({ title, description, url, category, tech }) => {
-					const meta = `${category === "mobile" ? m.projects_category_mobile() : "Open source"} · ${tech}`;
+				{projects.map(({ title, description, url, to, category, tech }) => {
+					const meta = `${categoryLabel[category]()} · ${tech}`;
 
 					return (
 						<article className="project-card" key={title}>
@@ -72,16 +88,22 @@ export const ProjectsPage = () => {
 								<span className="eyebrow project-card__meta">{meta}</span>
 								<h3 className="project-card__title">{title}</h3>
 								<p className="project-card__desc">{description()}</p>
-								{url && (
-									<a
-										href={url}
-										target="_blank"
-										rel="noopener noreferrer"
-										className="project-card__link"
-									>
-										{category === "opensource" ? m.projects_link_repo() : m.projects_link_project()}{" "}
-										<HiExternalLink />
-									</a>
+								{to ? (
+									<NavLink to={to} className="project-card__link">
+										{m.projects_link_guide()} <HiChevronRight />
+									</NavLink>
+								) : (
+									url && (
+										<a
+											href={url}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="project-card__link"
+										>
+											{category === "opensource" ? m.projects_link_repo() : m.projects_link_project()}{" "}
+											<HiExternalLink />
+										</a>
+									)
 								)}
 							</div>
 						</article>
