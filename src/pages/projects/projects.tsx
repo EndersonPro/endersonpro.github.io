@@ -1,115 +1,119 @@
-import { HiChevronRight, HiExternalLink } from "react-icons/hi";
 import { NavLink } from "react-router";
+import { products, tools } from "../../lib/portfolio-data";
 import { m } from "../../paraglide/messages.js";
 
-type Project = {
+type ClientProject = {
 	title: string;
 	description: () => string;
-	url?: string;
-	/** Internal route; takes precedence over `url` and opens in the same tab. */
-	to?: string;
-	category: "product" | "mobile" | "opensource";
-	tech: string;
+	url: string;
 };
 
-const categoryLabel: Record<Project["category"], () => string> = {
-	product: m.projects_category_product,
-	mobile: m.projects_category_mobile,
-	opensource: () => "Open source",
-};
-
-const projects: Array<Project> = [
-	{
-		title: "Reins",
-		description: m.projects_reins_desc,
-		to: "/reins",
-		category: "product",
-		tech: "Flutter",
-	},
+const clientWork: Array<ClientProject> = [
 	{
 		title: "Melonn Drivers",
 		description: m.projects_melonn_drivers_desc,
 		url: "https://play.google.com/store/apps/details?id=com.melonn.drivers",
-		category: "mobile",
-		tech: "Flutter",
 	},
 	{
 		title: "Melonn Ops",
 		description: m.projects_melonn_ops_desc,
 		url: "https://melonn.com/",
-		category: "mobile",
-		tech: "Flutter",
 	},
 	{
 		title: "EstarBien Uninorte",
 		description: m.projects_estarbien_desc,
 		url: "https://play.google.com/store/apps/details?id=co.edu.uninorte.estarbien.dev",
-		category: "mobile",
-		tech: "Flutter",
 	},
 	{
 		title: "Solutoday",
 		description: m.projects_solutoday_desc,
 		url: "https://solutoday.com/",
-		category: "mobile",
-		tech: "Flutter",
-	},
-	{
-		title: "flutree",
-		description: m.projects_flutree_desc,
-		url: "https://github.com/EndersonPro/flutree",
-		category: "opensource",
-		tech: "Go",
-	},
-	{
-		title: "perfscope",
-		description: m.projects_perfscope_desc,
-		url: "https://github.com/EndersonPro/perfscope",
-		category: "opensource",
-		tech: "Dart",
 	},
 ];
 
+type RowProps = {
+	index: number;
+	title: string;
+	description: string;
+	meta: string;
+	link?: { label: string; href?: string; to?: string };
+};
+
+const Row = ({ index, title, description, meta, link }: RowProps) => (
+	<li className="prow">
+		<span className="prow__no">{String(index + 1).padStart(2, "0")}</span>
+		<h3 className="prow__title">{title}</h3>
+		<div className="prow__body">
+			<p>{description}</p>
+			<span className="prow__meta">{meta}</span>
+		</div>
+		<div className="prow__link">
+			{link?.to && <NavLink to={link.to}>{link.label} →</NavLink>}
+			{link?.href && (
+				<a href={link.href} target="_blank" rel="noopener noreferrer">
+					{link.label} ↗
+				</a>
+			)}
+		</div>
+	</li>
+);
+
 export const ProjectsPage = () => {
 	return (
-		<div>
-			<header className="page-header">
+		<div className="page-wrap projects">
+			<header className="page-head">
 				<span className="eyebrow">{m.projects_eyebrow()}</span>
-				<h1 className="page-header__title">{m.projects_title()}</h1>
-				<p className="page-header__lead">{m.projects_lead()}</p>
+				<h1 className="sec-title">{m.projects_title()}</h1>
+				<p className="sec-lede">{m.projects_lead()}</p>
 			</header>
-			<div className="projects">
-				{projects.map(({ title, description, url, to, category, tech }) => {
-					const meta = `${categoryLabel[category]()} · ${tech}`;
 
-					return (
-						<article className="project-card" key={title}>
-							<div className="project-card__body">
-								<span className="eyebrow project-card__meta">{meta}</span>
-								<h3 className="project-card__title">{title}</h3>
-								<p className="project-card__desc">{description()}</p>
-								{to ? (
-									<NavLink to={to} className="project-card__link">
-										{m.projects_link_guide()} <HiChevronRight />
-									</NavLink>
-								) : (
-									url && (
-										<a
-											href={url}
-											target="_blank"
-											rel="noopener noreferrer"
-											className="project-card__link"
-										>
-											{category === "opensource" ? m.projects_link_repo() : m.projects_link_project()}{" "}
-											<HiExternalLink />
-										</a>
-									)
-								)}
-							</div>
-						</article>
-					);
-				})}
-			</div>
+			<section className="pgroup">
+				<h2 className="pgroup__label">{m.projects_group_products()}</h2>
+				<ol className="prows">
+					{products.map(({ name, desc, stack, status, href, to, linkLabel }, index) => (
+						<Row
+							key={name}
+							index={index}
+							title={name}
+							description={desc()}
+							meta={`${status()} · ${stack.join(" · ")}`}
+							link={linkLabel ? { label: linkLabel(), href, to } : undefined}
+						/>
+					))}
+				</ol>
+			</section>
+
+			<section className="pgroup">
+				<h2 className="pgroup__label">{m.projects_group_tools()}</h2>
+				<ol className="prows">
+					{tools.map(({ name, desc, stack, href }, index) => (
+						<Row
+							key={name}
+							index={index}
+							title={name}
+							description={desc()}
+							meta={stack}
+							link={{ label: m.projects_link_repo(), href }}
+						/>
+					))}
+				</ol>
+			</section>
+
+			<section className="pgroup">
+				<h2 className="pgroup__label">{m.projects_group_client()}</h2>
+				<ol className="prows">
+					{clientWork.map(({ title, description, url }, index) => (
+						<Row
+							key={title}
+							index={index}
+							title={title}
+							description={description()}
+							meta="Flutter"
+							link={{ label: m.projects_link_project(), href: url }}
+						/>
+					))}
+				</ol>
+			</section>
 		</div>
 	);
 };

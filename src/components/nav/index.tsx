@@ -2,11 +2,12 @@ import { useState } from "react";
 import { NavLink } from "react-router";
 import { m } from "../../paraglide/messages.js";
 import { getLocale, locales, setLocale } from "../../paraglide/runtime.js";
+import { ThemeToggle } from "./theme-toggle";
 
 const links = [
 	{ to: "/", label: m.nav_home },
-	{ to: "/about", label: m.nav_about },
 	{ to: "/projects", label: m.nav_projects },
+	{ to: "/about", label: m.nav_about },
 	{ to: "/reins", label: m.nav_reins },
 ];
 
@@ -20,7 +21,23 @@ export const Nav = () => {
 				<NavLink to="/" className="nav__logo" aria-label={m.nav_home()}>
 					EV<span className="logo-accent">.</span>
 				</NavLink>
-				<div className="nav__right">
+				<nav aria-label={m.nav_primary_aria()} className="nav__primary">
+					<ul id="nav-menu" className={`nav__menu ${open ? "is-open" : ""}`}>
+						{links.map(({ to, label }) => (
+							<li key={to}>
+								<NavLink
+									to={to}
+									end={to === "/"}
+									className={({ isActive }) => (isActive ? "active" : "")}
+									onClick={() => setOpen(false)}
+								>
+									{label()}
+								</NavLink>
+							</li>
+						))}
+					</ul>
+				</nav>
+				<div className="nav__tools">
 					<div className="nav__lang" role="group" aria-label={m.nav_lang_aria()}>
 						{locales.map((code) => (
 							<button
@@ -34,6 +51,7 @@ export const Nav = () => {
 							</button>
 						))}
 					</div>
+					<ThemeToggle />
 					<button
 						type="button"
 						className={`nav__toggle ${open ? "is-open" : ""}`}
@@ -45,22 +63,6 @@ export const Nav = () => {
 						<span className="nav__toggle-bar" />
 						<span className="nav__toggle-bar" />
 					</button>
-					<nav aria-label={m.nav_primary_aria()}>
-						<ul id="nav-menu" className={`nav__menu ${open ? "is-open" : ""}`}>
-							{links.map(({ to, label }) => (
-								<li key={to}>
-									<NavLink
-										to={to}
-										end={to === "/"}
-										className={({ isActive }) => (isActive ? "active" : "")}
-										onClick={() => setOpen(false)}
-									>
-										{label()}
-									</NavLink>
-								</li>
-							))}
-						</ul>
-					</nav>
 				</div>
 			</div>
 		</header>

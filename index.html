@@ -10,24 +10,36 @@
         window.history.replaceState(null, "", redirect);
       }
     </script>
-    <title>Enderson Vizcaino | Software Engineer</title>
-    <meta name="description" content="Software Engineer con más de 7 años de experiencia en Arquitectura Cloud, Desarrollo Móvil (Flutter) y Liderazgo Técnico. Basado en Colombia." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script>
+      try {
+        document.documentElement.dataset.theme =
+          localStorage.getItem("theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      } catch {
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
+    <title>Enderson Vizcaino | Ingeniero de software</title>
+    <meta name="description" content="Ingeniero de software que diseña, construye y publica productos propios trabajando con agentes de IA. Flutter, Rust y Go. Basado en Colombia." />
     <meta name="author" content="Enderson Vizcaino" />
-    <meta name="keywords" content="Software Engineer, Flutter Developer, Cloud Architect, Full Stack Developer, Colombia, React, TypeScript, AWS" />
+    <meta name="keywords" content="Software Engineer, Flutter, Rust, Go, AI agents, Claude Code, Colombia" />
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Enderson Vizcaino | Software Engineer" />
-    <meta property="og:description" content="Software Engineer con más de 7 años de experiencia en Arquitectura Cloud, Desarrollo Móvil y Liderazgo Técnico." />
+    <meta property="og:title" content="Enderson Vizcaino | Ingeniero de software" />
+    <meta property="og:description" content="Diseño el sistema. Los agentes construyen. Yo publico. Productos propios en App Store y Google Play." />
     <meta property="og:url" content="https://endersonpro.github.io" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Enderson Vizcaino | Software Engineer" />
-    <meta name="twitter:description" content="Software Engineer con más de 7 años de experiencia en Arquitectura Cloud, Desarrollo Móvil y Liderazgo Técnico." />
+    <meta name="twitter:title" content="Enderson Vizcaino | Ingeniero de software" />
+    <meta name="twitter:description" content="Diseño el sistema. Los agentes construyen. Yo publico. Productos propios en App Store y Google Play." />
     
     <!-- Theme Color -->
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content="#f2f1ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f0f0d" media="(prefers-color-scheme: dark)" />
   </head>
   <body>
     <div id="root"></div>

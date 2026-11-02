@@ -1,187 +1,200 @@
-import { HiChevronRight, HiExternalLink } from "react-icons/hi";
-import { LuLinkedin } from "react-icons/lu";
+import type { ReactNode } from "react";
 import { NavLink } from "react-router";
-import agentChatImg from "../../assets/img/reins/agent-chat.webp";
-import hostsImg from "../../assets/img/reins/hosts.webp";
-import inboxImg from "../../assets/img/reins/inbox.webp";
-import usageImg from "../../assets/img/reins/usage.webp";
-import { Profile } from "../../components/profile/profile";
-import { ANDROID_BETA_GROUP_URL, TESTFLIGHT_URL } from "../../lib/reins-links";
-import { renderRich } from "../../lib/rich-text";
+import { FlowDiagram } from "../../components/flow-diagram/flow-diagram";
+import { LoopSection } from "../../components/loop-section/loop-section";
+import { GITHUB_URL, LINKEDIN_URL, type Product, products, tools } from "../../lib/portfolio-data";
 import { m } from "../../paraglide/messages.js";
 
-/** Intrinsic size of the exported screenshots (640px wide, iPhone aspect ratio). */
-const SHOT_WIDTH = 640;
-const SHOT_HEIGHT = 1385;
+const arrowOut = (
+	<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+		<path d="M6 14 14 6M7 6h7v7" />
+	</svg>
+);
 
-const screenshots = [
-	{ src: hostsImg, caption: m.home_shot_hosts_caption, alt: m.home_shot_hosts_alt },
-	{ src: agentChatImg, caption: m.home_shot_chat_caption, alt: m.home_shot_chat_alt },
-	{ src: usageImg, caption: m.home_shot_usage_caption, alt: m.home_shot_usage_alt },
-	{ src: inboxImg, caption: m.home_shot_inbox_caption, alt: m.home_shot_inbox_alt },
+const languages = ["Flutter", "Dart", "Rust", "Go", "TypeScript", "React"];
+const tooling = ["Claude Code", "Codex", "OpenCode", "Firebase", "Shorebird", "Fastlane", "GitHub Actions"];
+
+const steps = [
+	{ title: m.method_step1_title, desc: m.method_step1_desc },
+	{ title: m.method_step2_title, desc: m.method_step2_desc },
+	{ title: m.method_step3_title, desc: m.method_step3_desc },
+	{ title: m.method_step4_title, desc: m.method_step4_desc },
 ];
 
-const claudePoints = [
-	{ title: m.home_claude_workflow_title, desc: m.home_claude_workflow_desc },
-	{ title: m.home_claude_dev_title, desc: m.home_claude_dev_desc },
-	{ title: m.home_claude_usage_title, desc: m.home_claude_usage_desc },
+const jobs = [
+	{ years: "2025", now: true, company: "Siigo", role: "Flutter Developer Senior", desc: m.experience_siigo_desc },
+	{ years: "2024 — 2025", company: "Melonn", role: "Mobile Dev Lead", desc: m.experience_melonn_lead_desc },
+	{ years: "2021 — 2024", company: "Melonn", role: "Cloud Engineer", desc: m.experience_melonn_cloud_desc },
+	{ years: "2020 — 2021", company: "Condor Labs", role: "Software Engineer", desc: m.experience_condor_desc },
 ];
 
-const features = [
-	{ title: m.home_feature_chat_title, desc: m.home_feature_chat_desc },
-	{ title: m.home_feature_terminal_title, desc: m.home_feature_terminal_desc },
-	{ title: m.home_feature_inbox_title, desc: m.home_feature_inbox_desc },
-	{ title: m.home_feature_hosts_title, desc: m.home_feature_hosts_desc },
-	{ title: m.home_feature_network_title, desc: m.home_feature_network_desc },
-];
+const ProductRow = ({ product, index }: { product: Product; index: number }) => {
+	const { name, icon, desc, status, live, stack, href, to, linkLabel, shots } = product;
+	const content: ReactNode = (
+		<>
+			<span className="product__no">{String(index + 1).padStart(2, "0")}</span>
+			<div className="product__body">
+				<h3 className="product__name">{name}</h3>
+				<p className="product__desc">{desc()}</p>
+			</div>
+			<div className="product__side">
+				<span className={`status ${live ? "status--live" : ""}`}>{status()}</span>
+				<div className="product__meta">
+					{stack.map((item) => (
+						<span key={item}>{item}</span>
+					))}
+				</div>
+				{linkLabel && (
+					<span className="product__link">
+						{linkLabel()} {to ? "→" : "↗"}
+					</span>
+				)}
+			</div>
+			<div className="product__icon">
+				<img src={icon} alt={m.product_icon_alt({ name })} width={168} height={168} loading="lazy" />
+			</div>
+			{shots && (
+				<div className="product__shots">
+					{shots.map(({ src, alt }) => (
+						<img key={src} src={src} alt={alt()} width={640} height={1385} />
+					))}
+				</div>
+			)}
+		</>
+	);
+
+	return (
+		<li>
+			{to ? (
+				<NavLink className="product" to={to}>
+					{content}
+				</NavLink>
+			) : href ? (
+				<a className="product" href={href} target="_blank" rel="noopener noreferrer">
+					{content}
+				</a>
+			) : (
+				<div className="product">{content}</div>
+			)}
+		</li>
+	);
+};
+
+const Marquee = ({ items, reverse }: { items: Array<string>; reverse?: boolean }) => (
+	<div className={`marquee ${reverse ? "marquee--rev" : ""}`} aria-hidden="true">
+		<div className="marquee__track">
+			{[...items, ...items].map((item, index) => (
+				<span key={`${item}-${index}`}>{item}</span>
+			))}
+		</div>
+	</div>
+);
 
 export const HomePage = () => {
 	return (
 		<div className="home">
-			<section className="home__hero">
-				<div className="home__content">
-					<p className="eyebrow home__eyebrow">{m.home_beta_eyebrow()}</p>
-					<h1 className="home__title">
-						<span>Reins</span>
-						<span className="home__tagline">{m.home_hero_tagline()}</span>
-					</h1>
-					<p className="home__subtitle">{m.home_hero_subtitle()}</p>
-					<ul className="home__badges">
-						<li className="home__badge home__badge--claude">{m.home_badge_claude()}</li>
-						<li className="home__badge">{m.home_badge_agents()}</li>
-						<li className="home__badge">{m.home_badge_platforms()}</li>
-					</ul>
-					<div className="home__actions">
-						<a href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer" className="btn btn_primary">
-							{m.home_cta_ios()} <HiExternalLink />
-						</a>
-						<a
-							href={ANDROID_BETA_GROUP_URL}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="btn btn_secondary"
-						>
-							{m.home_cta_android()} <HiExternalLink />
-						</a>
-					</div>
-					<p className="home__note">{m.home_cta_android_note()}</p>
-					<NavLink to="/reins" className="home__guide-link">
-						{m.home_cta_guide()} <HiChevronRight />
-					</NavLink>
-				</div>
-				<figure className="home__hero-shot">
-					<img
-						src={agentChatImg}
-						alt={m.home_hero_img_alt()}
-						width={SHOT_WIDTH}
-						height={SHOT_HEIGHT}
-						fetchPriority="high"
-					/>
-				</figure>
-			</section>
-
-			<ul className="home__status" aria-label={m.home_status_aria()}>
-				<li className="home__status-item">
-					<span className="eyebrow">{m.home_status_ios_label()}</span>
-					<span className="home__status-value">{m.home_status_ios_value()}</span>
-				</li>
-				<li className="home__status-item">
-					<span className="eyebrow">{m.home_status_android_label()}</span>
-					<span className="home__status-value">{m.home_status_android_value()}</span>
-				</li>
-			</ul>
-
-			<section className="home__section">
-				<header className="home__section-header">
-					<span className="eyebrow">{m.home_gallery_eyebrow()}</span>
-					<h2 className="home__section-title">{m.home_gallery_title()}</h2>
-				</header>
-				<div className="home__gallery">
-					{screenshots.map(({ src, caption, alt }) => (
-						<figure className="home__shot" key={src}>
-							<img src={src} alt={alt()} width={SHOT_WIDTH} height={SHOT_HEIGHT} loading="lazy" />
-							<figcaption className="home__shot-caption">{caption()}</figcaption>
-						</figure>
-					))}
-				</div>
-			</section>
-
-			<section className="home__section home__claude">
-				<header className="home__section-header">
-					<span className="eyebrow home__claude-eyebrow">{m.home_claude_eyebrow()}</span>
-					<h2 className="home__section-title">{m.home_claude_title()}</h2>
-				</header>
-				<ul className="home__cards">
-					{claudePoints.map(({ title, desc }) => (
-						<li className="home__card" key={title()}>
-							<h3 className="home__card-title">{title()}</h3>
-							<p className="home__card-desc">{renderRich(desc())}</p>
-						</li>
-					))}
-				</ul>
-				<p className="home__note">{m.home_claude_note()}</p>
-			</section>
-
-			<section className="home__section">
-				<header className="home__section-header">
-					<span className="eyebrow">{m.home_features_eyebrow()}</span>
-					<h2 className="home__section-title">{m.home_features_title()}</h2>
-				</header>
-				<ul className="home__features">
-					{features.map(({ title, desc }) => (
-						<li className="home__feature" key={title()}>
-							<h3 className="home__card-title">{title()}</h3>
-							<p className="home__card-desc">{desc()}</p>
-						</li>
-					))}
-				</ul>
-			</section>
-
-			<section className="home__section home__founder">
-				<div className="home__content">
-					<span className="eyebrow">{m.home_founder_eyebrow()}</span>
-					<h2 className="home__section-title">{m.home_eyebrow()}</h2>
-					<p className="home__subtitle">
-						{renderRich(m.home_subtitle_intro())}{" "}
-						<a href="https://www.siigo.com/" target="_blank" rel="noopener noreferrer">
-							Siigo
-						</a>
-						,{" "}
-						<a href="https://www.melonn.com/" target="_blank" rel="noopener noreferrer">
-							Melonn
-						</a>{" "}
-						{m.home_subtitle_and()}{" "}
-						<a href="https://condorlabs.io/" target="_blank" rel="noopener noreferrer">
-							Condor Labs
-						</a>
-						.
+			<section className="hero">
+				<h1 className="hero__name">
+					<span>Enderson</span>
+					<span>
+						Vizcaino<span className="dot">.</span>
+					</span>
+				</h1>
+				<div className="hero__row">
+					<p className="hero__statement">
+						{m.home_hero_statement()} <em>{m.home_hero_statement_accent()}</em>
 					</p>
-					<div className="home__meta">
-						<span>{m.home_meta_years()}</span>
-						<span className="dot">·</span>
-						<span>{m.home_meta_flutter()}</span>
-						<span className="dot">·</span>
-						<span>{m.home_meta_aws()}</span>
-						<span className="dot">·</span>
-						<span>{m.home_meta_leadership()}</span>
+					<div className="hero__aside">
+						<p>{m.home_hero_intro()}</p>
+						<div className="hero__actions">
+							<a className="btn btn--ink" href="#productos">
+								{m.home_cta_products()}
+								<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+									<path d="M8 3v10M3.5 8.5 8 13l4.5-4.5" />
+								</svg>
+							</a>
+							<a className="btn btn--line" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+								GitHub
+							</a>
+						</div>
 					</div>
-					<div className="home__actions">
-						<NavLink to="/projects" className="btn btn_secondary">
-							{m.home_cta_projects()} <HiChevronRight />
-						</NavLink>
-						<a
-							href="https://www.linkedin.com/in/endersonvizcaino/"
-							target="_blank"
-							rel="noopener noreferrer"
-							className="btn btn_secondary"
-						>
-							<LuLinkedin /> LinkedIn
+				</div>
+				<FlowDiagram />
+			</section>
+
+			<LoopSection />
+
+			<section id="productos">
+				<div className="sec-head">
+					<h2 className="sec-title">{m.products_title()}</h2>
+					<p className="sec-lede">{m.products_lede()}</p>
+				</div>
+				<ol className="products">
+					{products.map((product, index) => (
+						<ProductRow key={product.name} product={product} index={index} />
+					))}
+				</ol>
+			</section>
+
+			<section>
+				<div className="sec-head">
+					<h2 className="sec-title">{m.tools_title()}</h2>
+					<p className="sec-lede">{m.tools_lede()}</p>
+				</div>
+				<div className="tools">
+					{tools.map(({ name, desc, stack, href }) => (
+						<a className="tool" key={name} href={href} target="_blank" rel="noopener noreferrer">
+							<div className="tool__name">
+								{name} {arrowOut}
+							</div>
+							<p>{desc()}</p>
+							<small>{stack}</small>
 						</a>
-					</div>
+					))}
 				</div>
-				<div className="home__profile">
-					<Profile />
+			</section>
+
+			<section className="method" id="metodo">
+				<div className="sec-head">
+					<h2 className="sec-title">{m.method_title()}</h2>
+					<p className="sec-lede">{m.method_lede()}</p>
 				</div>
+				<ol className="steps">
+					{steps.map(({ title, desc }) => (
+						<li className="step" key={title()}>
+							<h3>{title()}</h3>
+							<p>{desc()}</p>
+						</li>
+					))}
+				</ol>
+				<Marquee items={languages} />
+				<Marquee items={tooling} reverse />
+			</section>
+
+			<section id="experiencia">
+				<div className="sec-head">
+					<h2 className="sec-title">{m.experience_title()}</h2>
+					<p className="sec-lede">{m.experience_lede()}</p>
+				</div>
+				<ol className="jobs">
+					{jobs.map(({ years, now, company, role, desc }) => (
+						<li className={`job ${now ? "job--now" : ""}`} key={`${company}-${role}`}>
+							<span className="job__when">{now ? `${years} — ${m.experience_now()}` : years}</span>
+							<div className="job__who">
+								{company}
+								<small>{role}</small>
+							</div>
+							<p>{desc()}</p>
+						</li>
+					))}
+				</ol>
+			</section>
+
+			<section className="contact" id="contacto">
+				<a className="contact__big" href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+					{m.contact_cta()}
+					<span>→</span>
+				</a>
 			</section>
 		</div>
 	);
