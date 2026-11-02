@@ -34,11 +34,15 @@ export const App = () => {
 		setMetaContent('meta[name="twitter:description"]', m.meta_og_description());
 	}, []);
 
-	if (location.pathname === "/privacy/infinity" || location.pathname === "/privacy/pear-music") {
+	if (location.pathname === "/privacy/infinity" ||
+		location.pathname === "/privacy/pear-music" ||
+		location.pathname === "/privacy/cuenta-facil"
+	) {
 		return (
 			<Routes location={location}>
 				<Route path="/privacy/infinity" element={<Navigate to="/privacy/infinity.html" replace />} />
 				<Route path="/privacy/pear-music" element={<Navigate to="/privacy/pear-music.html" replace />} />
+				<Route path="/privacy/cuenta-facil" element={<Navigate to="/privacy/cuenta-facil.html" replace />} />
 			</Routes>
 		);
 	}
