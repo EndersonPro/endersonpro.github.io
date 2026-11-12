@@ -70,7 +70,7 @@ body { font-family: var(--sans); }
           <button type="button" data-locale="es" aria-pressed="false">ES</button>
         </div>
       </header>
-      <div class="intro"><h1 id="title"></h1><p id="intro"></p><time id="updated" datetime="2026-11-03"></time></div>
+      <div class="intro"><h1 id="title"></h1><p id="intro"></p><time id="updated" datetime="2026-11-11"></time></div>
       <div class="content" id="content"></div>
     </article>
   </main>
@@ -81,7 +81,7 @@ const policyCopy = {
 		pageLabel: "Privacy policy",
 		title: "Clari Privacy Policy",
 		intro: "Clari (formerly Cuenta Fácil) helps you record personal and shared expenses, organize groups and keep payment records. This policy explains what the app collects, why, who processes it and the choices you have. It applies to the Clari apps for Android, iOS and web, developed by Enderson Vizcaino.",
-		updated: "Last updated: 3 November 2026",
+		updated: "Last updated: 11 November 2026",
 		sections: [
 			{
 				title: "Information you provide",
@@ -91,6 +91,8 @@ const policyCopy = {
 					"Expenses and payments: titles, descriptions, amounts, currencies (currently COP and USD), dates, how each expense is split, and the payments you record.",
 					"Groups and participants: the groups you create or join and the people you add to expenses or groups, identified by name and by phone number or email address.",
 					"Images you choose to attach: photos of receipts and payment evidence, and your profile picture. They are uploaded to cloud storage only when you attach them.",
+						"Comments: the text of comments you write on group expenses, together with your name as author and the time.",
+						"Recurring expenses: if you set an expense to repeat, a template with the expense details (amount, people, split, category) and its schedule, stored on our servers so the expense can be created automatically.",
 				],
 			},
 			{
@@ -116,14 +118,15 @@ const policyCopy = {
 				],
 			},
 			{
-				title: "Usage statistics",
-				paragraphs: [
-					"To understand which features are used and improve the app, the app sends anonymous usage statistics to an analytics service. They record actions such as opening the expense composer, whether a draft needed the AI service, correcting a draft, creating an expense or a group, creating or sharing an invite link, joining a group and the sign-in method, together with counts such as how many people are in an expense. The analytics service also records app opens and sessions, the device model, operating system, app version and an approximate region derived from the IP address.",
-					"These statistics never include names, email addresses, phone numbers, amounts, the text you write or your contacts. They are not linked to your account, they do not use your device's advertising identifier, and they are not used for advertising. You can turn them off at any time in Profile > Usage statistics.",
-				],
-			},
-			{
-				title: "Service providers",
+				title: "Usage statistics and crash reports",
+					paragraphs: [
+						"Usage statistics and crash reports are off until you allow them. The app asks once, with a banner with two buttons, \"Allow\" and \"Not now\". A single choice covers both. If you choose \"Not now\", the app does not ask again and nothing is collected. You can change your choice at any time in Profile > Usage statistics. Turning it off stops collection and deletes the crash reports that have not been sent yet. Builds used for development never collect.",
+						"If you allow it, the app sends anonymous usage statistics to an analytics service to understand which features are used and improve the app. They record actions such as opening the expense composer, whether a draft needed the AI service, correcting a draft, creating an expense or a group, creating or sharing an invite link, joining a group and the sign-in method, together with counts such as how many people are in an expense. The analytics service also records app opens and sessions, the device model, operating system, app version and an approximate region derived from the IP address. It also sends crash reports to an error reporting service, with device and app information and, to help us investigate problems, the app may attach your account identifier, email and phone number.",
+						"These statistics never include names, email addresses, phone numbers, amounts, the text you write or your contacts. They are not used for advertising. Clari does not track you across other apps or websites, does not ask for App Tracking Transparency permission and does not use your device's advertising identifier (on Android it is turned off).",
+					],
+				},
+				{
+					title: "Service providers",
 				paragraphs: ["We use service providers to run the app. They process data on our behalf, under their own security and privacy commitments. By category:"],
 				items: [
 					"Cloud infrastructure providers: sign-in and account identity (including Google and Apple sign-in).",
@@ -132,22 +135,24 @@ const policyCopy = {
 					"Cloud infrastructure providers: server-side processing such as balances, invitations and AI-assisted drafts.",
 					"App integrity checks: confirm that requests come from the genuine app.",
 					"Configuration delivery: delivers app settings.",
-					"An error reporting service: collects crash reports and diagnostics. Reports include device and app information, and the app may attach your account identifier, email and phone number to them to help us investigate problems.",
+					"An error reporting service: collects crash reports and diagnostics only if you allowed them, as described above.",
 					"An artificial intelligence provider: AI-assisted drafts, as described above.",
-					"An analytics service: anonymous usage statistics, as described above.",
+					"An analytics service: anonymous usage statistics, only if you allowed them, as described above.",
 				],
 			},
 			{
 				title: "Sharing with other participants",
 				paragraphs: [
 					"Expenses, groups and payments are shared with the people involved in them. Other participants can see the expense details, amounts, splits and payment records, your name and your profile photo. Receipt and payment images are accessible through their links, so anyone who receives such a link can open the image.",
+						"Comments you write on a group expense (your name and the text) are visible to the current members of that group. Each group also has an activity log showing who did what and when (for example edits, settlements, payments and member changes), visible to its current members.",
+						"Exporting your expenses to a CSV file happens on your device. The file is shared only where you choose to send it, through your device's share sheet; Clari does not upload it.",
 					"Clari contains no advertising, and we do not sell your personal information. We may disclose information if the law requires it or to protect our rights.",
 				],
 			},
 			{
 				title: "Retention and account deletion",
 				paragraphs: [
-					"We keep your information while your account is active. You can delete your account from the Profile section of the app. This removes your sign-in account and deactivates your profile. Expenses, groups and payment records that involve other participants may remain visible to them so their own records stay consistent.",
+					"We keep your information while your account is active. You can delete your account from the Profile section of the app. This removes your sign-in account and deactivates your profile. Expenses, groups and payment records that involve other participants may remain visible to them so their own records stay consistent. Your name on shared expenses, groups and comments is replaced by \"Deleted user\", and the recurring expense templates you created are deleted.",
 				],
 				link: {
 					before: "For details about what is removed and what is kept temporarily, or to request deletion by email, see the ",
@@ -198,7 +203,7 @@ const policyCopy = {
 		pageLabel: "Política de privacidad",
 		title: "Política de privacidad de Clari",
 		intro: "Clari (antes Cuenta Fácil) te ayuda a registrar gastos personales y compartidos, organizar grupos y llevar el registro de pagos. Esta política explica qué recopila la app, para qué, quién lo procesa y qué opciones tienes. Aplica a las apps de Clari para Android, iOS y web, desarrolladas por Enderson Vizcaino.",
-		updated: "Última actualización: 3 de noviembre de 2026",
+		updated: "Última actualización: 11 de noviembre de 2026",
 		sections: [
 			{
 				title: "Información que proporcionas",
@@ -208,6 +213,8 @@ const policyCopy = {
 					"Gastos y pagos: títulos, descripciones, montos, monedas (actualmente COP y USD), fechas, cómo se reparte cada gasto y los pagos que registras.",
 					"Grupos y participantes: los grupos que creas o a los que te unes y las personas que agregas a gastos o grupos, identificadas por nombre y por número de teléfono o correo electrónico.",
 					"Imágenes que decides adjuntar: fotos de recibos y comprobantes de pago, y tu foto de perfil. Se suben al almacenamiento en la nube solo cuando las adjuntas.",
+						"Comentarios: el texto de los comentarios que escribes en gastos de grupo, junto con tu nombre como autor y la hora.",
+						"Gastos recurrentes: si configuras que un gasto se repita, una plantilla con los datos del gasto (monto, personas, reparto, categoría) y su calendario, guardada en nuestros servidores para crear el gasto automáticamente.",
 				],
 			},
 			{
@@ -233,14 +240,15 @@ const policyCopy = {
 				],
 			},
 			{
-				title: "Estadísticas de uso",
-				paragraphs: [
-					"Para entender qué funciones se usan y mejorar la app, la app envía estadísticas de uso anónimas a un servicio de analítica. Registran acciones como abrir el compositor de gastos, si un borrador necesitó el servicio de IA, corregir un borrador, crear un gasto o un grupo, crear o compartir un enlace de invitación, unirse a un grupo y el método de inicio de sesión, junto con conteos como cuántas personas hay en un gasto. El servicio de analítica también registra aperturas y sesiones de la app, el modelo del dispositivo, el sistema operativo, la versión de la app y una región aproximada derivada de la dirección IP.",
-					"Estas estadísticas nunca incluyen nombres, correos, teléfonos, montos, el texto que escribes ni tus contactos. No están vinculadas a tu cuenta, no usan el identificador de publicidad de tu dispositivo y no se usan para publicidad. Puedes desactivarlas en cualquier momento en Perfil > Estadísticas de uso.",
-				],
-			},
-			{
-				title: "Proveedores de servicios",
+				title: "Estadísticas de uso y reportes de fallos",
+					paragraphs: [
+						"Las estadísticas de uso y los reportes de fallos están desactivados hasta que los permitas. La app pregunta una sola vez, con un aviso con dos botones, \"Permitir\" y \"Ahora no\". Una sola elección cubre ambos. Si eliges \"Ahora no\", la app no vuelve a preguntar y no se recopila nada. Puedes cambiar tu elección en cualquier momento en Perfil > Estadísticas de uso. Al desactivarlas se detiene la recopilación y se eliminan los reportes de fallos que aún no se han enviado. Las compilaciones de desarrollo nunca recopilan.",
+						"Si lo permites, la app envía estadísticas de uso anónimas a un servicio de analítica para entender qué funciones se usan y mejorar la app. Registran acciones como abrir el compositor de gastos, si un borrador necesitó el servicio de IA, corregir un borrador, crear un gasto o un grupo, crear o compartir un enlace de invitación, unirse a un grupo y el método de inicio de sesión, junto con conteos como cuántas personas hay en un gasto. El servicio de analítica también registra aperturas y sesiones de la app, el modelo del dispositivo, el sistema operativo, la versión de la app y una región aproximada derivada de la dirección IP. También envía reportes de fallos a un servicio de reportes de errores, con información del dispositivo y de la app y, para ayudarnos a investigar problemas, la app puede adjuntar el identificador de tu cuenta, tu correo y tu teléfono.",
+						"Estas estadísticas nunca incluyen nombres, correos, teléfonos, montos, el texto que escribes ni tus contactos. No se usan para publicidad. Clari no te rastrea en otras apps ni sitios web, no solicita el permiso de Transparencia de seguimiento de apps (App Tracking Transparency) y no usa el identificador de publicidad de tu dispositivo (en Android está desactivado).",
+					],
+				},
+				{
+					title: "Proveedores de servicios",
 				paragraphs: ["Usamos proveedores de servicios para operar la app. Procesan datos en nuestro nombre, bajo sus propios compromisos de seguridad y privacidad. Por categoría:"],
 				items: [
 					"Proveedores de infraestructura en la nube: inicio de sesión e identidad de la cuenta (incluido el inicio de sesión con Google y Apple).",
@@ -249,22 +257,24 @@ const policyCopy = {
 					"Proveedores de infraestructura en la nube: procesamiento en el servidor como saldos, invitaciones y borradores asistidos por IA.",
 					"Verificaciones de integridad de la app: confirman que las solicitudes provienen de la app genuina.",
 					"Entrega de configuración: entrega ajustes de la app.",
-					"Un servicio de reportes de errores: recopila informes de fallos y diagnósticos. Los informes incluyen información del dispositivo y de la app, y la app puede adjuntarles el identificador de tu cuenta, tu correo y tu teléfono para ayudarnos a investigar problemas.",
+					"Un servicio de reportes de errores: recopila informes de fallos y diagnósticos solo si lo permitiste, como se describe arriba.",
 					"Un proveedor de inteligencia artificial: borradores asistidos por IA, como se describe arriba.",
-					"Un servicio de analítica: estadísticas de uso anónimas, como se describe arriba.",
+					"Un servicio de analítica: estadísticas de uso anónimas, solo si lo permitiste, como se describe arriba.",
 				],
 			},
 			{
 				title: "Compartir con otros participantes",
 				paragraphs: [
 					"Los gastos, grupos y pagos se comparten con las personas involucradas. Los demás participantes pueden ver los detalles del gasto, los montos, los repartos y los registros de pago, tu nombre y tu foto de perfil. Las imágenes de recibos y comprobantes son accesibles mediante sus enlaces, por lo que quien reciba uno de esos enlaces puede abrir la imagen.",
+						"Los comentarios que escribes en un gasto de grupo (tu nombre y el texto) son visibles para los miembros actuales de ese grupo. Cada grupo también tiene un registro de actividad que muestra quién hizo qué y cuándo (por ejemplo ediciones, liquidaciones, pagos y cambios de miembros), visible para sus miembros actuales.",
+						"La exportación de tus gastos a un archivo CSV se hace en tu dispositivo. El archivo se comparte solo donde tú elijas enviarlo, mediante el menú de compartir de tu dispositivo; Clari no lo sube.",
 					"Clari no contiene publicidad y no vendemos tu información personal. Podemos divulgar información si la ley lo exige o para proteger nuestros derechos.",
 				],
 			},
 			{
 				title: "Conservación y eliminación de la cuenta",
 				paragraphs: [
-					"Conservamos tu información mientras tu cuenta esté activa. Puedes eliminar tu cuenta desde la sección Perfil de la app. Esto elimina tu cuenta de acceso y desactiva tu perfil. Los gastos, grupos y registros de pago que involucran a otros participantes pueden seguir visibles para ellos para que sus propios registros se mantengan consistentes.",
+					"Conservamos tu información mientras tu cuenta esté activa. Puedes eliminar tu cuenta desde la sección Perfil de la app. Esto elimina tu cuenta de acceso y desactiva tu perfil. Los gastos, grupos y registros de pago que involucran a otros participantes pueden seguir visibles para ellos para que sus propios registros se mantengan consistentes. Tu nombre en gastos compartidos, grupos y comentarios se reemplaza por \"Usuario eliminado\", y las plantillas de gastos recurrentes que creaste se eliminan.",
 				],
 				link: {
 					before: "Para conocer qué se elimina y qué se conserva temporalmente, o para solicitar la eliminación por correo, consulta la ",
