@@ -1,0 +1,295 @@
+<!doctype html>
+<!--
+  DRAFT, PENDING LEGAL REVIEW. Not reviewed by a lawyer: governing law, minimum age, liability limits
+  and the operator's legal name and address are intentionally missing and must be added after review.
+  Source of truth for the Terms of Service linked from the Clari app.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <title>Clari Terms of Service</title>
+  <style>
+@font-face { font-family: "Newsreader"; src: url("../fonts/cuenta-facil/Newsreader-MediumItalic.ttf") format("truetype"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Newsreader"; src: url("../fonts/cuenta-facil/Newsreader-BoldItalic.ttf") format("truetype"); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/cuenta-facil/HankenGrotesk-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/cuenta-facil/HankenGrotesk-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/cuenta-facil/HankenGrotesk-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+body { min-height: 100vh; margin: 0; color: var(--muted); background: var(--bg); }
+.privacy-page { isolation: isolate; min-height: 100vh; padding: clamp(1rem, 4vw, 4rem); overflow: hidden; }
+.glow { position: fixed; z-index: -1; width: min(52vw, 680px); aspect-ratio: 1; border-radius: 50%; filter: blur(80px); opacity: .22; pointer-events: none; }
+.glow--one { top: -15rem; right: -12rem; background: var(--primary); }
+.glow--two { bottom: -20rem; left: -14rem; background: var(--secondary); }
+.privacy-policy { width: min(100%, 860px); margin: 0 auto; padding: clamp(1.5rem, 5vw, 4.5rem); background: var(--surface); border: 1px solid var(--border); border-radius: 28px; box-shadow: var(--shadow); }
+.header, .brand, .language { display: flex; align-items: center; }
+.header { justify-content: space-between; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.brand { gap: .85rem; }
+.logo { width: 48px; height: 48px; border-radius: 14px; box-shadow: var(--logo-shadow); }
+.eyebrow { display: block; color: var(--text); font-size: 1.1rem; font-weight: 700; }
+.brand p { margin: .1rem 0 0; font-size: .82rem; color: var(--muted); }
+.language { padding: .25rem; gap: .15rem; background: var(--language-bg); border: 1px solid var(--line); border-radius: 12px; }
+.language button { min-width: 2.7rem; padding: .45rem .5rem; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font: 700 .75rem inherit; letter-spacing: .04em; cursor: pointer; }
+.language button:hover, .language button:focus-visible { color: var(--text); }
+.language button:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.language button[aria-pressed="true"] { background: var(--primary); color: var(--active-text); }
+.intro { padding: clamp(2.25rem, 6vw, 4.5rem) 0 2.5rem; }
+h1, h2 { color: var(--text); letter-spacing: -.025em; }
+h1 { max-width: 680px; margin: 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }
+.intro p { max-width: 650px; margin: 1.25rem 0 0; font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.7; }
+time { display: block; margin-top: 1.5rem; color: var(--secondary); font-size: .85rem; font-weight: 600; }
+.content { display: grid; gap: 2.25rem; }
+.content section { padding-top: 2.25rem; border-top: 1px solid var(--line); }
+h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; }
+.content p, .content li { font-size: .98rem; line-height: 1.75; }
+.content p { margin: .9rem 0 0; }
+.content ul { margin: .9rem 0 0 1.25rem; padding: 0; }
+.content li + li { margin-top: .55rem; }
+a { color: var(--secondary); font-weight: 600; text-underline-offset: .2em; }
+a:hover { color: var(--primary-soft); }
+.contact { padding: 1.5rem !important; border: 1px solid var(--contact-border) !important; border-radius: 16px; background: var(--contact-bg); }
+.contact p { margin-top: .6rem; }
+@media (max-width: 560px) { .privacy-page { padding: 0; } .privacy-policy { border-right: 0; border-left: 0; border-radius: 0; } .header { align-items: flex-start; flex-direction: column; } }
+
+
+:root { color-scheme:light; --bg:#eceeea; --surface:#f8f9f6; --primary:#a82b18; --secondary:#a82b18; --primary-soft:#cc3621; --text:#15181c; --muted:#454b52; --border:#c9cec7; --line:#c9cec7; --language-bg:#eceeea; --shadow:0 18px 50px rgba(21,24,28,.08); --logo-shadow:0 6px 18px rgba(21,24,28,.18); --contact-border:#c9cec7; --contact-bg:#eceeea; --active-text:#ffffff; --serif:Newsreader,"Iowan Old Style","Palatino Linotype",Georgia,serif; --sans:"Hanken Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
+h1, h2, .eyebrow { font-family: var(--serif); font-style: italic; }
+h1, h2 { font-weight: 500; }
+.eyebrow { font-weight: 700; }
+body { font-family: var(--sans); }
+.glow { opacity: .1; }
+.logo { border-radius: 22%; }
+</style>
+</head>
+<body>
+  <main class="privacy-page">
+    <div class="glow glow--one"></div><div class="glow glow--two"></div>
+    <article class="privacy-policy">
+      <header class="header">
+        <div class="brand"><img src="assets/cuenta-facil.png" alt="Clari" class="logo" /><div><span class="eyebrow">Clari</span><p id="page-label"></p></div></div>
+        <div class="language" id="language-selector" aria-label="Language">
+          <button type="button" data-locale="en" aria-pressed="true">EN</button>
+          <button type="button" data-locale="es" aria-pressed="false">ES</button>
+        </div>
+      </header>
+      <div class="intro"><h1 id="title"></h1><p id="intro"></p><time id="updated" datetime="2026-11-10"></time></div>
+      <div class="content" id="content"></div>
+    </article>
+  </main>
+  <script>
+const termsCopy = {
+	en: {
+		languageLabel: "Language",
+		pageLabel: "Terms of service",
+		title: "Clari Terms of Service",
+		intro: "These terms govern your use of Clari (formerly Cuenta Fácil), the apps for Android, iOS and web developed by Enderson Vizcaino. Please read them before creating an account.",
+		updated: "Last updated: 10 November 2026",
+		sections: [
+			{
+				title: "1. Acceptance",
+				paragraphs: ["By creating an account or using Clari (\"the app\") you accept these terms. If you do not agree, do not use the app."],
+			},
+			{
+				title: "2. What Clari is",
+				paragraphs: ["Clari is a tool to record personal and shared expenses and calculate who owes whom. Clari does not hold, transfer or process money and is not a bank or a payment institution. Payments you record in the app are only a record: money moves outside Clari, by whatever means you choose."],
+			},
+			{
+				title: "3. Your account",
+				items: [
+					"You can sign in with email and password, Google or Apple. You must be the holder of the account you use or have the right to use it.",
+					"You are responsible for the activity on your account and for keeping your device and credentials secure.",
+					"You must give us accurate information and keep it up to date.",
+					"Clari is not directed at children under 13, as described in the privacy policy.",
+				],
+			},
+			{
+				title: "4. Accuracy of data",
+				paragraphs: ["Balances and debts are calculated from what you and the other participants record. You are responsible for the amounts, splits and participants you enter being correct. Clari does not verify that information and does not resolve disputes between people."],
+			},
+			{
+				title: "5. Content and other people",
+				items: [
+					"Your shared expense information is visible to the participants you add.",
+					"Only add other people's details (name, phone number, email address) if you have the right to do so.",
+					"You are responsible for the content you upload, such as receipt photos.",
+				],
+			},
+			{
+				title: "6. Acceptable use",
+				items: [
+					"Do not use the app for illegal or fraudulent activity or to harass other people.",
+					"Do not try to access other people's accounts or data, or interfere with how the service works.",
+					"Do not reverse engineer the app or use abusive automated means against the service.",
+				],
+			},
+			{
+				title: "7. Account deletion",
+				paragraphs: ["You can delete your account at any time from Profile > Delete account, or by writing to the contact below. Records shared with other people may be kept so that other people's balances do not change."],
+				links: [
+					{ before: "For details about what is removed and what is kept, see the ", label: "account deletion page", href: "/apps/cf/delete-account.html", after: "." },
+					{ before: "How personal data is handled is described in the ", label: "privacy policy", href: "/privacy/cuenta-facil.html", after: "." },
+				],
+			},
+			{
+				title: "8. Availability and changes to the service",
+				paragraphs: ["We do our best to keep the app available, but we do not guarantee that it will work without interruptions or errors. We may change or remove features and update the app."],
+			},
+			{
+				title: "9. No warranties and limit of liability",
+				paragraphs: ["The app is provided \"as is\". To the extent permitted by law, Clari and its operators are not liable for indirect losses, for decisions made based on the balances shown, or for payments or agreements between users."],
+			},
+			{
+				title: "10. Changes to these terms",
+				paragraphs: ["We may update these terms. We will publish the current version at this URL with its revision date updated. If you keep using the app after a change, you accept it."],
+			},
+		],
+		contactTitle: "11. Contact",
+		contactText: "Questions about these terms? Write to",
+		contactLinks: [
+			{ before: "Need help using the app? See the ", label: "support page", href: "/support/cuenta-facil.html", after: "." },
+		],
+	},
+	es: {
+		languageLabel: "Idioma",
+		pageLabel: "Términos del servicio",
+		title: "Términos del servicio de Clari",
+		intro: "Estos términos regulan el uso de Clari (antes Cuenta Fácil), las apps para Android, iOS y web desarrolladas por Enderson Vizcaino. Léelos antes de crear una cuenta.",
+		updated: "Última actualización: 10 de noviembre de 2026",
+		sections: [
+			{
+				title: "1. Aceptación",
+				paragraphs: ["Al crear una cuenta o usar Clari (\"la app\") aceptas estos términos. Si no estás de acuerdo, no uses la app."],
+			},
+			{
+				title: "2. Qué es Clari",
+				paragraphs: ["Clari es una herramienta para registrar gastos personales y compartidos y calcular quién le debe a quién. Clari no custodia, transfiere ni procesa dinero, y no es un banco ni una entidad de pagos. Los pagos que registres en la app son solo un registro: el dinero se mueve fuera de Clari, por los medios que elijas."],
+			},
+			{
+				title: "3. Tu cuenta",
+				items: [
+					"Puedes iniciar sesión con correo y contraseña, Google o Apple. Debes ser el titular de la cuenta que uses o tener derecho a usarla.",
+					"Eres responsable de la actividad de tu cuenta y de mantener seguros tu dispositivo y tus credenciales.",
+					"Debes darnos información veraz y mantenerla actualizada.",
+					"Clari no está dirigida a menores de 13 años, como se describe en la política de privacidad.",
+				],
+			},
+			{
+				title: "4. Exactitud de los datos",
+				paragraphs: ["Los saldos y deudas se calculan con lo que tú y los demás participantes registran. Eres responsable de que los montos, los repartos y los participantes que ingreses sean correctos. Clari no verifica esa información y no resuelve disputas entre personas."],
+			},
+			{
+				title: "5. Contenido y otras personas",
+				items: [
+					"La información de tus gastos compartidos es visible para los participantes que agregues.",
+					"Agrega datos de otras personas (nombre, teléfono, correo electrónico) solo si tienes derecho a hacerlo.",
+					"Eres responsable del contenido que subes, como las fotos de recibos.",
+				],
+			},
+			{
+				title: "6. Uso aceptable",
+				items: [
+					"No uses la app para actividades ilegales o fraudulentas ni para acosar a otras personas.",
+					"No intentes acceder a cuentas o datos de otras personas ni interferir con el funcionamiento del servicio.",
+					"No hagas ingeniería inversa de la app ni uses medios automatizados abusivos contra el servicio.",
+				],
+			},
+			{
+				title: "7. Eliminación de la cuenta",
+				paragraphs: ["Puedes eliminar tu cuenta en cualquier momento desde Perfil > Eliminar cuenta, o escribiendo al contacto de abajo. Los registros compartidos con otras personas pueden conservarse para que los saldos de los demás no cambien."],
+				links: [
+					{ before: "Para conocer qué se elimina y qué se conserva, consulta la ", label: "página de eliminación de cuenta", href: "/apps/cf/delete-account.html", after: "." },
+					{ before: "El tratamiento de los datos personales se describe en la ", label: "política de privacidad", href: "/privacy/cuenta-facil.html", after: "." },
+				],
+			},
+			{
+				title: "8. Disponibilidad y cambios del servicio",
+				paragraphs: ["Hacemos lo posible por mantener la app disponible, pero no garantizamos que funcione sin interrupciones ni errores. Podemos modificar o retirar funciones y actualizar la app."],
+			},
+			{
+				title: "9. Sin garantías y límite de responsabilidad",
+				paragraphs: ["La app se ofrece \"tal cual\". En la medida permitida por la ley, Clari y sus responsables no responden por pérdidas indirectas, por decisiones tomadas con base en los saldos mostrados, ni por pagos o acuerdos entre usuarios."],
+			},
+			{
+				title: "10. Cambios a estos términos",
+				paragraphs: ["Podemos actualizar estos términos. Publicaremos la versión vigente en esta URL con su fecha de revisión actualizada. Si sigues usando la app después de un cambio, lo aceptas."],
+			},
+		],
+		contactTitle: "11. Contacto",
+		contactText: "¿Preguntas sobre estos términos? Escribe a",
+		contactLinks: [
+			{ before: "¿Necesitas ayuda para usar la app? Consulta la ", label: "página de soporte", href: "/support/cuenta-facil.html", after: "." },
+		],
+	},
+};
+    const pageLabel = document.querySelector('#page-label');
+    const title = document.querySelector('#title');
+    const intro = document.querySelector('#intro');
+    const updated = document.querySelector('#updated');
+    const content = document.querySelector('#content');
+    const selector = document.querySelector('#language-selector');
+
+    function addText(parent, tag, value) {
+      const element = document.createElement(tag);
+      element.textContent = value;
+      parent.append(element);
+    }
+
+    function addLink(parent, link) {
+      const paragraph = document.createElement('p');
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.textContent = link.label;
+      paragraph.append(document.createTextNode(link.before), anchor, document.createTextNode(link.after));
+      parent.append(paragraph);
+    }
+
+    function render(locale) {
+      const copy = termsCopy[locale];
+      document.documentElement.lang = locale;
+      document.title = copy.title;
+      pageLabel.textContent = copy.pageLabel;
+      title.textContent = copy.title;
+      intro.textContent = copy.intro;
+      updated.textContent = copy.updated;
+      selector.setAttribute('aria-label', copy.languageLabel);
+      content.replaceChildren();
+      for (const section of copy.sections) {
+        const sectionElement = document.createElement('section');
+        addText(sectionElement, 'h2', section.title);
+        for (const paragraph of section.paragraphs ?? []) addText(sectionElement, 'p', paragraph);
+        if (section.items) {
+          const list = document.createElement('ul');
+          for (const item of section.items) addText(list, 'li', item);
+          sectionElement.append(list);
+        }
+        for (const link of section.links ?? []) addLink(sectionElement, link);
+        content.append(sectionElement);
+      }
+      const contact = document.createElement('section');
+      contact.className = 'contact';
+      addText(contact, 'h2', copy.contactTitle);
+      const contactParagraph = document.createElement('p');
+      contactParagraph.append(document.createTextNode(`${copy.contactText} `));
+      const email = document.createElement('a');
+      email.href = 'mailto:khrienanime@gmail.com';
+      email.textContent = 'khrienanime@gmail.com';
+      contactParagraph.append(email, document.createTextNode('.'));
+      contact.append(contactParagraph);
+      for (const link of copy.contactLinks ?? []) addLink(contact, link);
+      content.append(contact);
+      for (const button of selector.querySelectorAll('button')) {
+        button.setAttribute('aria-pressed', String(button.dataset.locale === locale));
+      }
+    }
+
+    selector.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-locale]');
+      if (button) render(button.dataset.locale);
+    });
+    render('en');
+  </script>
+</body>
+</html>
