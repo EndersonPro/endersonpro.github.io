@@ -108,6 +108,16 @@ const policyCopy = {
 					"Contacts: read on your device to suggest people when you tag someone with @. The app does not upload your address book; only the people you add to an expense or group are saved. If you sign in with Google, the app may also request read-only access to your Google contacts for the same purpose.",
 					"Camera and photo library: to take or choose a receipt, payment evidence or profile picture. Text on receipts is recognized on your device, and the recognized text is not sent to our servers.",
 					"Microphone and speech recognition: to let you dictate an expense. Dictation uses the speech recognition service of your operating system, so your audio may be processed by your operating system's provider under its own terms. Clari does not receive or store the audio, only the text you confirm.",
+					"Notifications: to show you alerts, as described in the Notifications section. The app never asks for this permission when it first opens.",
+				],
+			},
+			{
+				title: "Notifications",
+				paragraphs: [
+					"Notifications are optional. The app asks for your device's permission only after you save your first expense with a group or when you turn notifications on in Profile > Notifications, never when it first opens. If you refuse, nothing below happens and the rest of the app keeps working. In Profile > Notifications you can switch each category on or off: new expenses, payments, settle requests, debt reminders and recurring expense reminders.",
+					"Push notifications are sent only to group members who have an account and are on the expense in question. They show the name of the person who acted, the expense title, an amount and the group name. The app notifies you when you are added to a new expense, when someone records a payment to you, when someone asks you to mark an expense as settled, and when a creditor sends you a debt reminder. Only the creditor side of an expense can send a debt reminder, and at most one per person and expense every 24 hours. No push is sent to people without an account; for them the app only offers to share the message yourself.",
+					"To send these notifications our servers store, for each of your devices, a push token, the platform and the app language, and, for your account, your switches for the categories above. The token is removed when you sign out of that device and when you delete your account, and tokens that the push delivery service reports as invalid are removed too. A push service provider delivers the notifications to your device.",
+					"Reminders for your own recurring expenses are local notifications: the app schedules them on your device with only the expense title and amount, and they are never sent to our servers or to anyone else. They are cancelled when you stop the expense, turn the category off or sign out.",
 				],
 			},
 			{
@@ -135,6 +145,7 @@ const policyCopy = {
 					"Cloud infrastructure providers: server-side processing such as balances, invitations and AI-assisted drafts.",
 					"App integrity checks: confirm that requests come from the genuine app.",
 					"Configuration delivery: delivers app settings.",
+					"Push notification delivery: delivers notifications to your device, only if you turned them on, as described in the Notifications section.",
 					"An error reporting service: collects crash reports and diagnostics only if you allowed them, as described above.",
 					"An artificial intelligence provider: AI-assisted drafts, as described above.",
 					"An analytics service: anonymous usage statistics, only if you allowed them, as described above.",
@@ -152,7 +163,7 @@ const policyCopy = {
 			{
 				title: "Retention and account deletion",
 				paragraphs: [
-					"We keep your information while your account is active. You can delete your account from the Profile section of the app. This removes your sign-in account and deactivates your profile. Expenses, groups and payment records that involve other participants may remain visible to them so their own records stay consistent. Your name on shared expenses, groups and comments is replaced by \"Deleted user\", and the recurring expense templates you created are deleted.",
+					"We keep your information while your account is active. You can delete your account from the Profile section of the app. This removes your sign-in account and deactivates your profile. Expenses, groups and payment records that involve other participants may remain visible to them so their own records stay consistent. Your name on shared expenses, groups and comments is replaced by \"Deleted user\", and the recurring expense templates you created are deleted. Your device push tokens are removed as well.",
 				],
 				link: {
 					before: "For details about what is removed and what is kept temporarily, or to request deletion by email, see the ",
@@ -230,6 +241,16 @@ const policyCopy = {
 					"Contactos: se leen en tu dispositivo para sugerir personas cuando etiquetas a alguien con @. La app no sube tu agenda; solo se guardan las personas que agregas a un gasto o grupo. Si inicias sesión con Google, la app también puede solicitar acceso de solo lectura a tus contactos de Google con el mismo fin.",
 					"Cámara y fototeca: para tomar o elegir un recibo, un comprobante de pago o una foto de perfil. El texto de los recibos se reconoce en tu dispositivo, y ese texto reconocido no se envía a nuestros servidores.",
 					"Micrófono y reconocimiento de voz: para que puedas dictar un gasto. El dictado usa el servicio de reconocimiento de voz de tu sistema operativo, por lo que el proveedor de tu sistema operativo puede procesar tu audio según sus propios términos. Clari no recibe ni almacena el audio, solo el texto que confirmas.",
+					"Notificaciones: para mostrarte avisos, como se describe en la sección Notificaciones. La app nunca solicita este permiso al abrirse por primera vez.",
+				],
+			},
+			{
+				title: "Notificaciones",
+				paragraphs: [
+					"Las notificaciones son opcionales. La app solicita el permiso de tu dispositivo solo después de que guardes tu primer gasto con un grupo o cuando actives las notificaciones en Perfil > Notificaciones, nunca al abrirse por primera vez. Si lo rechazas, no ocurre nada de lo descrito aquí y el resto de la app sigue funcionando. En Perfil > Notificaciones puedes activar o desactivar cada categoría: gastos nuevos, pagos, solicitudes de saldar, recordatorios de deuda y recordatorios de gastos recurrentes.",
+					"Las notificaciones push se envían solo a miembros de un grupo que tienen cuenta y participan en el gasto correspondiente. Muestran el nombre de la persona que realizó la acción, el título del gasto, un monto y el nombre del grupo. La app te avisa cuando te agregan a un gasto nuevo, cuando alguien registra un pago a tu favor, cuando alguien te pide marcar un gasto como saldado y cuando un acreedor te envía un recordatorio de deuda. Solo el lado acreedor de un gasto puede enviar un recordatorio de deuda, y como máximo uno por persona y gasto cada 24 horas. No se envía ninguna notificación push a personas sin cuenta; para ellas la app solo ofrece compartir el mensaje tú mismo.",
+					"Para enviar estas notificaciones nuestros servidores guardan, por cada uno de tus dispositivos, un token de notificaciones, la plataforma y el idioma de la app y, por tu cuenta, tus ajustes de las categorías anteriores. El token se elimina cuando cierras sesión en ese dispositivo y cuando eliminas tu cuenta, y también se eliminan los tokens que el servicio de entrega de notificaciones reporta como inválidos. Un proveedor de servicio de notificaciones push las entrega a tu dispositivo.",
+					"Los recordatorios de tus propios gastos recurrentes son notificaciones locales: la app las programa en tu dispositivo solo con el título y el monto del gasto, y nunca se envían a nuestros servidores ni a otras personas. Se cancelan cuando detienes el gasto, desactivas la categoría o cierras sesión.",
 				],
 			},
 			{
@@ -257,6 +278,7 @@ const policyCopy = {
 					"Proveedores de infraestructura en la nube: procesamiento en el servidor como saldos, invitaciones y borradores asistidos por IA.",
 					"Verificaciones de integridad de la app: confirman que las solicitudes provienen de la app genuina.",
 					"Entrega de configuración: entrega ajustes de la app.",
+					"Entrega de notificaciones push: entrega las notificaciones a tu dispositivo, solo si las activaste, como se describe en la sección Notificaciones.",
 					"Un servicio de reportes de errores: recopila informes de fallos y diagnósticos solo si lo permitiste, como se describe arriba.",
 					"Un proveedor de inteligencia artificial: borradores asistidos por IA, como se describe arriba.",
 					"Un servicio de analítica: estadísticas de uso anónimas, solo si lo permitiste, como se describe arriba.",
@@ -274,7 +296,7 @@ const policyCopy = {
 			{
 				title: "Conservación y eliminación de la cuenta",
 				paragraphs: [
-					"Conservamos tu información mientras tu cuenta esté activa. Puedes eliminar tu cuenta desde la sección Perfil de la app. Esto elimina tu cuenta de acceso y desactiva tu perfil. Los gastos, grupos y registros de pago que involucran a otros participantes pueden seguir visibles para ellos para que sus propios registros se mantengan consistentes. Tu nombre en gastos compartidos, grupos y comentarios se reemplaza por \"Usuario eliminado\", y las plantillas de gastos recurrentes que creaste se eliminan.",
+					"Conservamos tu información mientras tu cuenta esté activa. Puedes eliminar tu cuenta desde la sección Perfil de la app. Esto elimina tu cuenta de acceso y desactiva tu perfil. Los gastos, grupos y registros de pago que involucran a otros participantes pueden seguir visibles para ellos para que sus propios registros se mantengan consistentes. Tu nombre en gastos compartidos, grupos y comentarios se reemplaza por \"Usuario eliminado\", y las plantillas de gastos recurrentes que creaste se eliminan. También se eliminan los tokens de notificaciones de tus dispositivos.",
 				],
 				link: {
 					before: "Para conocer qué se elimina y qué se conserva temporalmente, o para solicitar la eliminación por correo, consulta la ",
