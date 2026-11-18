@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index, follow" />
+  <title>PoopRivals Support</title>
+  <style>
+@font-face { font-family: "Newsreader"; src: url("../fonts/cuenta-facil/Newsreader-MediumItalic.ttf") format("truetype"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Newsreader"; src: url("../fonts/cuenta-facil/Newsreader-BoldItalic.ttf") format("truetype"); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/cuenta-facil/HankenGrotesk-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/cuenta-facil/HankenGrotesk-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Hanken Grotesk"; src: url("../fonts/cuenta-facil/HankenGrotesk-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+:root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+* { box-sizing: border-box; }
+html { min-height: 100%; background: var(--bg); scroll-behavior: smooth; }
+body { min-height: 100vh; margin: 0; color: var(--muted); background: var(--bg); }
+.privacy-page { isolation: isolate; min-height: 100vh; padding: clamp(1rem, 4vw, 4rem); overflow: hidden; }
+.glow { position: fixed; z-index: -1; width: min(52vw, 680px); aspect-ratio: 1; border-radius: 50%; filter: blur(80px); opacity: .22; pointer-events: none; }
+.glow--one { top: -15rem; right: -12rem; background: var(--primary); }
+.glow--two { bottom: -20rem; left: -14rem; background: var(--secondary); }
+.privacy-policy { width: min(100%, 860px); margin: 0 auto; padding: clamp(1.5rem, 5vw, 4.5rem); background: var(--surface); border: 1px solid var(--border); border-radius: 28px; box-shadow: var(--shadow); }
+.header, .brand, .language { display: flex; align-items: center; }
+.header { justify-content: space-between; gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+.brand { gap: .85rem; }
+.logo { width: 48px; height: 48px; border-radius: 14px; box-shadow: var(--logo-shadow); }
+.eyebrow { display: block; color: var(--text); font-size: 1.1rem; font-weight: 700; }
+.brand p { margin: .1rem 0 0; font-size: .82rem; color: var(--muted); }
+.language { padding: .25rem; gap: .15rem; background: var(--language-bg); border: 1px solid var(--line); border-radius: 12px; }
+.language button { min-width: 2.7rem; padding: .45rem .5rem; border: 0; border-radius: 8px; background: transparent; color: var(--muted); font: 700 .75rem inherit; letter-spacing: .04em; cursor: pointer; }
+.language button:hover, .language button:focus-visible { color: var(--text); }
+.language button:focus-visible { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.language button[aria-pressed="true"] { background: var(--primary); color: var(--active-text); }
+.intro { padding: clamp(2.25rem, 6vw, 4.5rem) 0 2.5rem; }
+h1, h2 { color: var(--text); letter-spacing: -.025em; }
+h1 { max-width: 680px; margin: 0; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.08; }
+.intro p { max-width: 650px; margin: 1.25rem 0 0; font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.7; }
+.content { display: grid; gap: 2.25rem; }
+.content section { padding-top: 2.25rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
+h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; }
+.content p, .content li { font-size: .98rem; line-height: 1.75; }
+.content p { margin: .9rem 0 0; }
+.content ul { margin: .9rem 0 0 1.25rem; padding: 0; }
+.content li + li { margin-top: .55rem; }
+a { color: var(--secondary); font-weight: 600; text-underline-offset: .2em; }
+a:hover { color: var(--primary-soft); }
+.contact { padding: 1.5rem !important; border: 1px solid var(--contact-border) !important; border-radius: 16px; background: var(--contact-bg); }
+.contact p { margin-top: .6rem; }
+@media (max-width: 560px) { .privacy-page { padding: 0; } .privacy-policy { border-right: 0; border-left: 0; border-radius: 0; } .header { align-items: flex-start; flex-direction: column; } }
+
+
+:root { color-scheme:light; --bg:#eceeea; --surface:#f8f9f6; --primary:#a82b18; --secondary:#a82b18; --primary-soft:#cc3621; --text:#15181c; --muted:#454b52; --border:#c9cec7; --line:#c9cec7; --language-bg:#eceeea; --shadow:0 18px 50px rgba(21,24,28,.08); --logo-shadow:0 6px 18px rgba(21,24,28,.18); --contact-border:#c9cec7; --contact-bg:#eceeea; --active-text:#ffffff; --serif:Newsreader,"Iowan Old Style","Palatino Linotype",Georgia,serif; --sans:"Hanken Grotesk",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
+h1, h2, .eyebrow { font-family: var(--serif); font-style: italic; }
+h1, h2 { font-weight: 500; }
+.eyebrow { font-weight: 700; }
+body { font-family: var(--sans); }
+.glow { opacity: .1; }
+.logo { border-radius: 22%; }
+</style>
+</head>
+<body>
+  <main class="privacy-page">
+    <div class="glow glow--one"></div><div class="glow glow--two"></div>
+    <article class="privacy-policy">
+      <header class="header">
+        <div class="brand"><img src="assets/pooprivals.png" alt="PoopRivals" class="logo" /><div><span class="eyebrow">PoopRivals</span><p id="page-label"></p></div></div>
+        <div class="language" id="language-selector" aria-label="Language">
+          <button type="button" data-locale="en" aria-pressed="true">EN</button>
+          <button type="button" data-locale="es" aria-pressed="false">ES</button>
+        </div>
+      </header>
+      <div class="intro"><h1 id="title"></h1><p id="intro"></p></div>
+      <div class="content" id="content"></div>
+    </article>
+  </main>
+  <script>
+const supportCopy = {
+	en: {
+		languageLabel: "Language",
+		pageLabel: "Support",
+		title: "PoopRivals Support",
+		intro: "Answers to common questions, how to delete your account, and how to reach us for anything else.",
+		sections: [
+			{
+				title: "How do I sign in?",
+				paragraphs: [
+					"Sign in with your email address and password, with Google, or with Apple. Your groups, match logs and points are attached to the account you sign in with.",
+				],
+			},
+			{
+				title: "How do groups and match logs work?",
+				paragraphs: [
+					"Create a group or join one with an invite link. Inside a group you log matches, earn points, climb the leaderboard, unlock challenges and chat with the other members.",
+				],
+			},
+			{
+				title: "How do I change my profile photo?",
+				paragraphs: [
+					"Pick a photo from your device's photo library in the app. The app uses the system picker, so it does not get access to your whole library.",
+				],
+			},
+			{
+				title: "How do I turn off notifications?",
+				paragraphs: [
+					"Group activity notifications are optional. You can turn them off in the app at any time.",
+				],
+			},
+			{
+				title: "How do I delete my account?",
+				id: "delete-account",
+				paragraphs: [
+					"There are two ways to delete your account. Both lead to the same result.",
+					"1. In the app: open the Profile section and delete your account from there.",
+					"2. By email: write to khrienanime@gmail.com with the subject \"PoopRivals account deletion\", sent from the email address of your PoopRivals account, so we can match the request to your account. We complete email requests within 30 days.",
+					"Deleting your account removes your sign-in account, your profile (name, email address and photo) and your push notification tokens.",
+					"What is kept: match logs and chat messages in groups you shared are kept so that other members' leaderboards and chats stay consistent. Your name on them is replaced by \"Deleted user\", so they are no longer linked to you.",
+				],
+			},
+			{
+				title: "What happens to my data?",
+				paragraphs: ["What the app collects, who processes it and how long it is kept is in the privacy policy."],
+				link: {
+					before: "Read the ",
+					label: "PoopRivals privacy policy",
+					href: "/privacy/pooprivals.html",
+					after: ".",
+				},
+			},
+		],
+		contactTitle: "Still stuck?",
+		contactText: "Write to us and we'll help. If it's a bug, include your device model and iOS/Android version.",
+	},
+	es: {
+		languageLabel: "Idioma",
+		pageLabel: "Soporte",
+		title: "Soporte de PoopRivals",
+		intro: "Respuestas a preguntas frecuentes, cómo eliminar tu cuenta y cómo contactarnos para cualquier otra cosa.",
+		sections: [
+			{
+				title: "¿Cómo inicio sesión?",
+				paragraphs: [
+					"Inicia sesión con tu correo electrónico y contraseña, con Google o con Apple. Tus grupos, registros de partidas y puntos están asociados a la cuenta con la que inicias sesión.",
+				],
+			},
+			{
+				title: "¿Cómo funcionan los grupos y los registros de partidas?",
+				paragraphs: [
+					"Crea un grupo o únete a uno con un enlace de invitación. Dentro de un grupo registras partidas, ganas puntos, subes en la tabla de posiciones, desbloqueas retos y chateas con los demás miembros.",
+				],
+			},
+			{
+				title: "¿Cómo cambio mi foto de perfil?",
+				paragraphs: [
+					"Elige una foto de la fototeca de tu dispositivo desde la app. La app usa el selector del sistema, así que no obtiene acceso a toda tu fototeca.",
+				],
+			},
+			{
+				title: "¿Cómo desactivo las notificaciones?",
+				paragraphs: [
+					"Las notificaciones de actividad del grupo son opcionales. Puedes desactivarlas en la app en cualquier momento.",
+				],
+			},
+			{
+				title: "¿Cómo elimino mi cuenta?",
+				id: "delete-account",
+				paragraphs: [
+					"Hay dos formas de eliminar tu cuenta. Ambas llevan al mismo resultado.",
+					"1. En la app: abre la sección Perfil y elimina tu cuenta desde ahí.",
+					"2. Por correo: escribe a khrienanime@gmail.com con el asunto \"PoopRivals account deletion\", enviado desde la dirección de correo de tu cuenta de PoopRivals, para poder vincular la solicitud a tu cuenta. Completamos las solicitudes por correo en un plazo de 30 días.",
+					"Al eliminar tu cuenta se borran tu cuenta de acceso, tu perfil (nombre, correo electrónico y foto) y tus tokens de notificaciones push.",
+					"Qué se conserva: los registros de partidas y los mensajes del chat de los grupos compartidos se conservan para que las tablas de posiciones y los chats de los demás miembros sigan siendo consistentes. Tu nombre en ellos se reemplaza por \"Usuario eliminado\", así que ya no están vinculados a ti.",
+				],
+			},
+			{
+				title: "¿Qué pasa con mis datos?",
+				paragraphs: ["Lo que recopila la app, quién lo procesa y cuánto tiempo se conserva está en la política de privacidad."],
+				link: {
+					before: "Lee la ",
+					label: "política de privacidad de PoopRivals",
+					href: "/privacy/pooprivals.html",
+					after: ".",
+				},
+			},
+		],
+		contactTitle: "¿Todavía tienes dudas?",
+		contactText: "Escríbenos y te ayudamos. Si es un error, incluye el modelo de tu dispositivo y la versión de iOS/Android.",
+	},
+};
+    const pageLabel = document.querySelector('#page-label');
+    const title = document.querySelector('#title');
+    const intro = document.querySelector('#intro');
+    const content = document.querySelector('#content');
+    const selector = document.querySelector('#language-selector');
+
+    function addText(parent, tag, value) {
+      const element = document.createElement(tag);
+      element.textContent = value;
+      parent.append(element);
+    }
+
+    function render(locale) {
+      const copy = supportCopy[locale];
+      document.documentElement.lang = locale;
+      document.title = copy.title;
+      pageLabel.textContent = copy.pageLabel;
+      title.textContent = copy.title;
+      intro.textContent = copy.intro;
+      selector.setAttribute('aria-label', copy.languageLabel);
+      content.replaceChildren();
+      for (const section of copy.sections) {
+        const sectionElement = document.createElement('section');
+        if (section.id) sectionElement.id = section.id;
+        addText(sectionElement, 'h2', section.title);
+        for (const paragraph of section.paragraphs ?? []) addText(sectionElement, 'p', paragraph);
+        if (section.link) {
+          const linkParagraph = document.createElement('p');
+          const anchor = document.createElement('a');
+          anchor.href = section.link.href;
+          anchor.textContent = section.link.label;
+          linkParagraph.append(document.createTextNode(section.link.before), anchor, document.createTextNode(section.link.after));
+          sectionElement.append(linkParagraph);
+        }
+        content.append(sectionElement);
+      }
+      const contact = document.createElement('section');
+      contact.className = 'contact';
+      addText(contact, 'h2', copy.contactTitle);
+      const contactParagraph = document.createElement('p');
+      contactParagraph.append(document.createTextNode(`${copy.contactText} `));
+      const email = document.createElement('a');
+      email.href = 'mailto:khrienanime@gmail.com';
+      email.textContent = 'khrienanime@gmail.com';
+      contactParagraph.append(email, document.createTextNode('.'));
+      contact.append(contactParagraph);
+      content.append(contact);
+      for (const button of selector.querySelectorAll('button')) {
+        button.setAttribute('aria-pressed', String(button.dataset.locale === locale));
+      }
+    }
+
+    selector.addEventListener('click', (event) => {
+      const button = event.target.closest('button[data-locale]');
+      if (button) render(button.dataset.locale);
+    });
+    render('en');
+  </script>
+</body>
+</html>
