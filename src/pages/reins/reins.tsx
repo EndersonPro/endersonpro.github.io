@@ -3,7 +3,7 @@ import { useState } from "react";
 import { HiExternalLink } from "react-icons/hi";
 import { CodeBlock } from "../../components/code-block/code-block";
 import { Toc, type TocEntry } from "../../components/toc/toc";
-import { ANDROID_BETA_GROUP_URL, ANDROID_BETA_OPT_IN_URL, TESTFLIGHT_URL } from "../../lib/reins-links";
+import { ANDROID_BETA_GROUP_URL, ANDROID_BETA_OPT_IN_URL, REINS_APP_STORE_URL } from "../../lib/reins-links";
 import { renderRich } from "../../lib/rich-text";
 import { m } from "../../paraglide/messages.js";
 
@@ -97,7 +97,7 @@ export const ReinsPage = () => {
 						>
 							{m.reins_hero_cta()} <HiExternalLink />
 						</a>
-						<a className="btn btn_secondary" href={TESTFLIGHT_URL} target="_blank" rel="noopener noreferrer">
+						<a className="btn btn_secondary" href={REINS_APP_STORE_URL} target="_blank" rel="noopener noreferrer">
 							{m.reins_hero_ios_cta()} <HiExternalLink />
 						</a>
 						<a className="btn btn_secondary" href="#installation-app">
@@ -171,7 +171,7 @@ export const ReinsPage = () => {
 					<p>{renderRich(m.reins_install_app_p1())}</p>
 					<p>
 						<b>iOS.</b> {m.reins_install_app_ios()}{" "}
-						<ExternalLink href={TESTFLIGHT_URL}>testflight.apple.com/join/wnuwa8Bu</ExternalLink>
+						<ExternalLink href={REINS_APP_STORE_URL}>App Store</ExternalLink>.
 					</p>
 					<p>
 						<b>Android.</b> {m.reins_install_app_android()}

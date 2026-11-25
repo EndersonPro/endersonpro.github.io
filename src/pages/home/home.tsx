@@ -4,6 +4,7 @@ import { FlowDiagram } from "../../components/flow-diagram/flow-diagram";
 import { LoopSection } from "../../components/loop-section/loop-section";
 import { GITHUB_URL, LINKEDIN_URL, type Product, products, tools } from "../../lib/portfolio-data";
 import { m } from "../../paraglide/messages.js";
+import { getLocale } from "../../paraglide/runtime.js";
 
 const arrowOut = (
 	<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
@@ -30,6 +31,7 @@ const jobs = [
 
 const ProductRow = ({ product, index }: { product: Product; index: number }) => {
 	const { name, icon, desc, status, live, stack, href, to, linkLabel, shots } = product;
+	const locale = getLocale();
 	const content: ReactNode = (
 		<>
 			<span className="product__no">{String(index + 1).padStart(2, "0")}</span>
@@ -55,9 +57,10 @@ const ProductRow = ({ product, index }: { product: Product; index: number }) => 
 			</div>
 			{shots && (
 				<div className="product__shots">
-					{shots.map(({ src, alt }) => (
-						<img key={src} src={src} alt={alt()} width={640} height={1385} />
-					))}
+						{shots.images.map(({ src, alt }) => {
+							const image = typeof src === "string" ? src : src[locale];
+							return <img key={image} src={image} alt={alt()} width={shots.width} height={shots.height} loading="lazy" />;
+						})}
 				</div>
 			)}
 		</>
